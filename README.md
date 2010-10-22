@@ -28,7 +28,7 @@ Early 2007, Blast Mojo was born in order to:
 
 ## Contributing
 
-Post patches to the “Blast Mojo Mailing List” : http://groups.google.com/group/blast-mojo
+Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/blast-mojo
 
 * Discuss large changes on mailing list before coding
 * Javascript code style
