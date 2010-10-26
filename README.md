@@ -39,6 +39,13 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
   * multi-line if statements must have braces.
 * patches should all pass JSLint http://jslint.com
 
+## TODO
+
+* Provide capability to reuse commands 
+* Provide capability to observe commands and custom events within the command
+* Write unit tests for Binder using qunit
+* Ability to do dependency injection on jQuery plugins 
+
 ## MIT Licence
 
 The BlastMojoLite Framework
