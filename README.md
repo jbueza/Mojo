@@ -2,7 +2,8 @@
 
 ## Setup
 
-* git clone 
+* git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
+* Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
 
 ## Why create another Framework?
 
