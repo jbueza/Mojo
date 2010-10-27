@@ -1,5 +1,8 @@
 # Mojolite javascript framework
 
+## Setup
+
+* git clone 
 
 ## Why create another Framework?
 
@@ -18,7 +21,7 @@ Early 2007, Blast Mojo was born in order to:
 
 * Enforces organization and clean separation of code to ease readability and maintainability
 
-* Includes Mojo StdLib library which consists of well-tested and reusable behaviors and components for rapid prototyping and development
+* Capability to pull any jQuery plugin for rapid prototyping and development
  
 * Increases productivity of large teams working in parallel, particularly on Agile projects, by dividing work into implementation silos and allowing incremental development
 
