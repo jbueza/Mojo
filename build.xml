@@ -11,7 +11,7 @@
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   
-  <property name="COMPILED_CORE" value="${dist}/compiled_core.js" />
+  <property name="COMPILED_CORE" value="${dist}/bml.js" />
 
   <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />
 
@@ -29,11 +29,14 @@
     <echo message="${JOOSE} built." />
   </target>
   
-  
-  <target name="mojo" description="Main mojo build, concatenates source files and replaces @VERSION">
+  <target name="mojo" description="Main mojo build, concatenates source files">
     <echo message="Building ${BM}" />
     <concat destfile="${BM}">
       <fileset file="LICENSE" />
+      <fileset file="src/Binder.js" />
+      <fileset file="src/Sitemap.js" />
+      <fileset file="src/Messaging.js" />
+      
     </concat>
     <echo message="${BM} built." />
   </target>

@@ -5,7 +5,8 @@ JooseX.Namespace.Depended.Resource.JooseClass.meta.extend({
   });
  use("Main", function() {new Main();});
  
- 
+
+
 Joose.Class("Main", {
     trait: 'JooseX.Class.Singleton',
     use : ['ExampleApp.Sitemap'],
