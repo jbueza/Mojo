@@ -1,4 +1,4 @@
-# Mojolite javascript framework
+# Blast Mojo Lite - JavaScript Framework
 
 ## Setup
 
@@ -31,7 +31,7 @@ Early 2007, Blast Mojo was born in order to:
 
 ## Contributing
 
-Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/blast-mojo
+Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo)
 
 * Discuss large changes on mailing list before coding
 * Javascript code style
@@ -40,7 +40,7 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
   * keywords followed by open-paren must be separated by a space. eg. if (condition) not if(condition)
   * no space between function name and open paren e.g. functionName(parameters) not functionName (parameters)
   * multi-line if statements must have braces.
-* patches should all pass JSLint http://jslint.com
+* patches should all pass [JSLint](http://jslint.com) 
 
 ## TODO
 
@@ -51,7 +51,7 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
 
 ## MIT Licence
 
-The BlastMojoLite Framework
+The Blast Mojo Lite Framework
 
 Copyright (c) 2010 Blast Radius
 
