@@ -1,37 +1,72 @@
 <project name="Blast Mojo" default="all" basedir=".">
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
+  <property description="Folder for dependencies (Joose/JooseX)" name="dependency" value="${PREFIX}/dependency" />
 
   <property name="compiler" value="build/yuicompressor-2.4.2.jar" />
+  
+  <property name="JOOSE" value="${dist}/joose.js" />
+  <property name="JOOSE_MIN" value="${dist}/joose.min.js" />
+  
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
+  
+  <property name="COMPILED_CORE" value="${dist}/compiled_core.js" />
 
-  <target name="all" depends="mojo,min" />
+  <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />
 
+  <target name="init" description="Creates dist directory or execute any preconditions before compiling Joose and Mojo">
+    <mkdir dir="${dist}" />
+  </target>
+  <target name="joose" description="Compiles Joose/JooseX into one core library. Typically this is used when updating Joose libs and then we can package it up.">
+    <echo message="Building ${JOOSE}" />
+    <concat destfile="${JOOSE}">
+      <fileset file="${dependency}/Joose/Core.js" />
+      <fileset file="${dependency}/JooseX/SimpleRequest.js" />
+      <fileset file="${dependency}/JooseX/Namespace/Depended/Web.js" />
+      <fileset file="${dependency}/JooseX/Class/Singleton.js" />
+    </concat>
+    <echo message="${JOOSE} built." />
+  </target>
+  
+  
   <target name="mojo" description="Main mojo build, concatenates source files and replaces @VERSION">
     <echo message="Building ${BM}" />
-    <mkdir dir="${dist}" />
     <concat destfile="${BM}">
-      <fileset file="src/LICENSE" />
-
-
-      
+      <fileset file="LICENSE" />
     </concat>
-  
     <echo message="${BM} built." />
   </target>
 
-  <target name="min" depends="mojo" description="Remove all comments and whitespace, no compression, great in combination with GZip">
+
+  <target name="joose_min" depends="joose" description="Remove all comments and whitespace, no compression, great in combination with GZip">
+    <echo message="Building ${JOOSE_MIN}" />
+    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
+      <arg line="${JOOSE} -o ${JOOSE_MIN} --charset UTF-8 --preserve-semi" />
+    </java>
+    <echo message="${JOOSE_MIN} built." />
+  </target>
+
+  <target name="mojo_min" depends="mojo" description="Remove all comments and whitespace, no compression, great in combination with GZip">
     <echo message="Building ${BM_MIN}" />
     <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
       <arg line="${BM} -o ${BM_MIN} --charset UTF-8 --preserve-semi" />
     </java>
-    
     <echo message="${BM_MIN} built." />
   </target>
+  
+  
+  <target name="compile_all" description="Once going to production, you want to compile both JooseCore and MojoCore to have one single production-ready file.">
+    <echo message="Building ${COMPILED_CORE}" />
+    <concat destfile="${COMPILED_CORE}">
+      <fileset file="${JOOSE_MIN}" />
+      <fileset file="${BM_MIN}" />
+    </concat>
+    <echo message="${COMPILED_CORE} built." />
+  </target>
+  
 
   <target name="clean">
     <delete dir="${dist}" />
   </target>
-
 </project>
