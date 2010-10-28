@@ -9,7 +9,7 @@ JooseX.Namespace.Depended.Resource.JooseClass.meta.extend({
 
 Joose.Class("Main", {
     trait: 'JooseX.Class.Singleton',
-    use : ['ExampleApp.Sitemap'],
+    use : ['ExampleApp.Sitemap', 'Mojolite.Messaging'],
     has: {
         sitemap: { init: function() { return new ExampleApp.Sitemap(); } }
     },
