@@ -2,15 +2,19 @@
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for dependencies (Joose/JooseX)" name="dependency" value="${PREFIX}/dependency" />
-
-  <property name="compiler" value="build/yuicompressor-2.4.2.jar" />
   
+  <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
+  <property name="compiler" value="build/yuicompressor-2.4.2.jar" />
+
+  <!-- Joose Core: the groundwork for Blast Mojo Lite -->
   <property name="JOOSE" value="${dist}/joose.js" />
   <property name="JOOSE_MIN" value="${dist}/joose.min.js" />
   
+  <!-- Blast Mojo Lite core -->
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   
+  <!-- Joose Core + Blast Mojo Lite Core -->
   <property name="COMPILED_CORE" value="${dist}/bml.js" />
 
   <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />
