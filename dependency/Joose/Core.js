@@ -1,3 +1,9 @@
+/*!
+ * This is Joose 3.01
+ * For documentation see http://code.google.com/p/joose-js/
+ * Copyright (c) 2009 Malte Ubl
+ * Generated: Sun Aug  2 16:02:39 2009
+ */
 Joose = function () { throw "Modules may not be instantiated." }
 
 Joose.top           = this
