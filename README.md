@@ -51,7 +51,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 * Provide capability to reuse commands 
 * Provide capability to observe commands and custom events within the command
 * Write unit tests for Binder using qunit
-* <strike>Ability to do dependency injection on jQuery plugins</strike>
+* [done] Ability to do dependency injection on jQuery plugins
 
 ## MIT Licence
 
