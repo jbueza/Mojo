@@ -29,7 +29,7 @@ use("Carousel", function() {
 Joose.Class("Carousel", {
   trait: 'JooseX.Class.Singleton',
   //you'll notice here you can include plugins through dependency injection
-  use : ['lib.plugins.jcarousel', 'lib.plugins.pubsub'],
+  use : ['lib.plugins.jcarousel'],
   has: {},
   after: {
     initialize: function(props) {
@@ -41,3 +41,4 @@ Joose.Class("Carousel", {
   },
   methods : {}
 });
+
