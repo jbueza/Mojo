@@ -4,9 +4,9 @@ Blast Mojo Lite (BML) is a scalable JavaScript framework that has the ability to
 
 ## Setup
 
-* git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
-* use apache ant to build a compiled source
-* Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
+1. git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
+1. use apache ant to build a compiled source
+1. Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
 
 ## Why create another Framework?
 
