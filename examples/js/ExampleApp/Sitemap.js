@@ -4,7 +4,7 @@ Class('ExampleApp.Sitemap', {
         sitemap: {
             is: "ro",
             init: [
-                { pattern: ".wrapper", attach: [
+                { pattern: ".wrapper .testButton img", attach: [
                     { binder: "ExampleApp.Click" }
                 ]}
             ]

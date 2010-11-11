@@ -13,7 +13,7 @@ Joose.Class('Mojolite.Sitemap', {
                 }
             }
             var recursable = function(value, key) {
-				if (value.pattern && (typeof key === "number") && value.attach) return true;
+				    if (value.pattern && (typeof key === "number") && value.attach) return true;
                 throw ("Unrecognized Sitemap entry format somewhere inside " +
                     (patternStack.join("/") || "Sitemap root"));
             }
