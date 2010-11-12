@@ -1,5 +1,7 @@
 # Blast Mojo Lite - Scalable JavaScript Framework
 
+![Blast Mojo Lite Architecture](http://mojo.bueza.com/bml/architecture.png)
+
 Blast Mojo Lite (BML) is a scalable JavaScript framework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work). In trying to keep the same structural essence of its predecessor, we're refactoring a lot of its core features into plugins. 
 
 ## Setup
