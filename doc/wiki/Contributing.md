@@ -25,6 +25,3 @@ While the architecture is set out to heavily rely on Joose for Class creation, l
 * multi-line <code>if</code> statements must have braces.
 * patches should all pass [JSLint](http://jslint.com)
 
-### Discuss features on the Blast Mojo in the Github Issues
-
-TODO

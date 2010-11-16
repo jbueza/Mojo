@@ -1,8 +1,21 @@
-# Blast Mojo Lite - Scalable JavaScript Framework
+# Blast Mojo Lite - Scalable JavaScript Microframework
 
 ![Blast Mojo Lite Architecture](http://mojo.bueza.com/bml/architecture.png)
 
-Blast Mojo Lite (BML) is a scalable JavaScript framework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work). In trying to keep the same structural essence of its predecessor, we're refactoring a lot of its core features into plugins. 
+Blast Mojo Lite (BML) is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work). In trying to keep the same structural essence of its predecessor, we're refactoring a lot of its core features into jQuery plugins. 
+
+A prime example of why you would want to use Blast Mojo Lite: you have a 4-6 person team of front-end developers. jQuery is a great library that encompasses a plethora of helper method but it doesn't tell developers how to build applications with structural integrity, loosely bound code, or implementation silos. Based on our agency experience having globally distributed teams and working on the same projects, we found that using jQuery alone can quickly turn a project into a pile of spaghetti.
+
+The Blast Mojo Lite Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity -- And finally, you get the awesomeness of jQuery in the palm of your hand because Blast Mojo Lite is built on top of it!
+
+### Features
+
+* Aspect-oriented programming for intercepting functionality (before, after, around)
+* Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
+* Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
+* Any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
+* Binders (controllers) are mapped to DOM elements to give components functionality
+* Binders are used as a way of creating implementation silos (LoginBinder, RegistrationBinder, ChatBinder, NavigationBinder)
 
 ## Setup
 
