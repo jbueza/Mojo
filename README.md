@@ -14,7 +14,7 @@ The Blast Mojo Lite Initiative emerged to help distributed teams build web appli
 * Aspect-oriented programming for intercepting functionality (before, after, around)
 * Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
 * Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
-* Any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
+* Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
 * Binders (controllers) are mapped to DOM elements to give components functionality
 * Binders are used as a way of creating implementation silos (LoginBinder, RegistrationBinder, ChatBinder, NavigationBinder)
 
@@ -46,7 +46,7 @@ Early 2007, Blast Mojo was born in order to:
 * Ensure code can be shared and re-used
 
 
-## Why use Mojolite?
+## Why use Blast Mojo Lite?
 
 * Blast Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
 
