@@ -32,6 +32,13 @@
   <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="../dependency/jquery/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
+  <!--[if lt IE 7 ]>
+    <script> //fix any <img> or .png_bg background-images
+      $.getScript("js/lib/dd_belatedpng.js",function(){ DD_belatedPNG.fix('img, .png_bg'); });
+    </script>
+  <![endif]-->
+  
+  <!-- Blast Mojo Lite -->
   <script src="../dist/bml.js"></script>
   <script src="js/Main.js"></script>
 
