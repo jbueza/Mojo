@@ -32,7 +32,7 @@ Development teams are
 ## Setup
 
 1. git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
-1. use apache ant to build a compiled source
+1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
 1. Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
 
 ## Why create another Framework?
