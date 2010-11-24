@@ -15,6 +15,7 @@ Joose.Class('Mojolite.Binder', {
         initialize: function(props) {
             var context = props.context;
             var binders = this.my.getBinders(context); 
+            this.__context = context;
             if (this.my.registeredToContext(context)) {
                 return; //Already bound this binder to this elements
             } else {
@@ -26,8 +27,9 @@ Joose.Class('Mojolite.Binder', {
           return this.__context;
         },
         detach: function() {
-            var binders = this.my.getBinders(this.context);
-            delete binders[this.my.className];
+          var binders = this.my.getBinders(this.getContextElement());
+          delete binders[this.my.className];
+          return (typeof(binders[this.my.className]) == 'undefined') ? true : false;
         },
         bindEventMap: function() {
             var eventMap = this.getEventMap();

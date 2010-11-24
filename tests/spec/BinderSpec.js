@@ -23,7 +23,7 @@ describe("Mojolite.Binder.detach", function() {
     
   });
 
-  it("should return the context element of the Binder", function() { });
+  it("should return true", function() { });
   it("should return null when there is no context associated to the Binder", function() { });
 });
 describe("Mojolite.Binder.bindEventMap", function() {
