@@ -60,7 +60,6 @@ describe("Mojolite.Binder.my.getBinders", function() {
   beforeEach(function() {
     
   });
-
-  it("should return true if the Binder's EventMap has been unbound", function() { });
-  //it("should throw an error if the Event Map is empty", function() { });
+  it("should throw an error if there are no binders", function() { });
+  it("should return an array of binders to a particular context", function() { });
 });
