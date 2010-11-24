@@ -6,13 +6,12 @@ Joose.Class('Mojolite.Binder', {
         bound: {init: []}
     },
     methods : {
-      /*
         BUILD: function(context, options) {
             if (options.context) {
                 throw "Attempt to set reserved context parameter in " + this.my.className;
             }
             return $.extend({context: context}, options);
-        },*/
+        },
         initialize: function(props) {
             var context = props.context;
             var binders = this.my.getBinders(context); 

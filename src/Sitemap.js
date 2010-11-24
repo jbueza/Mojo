@@ -9,14 +9,14 @@ Joose.Class('Mojolite.Sitemap', {
             var patternStack = [], contextStack = [], matches = [];
             patternStack.last = contextStack.last = function() {
                 if (this.length > 0) {
-                    return this[this.length - 1]
+                    return this[this.length - 1];
                 }
             };
             var recursable = function(value, key) {
-				    if (value.pattern && (typeof key === "number") && value.attach) return true;
-                throw ("Unrecognized Sitemap entry format somewhere inside " +
-                    (patternStack.join("/") || "Sitemap root"));
-            }
+              if (value.pattern && (typeof key === "number") && value.attach) return true;
+              throw ("Unrecognized Sitemap entry format somewhere inside " + (patternStack.join("/") || "Sitemap root"));
+            };
+            
             var recurse = function(value, key) {
                 if (value.binder) {
                     matches.push({
@@ -40,7 +40,7 @@ Joose.Class('Mojolite.Sitemap', {
                     contextStack.pop();
                     patternStack.pop();
                 }
-            }
+            };
             recurse(this.sitemap);
             return matches;
         },
@@ -53,7 +53,7 @@ Joose.Class('Mojolite.Sitemap', {
                         var context = jQuery(context);
                         var binder = window;
                         Joose.A.each(binderParams.name.split('.'), function(token) {
-                          binder = binder && binder[token]
+                          binder = binder && binder[token];
                         });
                         if (!binder) {
                             throw "Unidentified binder name: " + binderParams.name;
