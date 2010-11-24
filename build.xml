@@ -3,6 +3,7 @@
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for dependencies (Joose/JooseX)" name="dependency" value="${PREFIX}/dependency" />
   
+  <!-- Future repo source -->
   <property name="PLUGIN_REPO" value="http://bueza.com/bml/plugins" />
   
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
