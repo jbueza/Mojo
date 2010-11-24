@@ -11,7 +11,7 @@ Joose.Class('Mojolite.Sitemap', {
                 if (this.length > 0) {
                     return this[this.length - 1]
                 }
-            }
+            };
             var recursable = function(value, key) {
 				    if (value.pattern && (typeof key === "number") && value.attach) return true;
                 throw ("Unrecognized Sitemap entry format somewhere inside " +
@@ -53,8 +53,8 @@ Joose.Class('Mojolite.Sitemap', {
                         var context = jQuery(context);
                         var binder = window;
                         Joose.A.each(binderParams.name.split('.'), function(token) {
-                            binder = binder && binder[token]}
-                        );
+                          binder = binder && binder[token]
+                        });
                         if (!binder) {
                             throw "Unidentified binder name: " + binderParams.name;
                         }

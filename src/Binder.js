@@ -6,12 +6,13 @@ Joose.Class('Mojolite.Binder', {
         bound: {init: []}
     },
     methods : {
+      /*
         BUILD: function(context, options) {
             if (options.context) {
                 throw "Attempt to set reserved context parameter in " + this.my.className;
             }
             return $.extend({context: context}, options);
-        },
+        },*/
         initialize: function(props) {
             var context = props.context;
             var binders = this.my.getBinders(context); 
@@ -20,6 +21,9 @@ Joose.Class('Mojolite.Binder', {
             } else {
                 this.my.getBinders(context)[this.meta.name] = this;
             }
+        },
+        getContextElement: function() {
+          return this.__context;
         },
         detach: function() {
             var binders = this.my.getBinders(this.context);
@@ -39,7 +43,7 @@ Joose.Class('Mojolite.Binder', {
             var shouldDelegate = (typeof selector === "string") && selector.length;
 
             if (!selector) selector = root;
-            var data = {context: this.getContext(), binder: this}
+            var data = { context: this.getContext(), binder: this };
             
             if (shouldDelegate) {
                 binder.delegated.push([root, selector, event, binder[handler]]);
@@ -80,7 +84,7 @@ Joose.Class('Mojolite.Binder', {
             getBinders: function(context) {
                 var data = context.data('mojolite');
                 if (!data) { 
-                    context.data('mojolite', data = {})
+                    context.data('mojolite', data = {});
                 }
                 return (data.binders = data.binders || {});
             },

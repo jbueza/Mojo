@@ -42,6 +42,8 @@
       <fileset file="src/Binder.js" />
       <fileset file="src/Sitemap.js" />
       <fileset file="src/Messaging.js" />
+      <fileset file="src/ServiceLocator.js" />
+      
       
     </concat>
     <echo message="${BM} built." />
