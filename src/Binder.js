@@ -22,6 +22,7 @@ Joose.Class('Mojolite.Binder', {
             }
         },
         getContextElement: function() {
+          if(!this.__context) return null;
           return this.__context;
         },
         detach: function() {
