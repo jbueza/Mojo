@@ -84,7 +84,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 <pre><code>
   
-  var app = new Mojo.Application({ locale: "en-US", mode: 'development' });
+  var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: ['jqCarousel', 'pubsub', 'servicelocator', 'jqModal'] });
 
   app.map('#login-panel', function(params) {
     //callback upon instantiation that passes params into controller(s)
