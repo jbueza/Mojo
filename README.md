@@ -97,6 +97,15 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
   .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
   .bind('LoginController');
   
+  //maps all elements with class 'accordion-component' to a reusable accordion using child selectors for context
+  app.map('.accordion-component').bind('AccordionController'); 
+  
+  //maps navigation element to a navigation controller
+  app.map('#navigation', function(params) {
+    return { selectedIndex: 2 };
+  })
+  .bind('NavigationController);
+  
   //see MicroKernel: http://symfony2bundles.org/avalanche123/MicroKernelBundle
   //see Sinatra: http://www.sinatrarb.com/
   //see SammyJS: http://code.quirkey.com/sammy/
