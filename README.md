@@ -80,6 +80,26 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 * Setup wiki on github
 * Write unit tests for Binder using qunit
 * [done] Ability to do dependency injection on jQuery plugins
+* Need a much more simpler way of declaring binder->dom mappings. Look into sinatra style routes but for DOM. Kind of like this?
+
+<pre><code>
+  
+  var app = new Mojo.Application({ locale: "en-US", mode: 'development' });
+
+  app.map('#login-panel', function(params) {
+    //callback upon instantiation that passes params into controller(s)
+    return {
+  
+    }
+  })
+  .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
+  .bind('LoginController', 'CarouselController');
+  
+  //see MicroKernel: http://symfony2bundles.org/avalanche123/MicroKernelBundle
+  //see Sinatra: http://www.sinatrarb.com/
+  //see SammyJS: http://code.quirkey.com/sammy/
+  
+</code></pre>
 
 ## MIT Licence
 
