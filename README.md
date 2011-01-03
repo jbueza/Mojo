@@ -84,7 +84,9 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 <pre><code>
   
-  var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: ['jqCarousel', 'pubsub', 'servicelocator', 'jqModal'] });
+  var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: [
+    'jqCarousel', 'pubsub', 'servicelocator', 'jqModal', 'bbq', 'tmpl'
+  ] });
 
   app.map('#login-panel', function(params) {
     //callback upon instantiation that passes params into controller(s)
@@ -93,7 +95,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
     }
   })
   .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
-  .bind('LoginController', 'CarouselController');
+  .bind('LoginController');
   
   //see MicroKernel: http://symfony2bundles.org/avalanche123/MicroKernelBundle
   //see Sinatra: http://www.sinatrarb.com/
