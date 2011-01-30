@@ -1,5 +1,5 @@
 Class('ExampleApp.Sitemap', {
-  isa: 'Mojolite.Sitemap',
+  isa: 'mojo.Sitemap',
   has : {
     sitemap: {
       is: "ro",

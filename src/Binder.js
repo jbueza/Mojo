@@ -1,4 +1,4 @@
-Joose.Class('Mojolite.Binder', {
+Joose.Class('mojo.Binder', {
     has: {
         __context: { is: "ro", required: true },
         __eventMap: { is: "ro", init: []},

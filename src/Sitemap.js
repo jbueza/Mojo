@@ -1,4 +1,4 @@
-Joose.Class('Mojolite.Sitemap', {
+Joose.Class('mojo.Sitemap', {
     has: {
         config: {
             access: "ro"

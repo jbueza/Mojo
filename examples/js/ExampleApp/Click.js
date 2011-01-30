@@ -1,5 +1,5 @@
 Joose.Class('ExampleApp.Click', {
-  isa: 'Mojolite.Binder',
+  isa: 'mojo.Binder',
   has: {
   // This is required if you are to bind events the 'mojolite way' 
     __eventMap: {init: [['context', "", 'click', 'testClick']]}
