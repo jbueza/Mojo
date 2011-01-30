@@ -88,9 +88,9 @@ Joose.Class('mojo.Binder', {
       },
       methods: {
         getBinders: function(context) {
-          var data = context.data('mojolite');
+          var data = context.data('mojo');
           if (!data) { 
-              context.data('mojolite', data = {});
+              context.data('mojo', data = {});
           }
           return (data.binders = data.binders || {});
         },

@@ -42,8 +42,7 @@
       <fileset file="LICENSE" />
       <fileset file="src/Binder.js" />
       <fileset file="src/Sitemap.js" />
-      <fileset file="src/Messaging.js" />
-      <fileset file="src/ServiceLocator.js" />
+      <fileset file="src/Service.js" />
       
       
     </concat>
