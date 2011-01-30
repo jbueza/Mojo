@@ -1,8 +1,10 @@
 /**
- * @class mojo.Binder
+ * @class       mojo.Binder
+ * @author      Blast Radius
+ * @description Provides an implementation silo for a particular DOM element
+                or a set of reusable DOM elements
  */
-Joose.Class('mojo.Binder', {
-  has: {
+Joose.Class('mojo.Binder', { has: {
     __context: { is: "ro", required: true },
     __eventMap: { is: "ro", init: []},
     delegated: {init: []},
@@ -92,9 +94,8 @@ Joose.Class('mojo.Binder', {
     methods: {
       getBinders: function(context) {
         var data = context.data('mojo');
-        if (!data) { 
-            context.data('mojo', data = {});
-        }
+        if (!data) context.data('mojo', data = {});
+
         return (data.binders = data.binders || {});
       },
       registeredToContext: function(context) {

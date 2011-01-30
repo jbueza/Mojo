@@ -1,6 +1,8 @@
 Joose.Class('ExampleApp.Registration', { isa: 'mojo.Binder',
   has: {
-    __eventMap: {init: [['context', "", 'click', 'testClick']]}
+    __eventMap: { init: [
+      ['context', "", 'click', 'testClick']
+    ]}
   },
   methods: {
     testClick: function(e) {
