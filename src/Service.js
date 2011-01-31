@@ -7,6 +7,8 @@
     - jQuery (John Resig)
 
 
+      TODO: JOOSEIFY THIS!
+
 
   //Setup your services so your frontend can invoke any service at any time
   ServiceLocator.addService(new Service('GetUsers',   '/users', { method: 'get' }));
