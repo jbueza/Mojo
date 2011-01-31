@@ -1,7 +1,6 @@
 JooseX.Namespace.Depended.Manager.my.INC = ["js/"];    
 JooseX.Namespace.Depended.Resource.JooseClass.meta.extend({
-  does : [ JooseX.Namespace.Depended.Transport.ScriptTag ],
-  doesnt: [ JooseX.Namespace.Depended.Transport.XHRAsync ]
+  does : [ JooseX.Namespace.Depended.Transport.ScriptTag ], doesnt: [ JooseX.Namespace.Depended.Transport.XHRAsync ]
 });
 
 //Basic Example: basic.html

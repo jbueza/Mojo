@@ -4,7 +4,7 @@ JooseX.Namespace.Depended.Resource.JooseClass.meta.extend({
   doesnt: [ JooseX.Namespace.Depended.Transport.XHRAsync ]
 });
 
-//jQuery Plugin - Carousel Example: carousel.html
+
 use("RegistrationApplication", function() {
   new RegistrationApplication();
 });

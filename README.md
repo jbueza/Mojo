@@ -35,15 +35,17 @@ Development teams are
 1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
 1. Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
 
-## Why create another Framework?
+#### Sitemap
 
-Early 2007, Blast Mojo was born in order to:
-
-* Provide a standard, consistent architecture for developing with JavaScript
-* Work with different libraries without conflict
-* Structure and organize JavaScript
-* Enforce separation of concerns
-* Ensure code can be shared and re-used
+<pre><code>
+//Sitemap.js
+Class('ExampleApp.Sitemap', { isa: 'mojo.Sitemap', has : { sitemap: {
+  init: [ 
+      { pattern: "#registration-form", attach: [ { binder: "ExampleApp.Registration" } ] }
+    , { pattern: "#login-panel", attach: [ { binder: "ExampleApp.Login" } ] }
+  ]
+}}});
+</code></pre>
 
 
 ## Why use Blast Mojo Lite?
@@ -79,42 +81,10 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 * Create more examples using different plugins
 * Setup wiki on github
 * Write unit tests for Binder using qunit
-* [done] Ability to do dependency injection on jQuery plugins
-* Need a much more simpler way of declaring binder->dom mappings. Look into sinatra style routes but for DOM. Kind of like this?
-
-<pre><code>
-  
-  var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: [
-    'jqCarousel', 'pubsub', 'servicelocator', 'jqModal', 'bbq', 'tmpl'
-  ] });
-
-  app.map('#login-panel', function(params) {
-    //callback upon instantiation that passes params into controller(s)
-    return {
-  
-    }
-  })
-  .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
-  .bind('LoginController');
-  
-  //maps all elements with class 'accordion-component' to a reusable accordion using child selectors for context
-  app.map('.accordion-component').bind('AccordionController'); 
-  
-  //maps navigation element to a navigation controller
-  app.map('#navigation', function(params) {
-    return { selectedIndex: 2 };
-  })
-  .bind('NavigationController);
-  
-  //see MicroKernel: http://symfony2bundles.org/avalanche123/MicroKernelBundle
-  //see Sinatra: http://www.sinatrarb.com/
-  //see SammyJS: http://code.quirkey.com/sammy/
-  
-</code></pre>
 
 ## MIT Licence
 
-The Blast Mojo Lite Framework
+The Blast Mojo Framework
 
 Copyright (c) 2010 Blast Radius
 
