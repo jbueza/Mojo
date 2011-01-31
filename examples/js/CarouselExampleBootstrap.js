@@ -11,12 +11,16 @@ use("CarouselApplication", function() {
 Joose.Class("CarouselApplication", {
   trait: 'JooseX.Class.Singleton',
   //you'll notice here you can include plugins through dependency injection
-  use : ['lib.plugins.jcarousel'],
+  use : ['ExampleApp.Sitemap', 'lib.plugins.jcarousel'],
+  has: {
+    sitemap: { 
+      init: function() { return new ExampleApp.Sitemap(); } 
+    }
+  },
   after: {
     initialize: function(props) {
-      $(document).ready(function() {
-          $('#mycarousel').jcarousel();
-      });
+      this.sitemap.bindSitemap();
+
     }
   },
   methods : {}
