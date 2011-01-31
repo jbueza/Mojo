@@ -1,3 +1,8 @@
+/* 
+ * @class       Basic Binder
+ * @author      Blast Radius (jbueza)
+ * @description Provides a basic implementation silo for a panic button
+ */
 Joose.Class('ExampleApp.BasicBinder', { isa: 'mojo.Binder',
   has: {
     __eventMap: { init: [
