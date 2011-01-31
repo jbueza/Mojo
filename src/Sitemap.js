@@ -1,8 +1,4 @@
-Joose.Class('mojo.Sitemap', { has: {
-    config: {
-      access: "ro"
-    }
-  },
+Joose.Class('mojo.Sitemap', { 
   methods: {
     getMatches: function() {
       var patternStack = [], contextStack = [], matches = [];
