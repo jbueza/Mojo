@@ -1,12 +1,13 @@
-Joose.Class('ExampleApp.Registration', { isa: 'mojo.Binder',
+Joose.Class('ExampleApp.BasicBinder', { isa: 'mojo.Binder',
   has: {
     __eventMap: { init: [
-      ['context', "", 'click', 'testClick']
+      ['context', "img", 'click', 'Alert']
     ]}
   },
   methods: {
-    testClick: function(e) {
-      alert("Hello there!");
+    Alert: function(event) {
+      alert("You clicked me!");
+      
       return false;
     }
   },
