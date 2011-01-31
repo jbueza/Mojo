@@ -24,7 +24,7 @@ app
 (function( $ ) {
   if (!mojo) mojo = {};
 
-  mojo.Application = function Application() {
+  mojo.Application = function() {
     this.options = arguments[0];
     this.initialize(this.options);
     return this;
@@ -43,11 +43,4 @@ app
   mojo.Application.prototype.use = function() {
     return this;
   };
-
-
-
-
-  if(!window.mojo.Application) window.mojo.Application = mojo.Application;
-
-  
 })( jQuery );
