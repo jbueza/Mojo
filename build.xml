@@ -18,7 +18,7 @@
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   
   <!-- Joose Core + Blast Mojo Lite Core -->
-  <property name="COMPILED_CORE" value="${dist}/bml.js" />
+  <property name="COMPILED_CORE" value="${dist}/jquery-mojo.js" />
 
   <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />
 
