@@ -1,3 +1,26 @@
+/*
+
+var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: [
+    'jqCarousel', 'pubsub', 'servicelocator', 'jqModal', 'bbq', 'tmpl'
+  ] });
+
+app
+  .map('#login-panel', function(params) {
+  //callback upon instantiation that passes params into controller(s)
+    return {
+
+    }
+  })
+  .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
+  .bind('LoginController');
+  
+app
+  .map('.reuseable-carousel')
+  .bind('CarouselBinder');
+  
+  
+  
+*/
 (function( $ ) {
   if (!mojo) mojo = {};
 
