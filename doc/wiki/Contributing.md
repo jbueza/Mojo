@@ -1,6 +1,6 @@
-# Contributing to Blast Mojo Lite
+# Contributing to Blast Mojo
 
-## Steps to get started with contributing ideas/code to Blast Mojo Lite (jQuery with Joose Class Library) 
+## Steps to get started with contributing ideas/code to Blast Mojo (jQuery with Joose Class Library) 
 * Step 1: Fork the Repository on Github
 * Step 2: Read the style guide
 * Step 3: Discuss features on the Blast Mojo Google Groups

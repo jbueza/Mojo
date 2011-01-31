@@ -9,15 +9,15 @@
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
   <property name="compiler" value="build/yuicompressor-2.4.2.jar" />
 
-  <!-- Joose Core: the groundwork for Blast Mojo Lite -->
+  <!-- Joose Core: the groundwork for Blast Mojo -->
   <property name="JOOSE" value="${dist}/joose.js" />
   <property name="JOOSE_MIN" value="${dist}/joose.min.js" />
   
-  <!-- Blast Mojo Lite core -->
+  <!-- Blast Mojo Core -->
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   
-  <!-- Joose Core + Blast Mojo Lite Core -->
+  <!-- Joose Core + Blast Mojo Core -->
   <property name="COMPILED_CORE" value="${dist}/jquery-mojo.js" />
 
   <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />

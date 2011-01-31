@@ -1,12 +1,12 @@
-# Blast Mojo Lite - Scalable JavaScript Microframework
+# Blast Mojo (jQuery Mojo) - Scalable JavaScript Microframework
 
 ![Blast Mojo Lite Architecture](http://mojo.bueza.com/bml/architecture.png)
 
-Blast Mojo Lite (BML) is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work) because of its heroic architecture, weight, and dependencies on Dojo. In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins and using Joose's underlying dependency injection and aspect-oriented programming features.
+Blast Mojo is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work) because of its heroic architecture, weight, and dependencies on Dojo. In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins and using Joose's underlying dependency injection and aspect-oriented programming features.
 
 A prime example of why you would want to use Blast Mojo Lite: you have a 4-6 person team of front-end developers. jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Based on our agency experience having globally distributed teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 
-The Blast Mojo Lite Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity -- And finally, you get the awesomeness of jQuery in the palm of your hand because Blast Mojo Lite is built on top of it!
+The Blast Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity -- And finally, you get the awesomeness of jQuery in the palm of your hand because Blast Mojo is built on top of it!
 
 ### Technical Features
 
@@ -37,6 +37,7 @@ Development teams are
 
 #### Sitemap
 
+A Sitemap is a logical mapping for binding your implementation silos (binders) to DOM elements. As you can see below, we're mapping a Registration binder to the #registration-form DOM element to provide contextual protection and scoped functionality.
 <pre><code>
 //Sitemap.js
 Class('ExampleApp.Sitemap', { isa: 'mojo.Sitemap', has : { sitemap: {
@@ -48,7 +49,7 @@ Class('ExampleApp.Sitemap', { isa: 'mojo.Sitemap', has : { sitemap: {
 </code></pre>
 
 
-## Why use Blast Mojo Lite?
+## Why use Blast Mojo?
 
 * Blast Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
 
