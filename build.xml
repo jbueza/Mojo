@@ -14,11 +14,11 @@
   <property name="JOOSE_MIN" value="${dist}/joose.min.js" />
   
   <!-- Blast Mojo Core -->
-  <property name="BM" value="${dist}/mojo.js" />
-  <property name="BM_MIN" value="${dist}/mojo.min.js" />
+  <property name="BM" value="${dist}/mojo_core.js" />
+  <property name="BM_MIN" value="${dist}/mojo_core.min.js" />
   
   <!-- Joose Core + Blast Mojo Core -->
-  <property name="COMPILED_CORE" value="${dist}/jquery-mojo.js" />
+  <property name="COMPILED_CORE" value="${dist}/mojo.js" />
 
   <target name="all" depends="init, joose, mojo, joose_min, mojo_min, compile_all" />
 
@@ -40,9 +40,12 @@
     <echo message="Building ${BM}" />
     <concat destfile="${BM}">
       <fileset file="LICENSE" />
-      <fileset file="src/Binder.js" />
-      <fileset file="src/Sitemap.js" />
       <fileset file="src/Service.js" />
+      
+      <fileset file="src/Controller.js" />
+      <fileset file="src/Application.js" />
+      
+      <fileset file="src/Core.js" />
       
       
     </concat>
