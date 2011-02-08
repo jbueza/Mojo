@@ -15,32 +15,41 @@ app
   .bind('LoginController');
   
 app
-  .map('.reuseable-carousel')
+  .get('.reuseable-carousel')
   .bind('CarouselBinder');
   
   
   
 */
-(function( $ ) {
-  if (!mojo) mojo = {};
 
-  mojo.Application = function() {
-    this.options = arguments[0];
-    this.initialize(this.options);
-    return this;
+
+/* */
+
+//Taking a new approach to bindings
+/*
+var app = MOJO.spawn(); //spawn a new mojo application instance
+
+app
+  .configure({ env: 'node|web|mobile', locale: 'en_US', plugins: [ 'jcarousel', 'pubsub', 'jqmodal' ]})
+app
+  .get('#login-panel')
+  .map('mysite.user.LoginController')
+  
+  .get('#registration')
+  .map('mysite.user.RegistrationController')
+  
+  .get('.carousel')
+  .map('mysite.interface.CarouselController')
+  
+*/
+define(function() {
+  var options = {};
+  
+  
+  return {
+    configure: function(options) {
+
+    }
   };
+});
 
-  mojo.Application.prototype.initialize = function(params) {
-
-    return this;
-  };
-
-  mojo.Application.prototype.configure = function(key, value) {
-
-    return this;
-  };
-
-  mojo.Application.prototype.use = function() {
-    return this;
-  };
-})( jQuery );
