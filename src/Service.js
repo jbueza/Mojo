@@ -41,9 +41,21 @@
   };
 
   Service.prototype.invoke = function(params, callback, scope) {
-    var options = this.getOptions()
-      , method = options.method || 'get'
-      , uri = this.uri || '/api/user'
+
+    var self = this;
+    
+    var options = this.getOptions() || {}
+      , method = options.method || function() {
+        var type = "get";
+        
+        if (self.getName().match(/^get/i)) {
+          type = "get";
+        } else if (self.getName().match(/^add|del|update/i)) {
+          type = "post";
+        }
+        return type;
+      }()
+      , uri = this.uri || '/api'
       , responseType = options.responseType || 'JSON';
       
     if (options.template) {
@@ -52,21 +64,29 @@
     }
     
     $.ajaxSetup({
-      //contentType: "application/json; charset=utf-8"
+        dataTypeString: responseType
+      , type: method
+      , cache: options.cache || 'false'
+      , contentType: "application/json; charset=utf-8"
     });
-    
-    $[method](uri, params, function(data) {
-      
-      if ( typeof data == 'string' && responseType == 'JSON' ) data = $.parseJSON(data);
-      
-      if ( typeof callback == 'function' ) {
-        callback.call(scope, data);
-      } else {
-        //string
-        scope[callback](data);
-      }
-      
-    }, responseType);
+  
+    $.ajax({ url: uri, data: params })
+      .success(function(data) { 
+        if ( responseType == 'JSON' ) { 
+          data = $.parseJSON(data); 
+        }
+          
+        if ( typeof callback == 'function' ) {
+          callback.call(scope, null, data);
+        } else {
+          //string
+          scope[callback](null, data);
+        }        
+      })
+      .error(function() {
+        callback.call(scope, "Unable to execute XHR", arguments);
+      });
+
 
   };
 
