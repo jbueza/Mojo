@@ -9,15 +9,10 @@ MOJO.define = function(className, abstractClass, implementation) {
     MOJO.system = {};
     MOJO.system.controllers = {};
   }
-  var controller = MOJO.system.controllers[className] = new Function();
-  controller = $.extend(controller, implementation);
-  controller.prototype = new Function(abstractClass);
-  
-  return function() {
-//    controller.apply(this,)
-  }();
-  
-  
+  MOJO.system.controllers[className] = new Function();
+  MOJO.system.controllers[className].prototype = new Controller;
+  MOJO.system.controllers[className].events = implementation.events;
+   
 };
 
 MOJO.create = function(options) {  

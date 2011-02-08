@@ -1,21 +1,4 @@
 /* 
-
-MOJO.define('ExampleApp.Test1Controller', Controller, {
-  events: [
-      ['context', 'click', '.btn-login', 'Login']
-    , ['context', 'click', '.bnt-logout', 'Logout']
-  ],
-  commands: {
-    Login: function() {
-      
-    }, //you can specify a callback or a command object now
-    Logout: new Command('ExampleApp.command.Logout')
-  }
-});
-
-*/
-
-/* 
  * Controller Class
  *
  * @class       Controller
@@ -24,15 +7,11 @@ MOJO.define('ExampleApp.Test1Controller', Controller, {
  * @description Provides an implementation silo for developers
  *
  */
-
-function Controller(context, controllerClass, params) {
-  this.contextElement = context;
-  this.controllerClass = controllerClass;
-  if(!this.params) this.params = params || {};
-  if(!this.events) this.events = [];
-  
-  
-  this.initialize();
+function Controller() {
+  this.contextElement = null;
+  this.controllerClass = null;
+  this.events = [];
+  this.params = [];
 };
 
 /* 
@@ -45,12 +24,17 @@ Controller.prototype.addCommand = function(name, location) {
   this.commands.push({ commandName: name, command: location });
 };
 
-Controller.prototype.initialize = function() {
+Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
-  console.log("Initializing...");
-};
+  self.contextElement = context;
+  self.controllerClass = controllerName;
+  console.log("Initialize!");
+  $(self.events).each(function(index, observation) {
+//    console.log(observation);
+  });
 
-Controller.prototype.
+
+};
 
 /* 
  * @member  Controller

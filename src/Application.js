@@ -79,12 +79,18 @@ Application.prototype.mapControllers = function() {
     if (self.options.dev) try { console.log("Mapping: ", context); } catch (err) {}
 
     var silos = context.init.call(this);
+    
     $(silos).each(function(i, silo) {
 
       if ($.inArray(silo.controller, self.loaded)) {
         $.getScript(self.options.appSrc + "/" +  (silo.controller.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded");
-          window[new Controller(context, silo.controller, silo.params)];
+          
+          var controllerName = silo.controller;
+          var controllerInstance = new MOJO.system.controllers[controllerName];
+          controllerInstance.initialize(context.context, controllerName, silo.params);
+          console.log(controllerInstance);
+          $(context).data('controllers', controllerInstance);
         });
       } else {
         new Controller(context, silo.controller, silo.params);
