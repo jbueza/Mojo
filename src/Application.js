@@ -1,6 +1,6 @@
 /*
 
-var app = new Mojo.Application({ locale: "en-US", mode: 'development', plugins: [
+var app = new MojoApplication({ locale: "en-US", mode: 'development', plugins: [
     'jqCarousel', 'pubsub', 'servicelocator', 'jqModal', 'bbq', 'tmpl'
   ] });
 
@@ -22,8 +22,6 @@ app
   
 */
 
-
-/* */
 
 //Taking a new approach to bindings
 /*
@@ -52,4 +50,3 @@ define(function() {
     }
   };
 });
-
