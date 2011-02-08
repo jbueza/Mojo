@@ -78,9 +78,9 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 ## TODO
 
+* Refactor all components to be more in line with CommonJS specification
 * Provide capability to reuse commands 
 * Create more examples using different plugins
-* Setup wiki on github
 * Write unit tests for Binder using qunit
 
 ## MIT Licence
