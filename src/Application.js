@@ -2,17 +2,14 @@
   
 */
 Application = function() {
-  
   if (!this.options) this.options = {};
   
-  var self = this
-    , localOptions = self.options;
-    
-  localOptions['appSrc'] = 'js/';
-  localOptions['locale'] = 'en_CA';
-  localOptions['plugins'] = [];
-  localOptions['environment'] = 'dev';
-  self.map = [];
+  var self = this, localOptions = self.options;
+      localOptions['appSrc'] = 'js/';
+      localOptions['locale'] = 'en_CA';
+      localOptions['plugins'] = [];
+      localOptions['environment'] = 'dev';
+      self.map = [];
 };
 
 Application.prototype.configure = function(key, value) {
@@ -32,22 +29,20 @@ Application.prototype.get = function(selector, callback) {
 };
 
 Application.prototype.heal = function() {
-
-
+  //will self heal all dependencies
   return this;
 };
 Application.prototype.setupController = function(context, controller, params) {
-  var jqContext = $(context);
+  var sizzleContext = $(context);
   MOJO.controllers[controller].initialize(context, controller, params);
   var controllerInstance = { namee: controller, controller: MOJO.controllers[controller] };
-  if (typeof jqContext.data('controllers') == 'undefined') jqContext.data('controllers', []);
+  if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
   $(context).data('controllers').push(controllerInstance);
 };
 
 Application.prototype.disconnectControllers = function(callback) {
   var self = this;
   $(self.map).each(function(index, silo) {
-    console.log("Disconnecting...", silo.context);
     $(silo.context).unbind();
   });
   
@@ -63,7 +58,7 @@ Application.prototype.connectControllers = function() {
     
     $(silos).each(function(i, silo) {
       var contextElement    = mapping.context
-        , jqContext         = $(contextElement)
+        , sizzleContext         = $(contextElement)
         , controllerParams  = silo.params
         , controllerName    = silo.controller;
       

@@ -2,8 +2,7 @@
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for mojo and min target" name="src" value="${PREFIX}/src" />
-  
-  
+
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
   <property name="compiler" value="${PREFIX}/build/yuicompressor-2.4.2.jar" />
 
@@ -26,7 +25,7 @@
       <fileset file="${src}/Controller.js" />
       <fileset file="${src}/Application.js" />
       <fileset file="${src}/Service.js" />
-      <fileset file="${src}/Core.js" />
+      <fileset file="${src}/Core.js" />      
     </concat>
     <echo message="${BM} built." />
     
