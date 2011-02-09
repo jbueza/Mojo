@@ -8,6 +8,7 @@ Application = function() {
       localOptions['appSrc'] = 'js/';
       localOptions['locale'] = 'en_CA';
       localOptions['plugins'] = [];
+      localOptions['pluginSrc'] = 'js/lib/plugins/';
       localOptions['environment'] = 'dev';
       self.map = [];
 };
