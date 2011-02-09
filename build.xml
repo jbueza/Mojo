@@ -10,7 +10,6 @@
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   
-
   <target name="all" depends="init, mojo" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Joose and Mojo">
@@ -35,8 +34,7 @@
       <arg line="${BM} -o ${BM_MIN} --charset UTF-8 --preserve-semi" />
     </java>
     <echo message="${BM_MIN} built." />
-    
-    
+        
   </target>
 
   <target name="clean">

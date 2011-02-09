@@ -5,7 +5,6 @@ app
   .configure('environment', 'prod')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel'])
-
   
   .get('#registration-example', function() {
     return [
@@ -18,4 +17,5 @@ app
       { controller: "ExampleApp.LoginController" }
     ];
   })
+  
   .start()
