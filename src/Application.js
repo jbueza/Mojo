@@ -1,7 +1,13 @@
 /*
-  
-*/
-Application = function() {
+ * Application Class
+ *
+ * Class representation of your application where you're provided
+ * with the capability to inject plugins, as well as, handle
+ * dependencies. Also maps all controllers to DOM elements.
+ * 
+ * @author    Blast Radius (jbueza)
+ */
+function Application() {
   if (!this.options) this.options = {};
   
   var self = this, localOptions = self.options;
@@ -59,7 +65,7 @@ Application.prototype.connectControllers = function() {
     
     $(silos).each(function(i, silo) {
       var contextElement    = mapping.context
-        , sizzleContext         = $(contextElement)
+        , sizzleContext     = $(contextElement)
         , controllerParams  = silo.params
         , controllerName    = silo.controller;
       
