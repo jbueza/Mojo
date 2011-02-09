@@ -1,58 +1,23 @@
 /*
-
-var app = new MojoApplication({ locale: "en-US", mode: 'development', plugins: [
-    'jqCarousel', 'pubsub', 'servicelocator', 'jqModal', 'bbq', 'tmpl'
-  ] });
-
-app
-  .map('#login-panel', function(params) {
-  //callback upon instantiation that passes params into controller(s)
-    return {
-
-    }
-  })
-  .validate({ 'username': [ 'isRequired' ], 'password': [ 'isRequired' ])
-  .bind('LoginController');
-  
-app
-  .get('.reuseable-carousel')
-  .bind('CarouselBinder');
-  
-  
-  
-*/
-
-
-//Taking a new approach to bindings
-/*
-var app = MOJO.spawn(); //spawn a new mojo application instance
-
-app
-  .configure({ env: 'node|web|mobile', locale: 'en_US', plugins: [ 'jcarousel', 'pubsub', 'jqmodal' ]})
-app
-  .get('#login-panel')
-  .map('mysite.user.LoginController')
-  
-  .get('#registration')
-  .map('mysite.user.RegistrationController')
-  
-  .get('.carousel')
-  .map('mysite.interface.CarouselController')
   
 */
 Application = function() {
-  if(!this.options) this.options = {};
-  this.options['appSrc'] = 'js';
-  this.options['locale'] = 'en_CA';
-  this.options['plugins'] = [];
-  this.options['environment'] = 'dev';
-  this.map = [];
-  this.loaded = [];
+  
+  if (!this.options) this.options = {};
+  
+  var self = this
+    , localOptions = self.options;
+    
+  localOptions['appSrc'] = 'js/';
+  localOptions['locale'] = 'en_CA';
+  localOptions['plugins'] = [];
+  localOptions['environment'] = 'dev';
+  self.map = [];
 };
 
 Application.prototype.configure = function(key, value) {
   this.options[key] = value;
-  console.log("Configure: ", key, " -> ", value);
+  console.info("Configure: ", key, " -> ", value);
   return this;
 };
 
@@ -71,41 +36,62 @@ Application.prototype.heal = function() {
 
   return this;
 };
+Application.prototype.setupController = function(context, controller, params) {
+  var jqContext = $(context);
+  MOJO.controllers[controller].initialize(context, controller, params);
+  var controllerInstance = { namee: controller, controller: MOJO.controllers[controller] };
+  if (typeof jqContext.data('controllers') == 'undefined') jqContext.data('controllers', []);
+  $(context).data('controllers').push(controllerInstance);
+};
 
-Application.prototype.mapControllers = function() {
+Application.prototype.disconnectControllers = function(callback) {
   var self = this;
-  $(self.map).each(function(index, context) {
+  $(self.map).each(function(index, silo) {
+    console.log("Disconnecting...", silo.context);
+    $(silo.context).unbind();
+  });
+  
+  callback.apply(self);
+};
+Application.prototype.connectControllers = function() {
+  var self = this;
+  $(self.map).each(function(index, mapping) {
     
-    if (self.options.dev) try { console.log("Mapping: ", context); } catch (err) {}
+    if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
 
-    var silos = context.init.call(this);
+    var silos = mapping.init.call(this);
     
     $(silos).each(function(i, silo) {
-
-      if ($.inArray(silo.controller, self.loaded)) {
-        $.getScript(self.options.appSrc + "/" +  (silo.controller.replace(/\./g, "\/") + ".js"), function(response) {
-          console.log("Loaded");
-          
-          var controllerName = silo.controller;
-          var controllerInstance = new MOJO.system.controllers[controllerName];
-          controllerInstance.initialize(context.context, controllerName, silo.params);
-          console.log(controllerInstance);
-          $(context).data('controllers', controllerInstance);
+      var contextElement    = mapping.context
+        , jqContext         = $(contextElement)
+        , controllerParams  = silo.params
+        , controllerName    = silo.controller;
+      
+      if (!MOJO._loaded.length || !$.inArray(silo.controller, MOJO._loaded)) {
+        $.getScript(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
+          console.log("Loaded Controller: ", controllerName);
+          self.setupController(contextElement, controllerName, controllerParams);
         });
       } else {
-        new Controller(context, silo.controller, silo.params);
+        //already in memory
+        self.setupController(contextElement, controllerName, controllerParams);
       }
-      
     });
   });
 
 };
-
+Application.prototype.on = function(eventName, callback) {
+  return function() {
+  };
+};
 
 Application.prototype.start = function() {
   var self = this;
   $(document).ready(function() {
-    self.mapControllers();
+    self.disconnectControllers(function() {
+      self.connectControllers();
+      
+    });
   });
   
 };

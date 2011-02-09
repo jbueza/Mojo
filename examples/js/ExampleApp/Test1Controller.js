@@ -4,7 +4,7 @@ MOJO.define('ExampleApp.Test1Controller', Controller, {
     , ['context', 'click', '.bnt-logout', 'Logout']
   ],
   commands: {
-    Login: function() {
+    Login: function(requestObj) {
       console.log("Clicked Login");
     }
     //}, //you can specify a callback or a command object now

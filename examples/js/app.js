@@ -1,7 +1,7 @@
 var app = MOJO.create({ mojoSrc: '../src' });
 
 app
-  .configure('appSrc', 'js')
+  .configure('appSrc', 'js/')
   .configure('locale', 'en_US')
   .configure('environment', 'dev')
   .configure('plugins', ['jqmodal', 'jcarousel'])
@@ -11,12 +11,14 @@ app
       { controller: "ExampleApp.Test1Controller", params: { user: 123, firstName: "Johnson" }}
     ];
   })
-/*
+
   .get('#test-example2', function(app) {
     return [
-      { controller: "ExampleApp.Test2Controller", params: { user: 123, firstName: "Johnson" }}
+      { controller: "ExampleApp.LoginController", params: { user: 22, firstName: "Johnson" }}
     ];
   })
+  
+  /*
   .get('#test-example3', function(app) {
     return [
       { controller: "ExampleApp.Test3Controller", params: { user: 123, firstName: "Johnson" }}

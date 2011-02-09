@@ -31,106 +31,92 @@
   });
   
 */
-
-(function( $ ) {
   
-  var Service = function(name, uri, options) {
-    this.name = name;
-    this.uri = uri;
-    this.options = options;
-  };
+function Service(name, uri, options) {
+  this.name = name;
+  this.uri = uri;
+  this.options = options;
+};
 
-  Service.prototype.invoke = function(params, callback, scope) {
+Service.prototype.invoke = function(params, callback, scope) {
 
-    var self = this;
-    
-    var options = this.getOptions() || {}
-      , method = options.method || function() {
-        var type = "get";
-        
-        if (self.getName().match(/^get/i)) {
-          type = "get";
-        } else if (self.getName().match(/^add|del|update/i)) {
-          type = "post";
-        }
-        return type;
-      }()
-      , uri = this.uri || '/api'
-      , responseType = options.responseType || 'JSON';
+  var self = this;
+  
+  var options = this.getOptions() || {}
+    , method = options.method || function() {
+      var type = "get";
       
-    if (options.template) {
-      uri = $.tmpl(uri, params);
-      params = null;
-    }
+      if (self.getName().match(/^get/i)) {
+        type = "get";
+      } else if (self.getName().match(/^add|del|update/i)) {
+        type = "post";
+      }
+      return type;
+    }()
+    , uri = this.uri || '/api'
+    , responseType = options.responseType || 'JSON';
     
-    $.ajaxSetup({
-        dataTypeString: responseType
-      , type: method
-      , cache: options.cache || 'false'
-      , contentType: "application/json; charset=utf-8"
-    });
-  
-    $.ajax({ url: uri, data: params })
-      .success(function(data) { 
-        if ( responseType == 'JSON' ) { 
-          data = $.parseJSON(data); 
-        }
-          
-        if ( typeof callback == 'function' ) {
-          callback.call(scope, null, data);
-        } else {
-          //string
-          scope[callback](null, data);
-        }        
-      })
-      .error(function() {
-        callback.call(scope, "Unable to execute XHR", arguments);
-      });
-
-
-  };
-
-  Service.prototype.getName = function() {
-    return this.name;
-  };
-  Service.prototype.getURI = function() {
-    return this.uri;
-  };
-  Service.prototype.getOptions = function() {
-    return this.options;
-  };
-
-
-  /*
-   * @author        Jaime Bueza
-   * @description   Provides a singleton that we can access to fetch services for invocation
-   * @class         ServiceLocator
-   */
-  var ServiceLocator = {
-    services: {},
-    addService: function(service) {
-      this.services[service.name] = service;
-      return this;
-    },
-    getService: function(name) {
-      return this.services[name];
-    },
-    removeService: function(name) {
-      delete this.services[name];
-    },
-    addServices: function() {},
-    removeServices: function() { 
-      this.services = {}; 
-    }
-  };
-  
-  
-  if(!window.Service || !window.ServiceLocator) {
-    window.Service = Service;
-    window.ServiceLocator = ServiceLocator;
-  } else {
-    throw new Error("Unable to seed Service/ServiceLocator into window object.");
+  if (options.template) {
+    uri = $.tmpl(uri, params);
+    params = null;
   }
+  
+  $.ajaxSetup({
+      dataTypeString: responseType
+    , type: method
+    , cache: options.cache || 'false'
+    , contentType: "application/json; charset=utf-8"
+  });
+
+  $.ajax({ url: uri, data: params })
+    .success(function(data) { 
+      if ( responseType == 'JSON' ) { 
+        data = $.parseJSON(data); 
+      }
+        
+      if ( typeof callback == 'function' ) {
+        callback.call(scope, null, data);
+      } else {
+        //string
+        scope[callback](null, data);
+      }        
+    })
+    .error(function() {
+      callback.call(scope, "Unable to execute XHR", arguments);
+    });
 
 
-})( $ );
+};
+
+Service.prototype.getName = function() {
+  return this.name;
+};
+Service.prototype.getURI = function() {
+  return this.uri;
+};
+Service.prototype.getOptions = function() {
+  return this.options;
+};
+
+
+/*
+ * @author        Jaime Bueza
+ * @description   Provides a singleton that we can access to fetch services for invocation
+ * @class         ServiceLocator
+ */
+var ServiceLocator = {
+  services: {},
+  addService: function(service) {
+    this.services[service.name] = service;
+    return this;
+  },
+  getService: function(name) {
+    return this.services[name];
+  },
+  removeService: function(name) {
+    delete this.services[name];
+  },
+  removeServices: function() { 
+    this.services = {}; 
+  }
+};
