@@ -1,10 +1,11 @@
 /* 
  * Controller Class
  *
+ * Provides an implementation silo for developers
+ * 
  * @class       Controller
  * @author      Blast Radius (jbueza)
  * @constructor
- * @description Provides an implementation silo for developers
  *
  */
 function Controller() {
@@ -23,38 +24,32 @@ Controller.prototype.addCommand = function(name, location) {
   this.commands.push({ commandName: name, command: location });
 };
 
-Controller.prototype.getRequestObject = function() {
-  return {
-  
-  }
-};
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
   self.contextElement = context;
   self.controllerClass = controllerName;
   
   self.params = params;
+  
   $(self.events).each(function(index, observer) {
-    if(observer[0] == "context") {
-      //delegate to context
-      $(self.contextElement).delegate(observer[1], observer[2], function(event) {
-        var requestObj = self.getRequestObject();
-        requestObj['eventObj'] = event;
-        requestObj['caller'] = this;
-      });
+    var root = $(document)
+      , scope = observer[0]
+      , selector = observer[1]
+      , eventName = observer[2]
+      , commandName = observer[3];
       
-    } else {
-      //delegate to body
-    }
+    if(scope == "context") root = $(context);
     
+    $(root).delegate(selector, eventName, function(evt) {
+      var requestObj = new Request({}, this, evt, self);
+      self.commands[commandName].call(self, requestObj);
+    });
   });
-
-
 };
 
 /* 
  * @member  Controller
- * @return  {DOM} Attached context element
+ * @return  {DOM} Context Element
  */
 Controller.prototype.getContextElement = function() {
   if (!this.contextElement) return null;

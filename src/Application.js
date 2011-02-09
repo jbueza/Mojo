@@ -27,7 +27,7 @@ Application.prototype.get = function(selector, callback) {
   elements.each(function(index, item) {
     self.map.push({ context: item, init: callback });
   });
-  
+  callback.call(this, self);
   return this;
 };
 

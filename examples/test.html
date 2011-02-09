@@ -3,7 +3,7 @@
 <head>
   <title>Blast Mojo Test Example</title>
   <style>
-    #test-example1, #test-example2 {
+    .example {
       background: #eee;
       border: 1px solid #ccc;
       float: left;
@@ -13,14 +13,24 @@
   </style>
 </head>
 <body>
-  <div id="test-example1">
-    <h3>Test Controller 1</h3>
-    <button class="btn-login">Login</button>
-    <button class="btn-logout">Logout</button>
+  <div id="registration-example" class="example">
+    <h3>Registration Controller</h3>
+    
+    
+    <fieldset>
+      <label for="email">Email Address</label>
+      <input id="email" type="email" value="" placeholder="Enter your email address">
+    </fieldset>
+    <fieldset>
+      <label for="password">Password</label>
+      <input id="password" type="password" value="" placeholder="Enter your password">
+    </fieldset>
+    <button type="submit" class="btn-submit-registration">Register</button>
+  
   </div>
     
-  <div id="test-example2">
-    <h3>Test Controller 2</h3>
+  <div id="login-example" class="example">
+    <h3>Login Controller</h3>
     <button class="btn-login">Login</button>
     <button class="btn-logout">Logout</button>
   </div>
@@ -42,8 +52,11 @@
   </div>
   
   <script src="../dependency/jquery/jquery-1.5.min.js"></script>
+  <script src="../src/Request.js"></script>
   <script src="../src/Controller.js"></script>
   <script src="../src/Application.js"></script>
+  <script src="../src/Service.js"></script>
+  
   <script src="../src/Core.js"></script>
   <script src="js/app.js"></script>
 

@@ -1,17 +1,19 @@
-Joose.Class('ExampleApp.RegistrationBinder', { isa: 'mojo.Binder',
-  has: {
-    __eventMap: { init: [
-      //['context', "", 'submit', 'testClick']
-    ]}
-  },
-  methods: {
-    Validate: function(e) {
-      return false;
-    }
-  },
-  after: {
-    initialize: function(props) {
-      // You can put 3rd party based binding of events here if you do not want to use __eventmap.
+/* 
+ * @class   Registration Controller
+ * @author  Jaime Bueza
+ */
+MOJO.define('ExampleApp.RegistrationController', Controller, {
+  events: [
+      ['context', '.btn-login', 'click', 'Login']
+    , ['context', '.btn-logout', 'click', 'Logout']
+  ],
+  commands: {
+    Login: function(requestObj) {
+      var context = requestObj.getContextElement();
+      alert("Logged in from " + this.controllerClass);
+    },
+    Logout: function(requestObj) {
+      alert("Logged out from " + this.controllerClass);
     }
   }
 });

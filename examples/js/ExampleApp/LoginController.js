@@ -1,13 +1,19 @@
+/* 
+ * @class   Login Controller
+ * @author  Jaime Bueza
+ */
 MOJO.define('ExampleApp.LoginController', Controller, {
   events: [
       ['context', '.btn-login', 'click', 'Login']
-    , ['context', '.bnt-logout', 'click', 'Logout']
+    , ['context', '.btn-logout', 'click', 'Logout']
   ],
   commands: {
     Login: function(requestObj) {
-      console.log("Request Object: ", requestObj);
+      var context = requestObj.getContextElement();
+      alert("Logged in from " + this.controllerClass);
+    },
+    Logout: function(requestObj) {
+      alert("Logged out from " + this.controllerClass);
     }
-    //}, //you can specify a callback or a command object now
-    //Logout: new Command('ExampleApp.command.Logout')
   }
 });

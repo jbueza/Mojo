@@ -5,6 +5,7 @@ MOJO.define('ExampleApp.Test1Controller', Controller, {
   ],
   commands: {
     Login: function(requestObj) {
+      
       console.log("Clicked Login");
     }
     //}, //you can specify a callback or a command object now

@@ -1,15 +1,10 @@
 /* 
   @author       Jaime Bueza
-  @description  Provides inversion of control on restful web apps by using
+  @description  Provides a look up for RESTful web services by using
                 the service locator pattern. Frontend service locator needs to be
                 browser compatible so we use only GET/POST for web services.
-  @dependencies
-    - jQuery (John Resig)
-
-
-      TODO: JOOSEIFY THIS!
-
-
+  @dependencies jQuery (John Resig)
+    
   //Setup your services so your frontend can invoke any service at any time
   ServiceLocator.addService(new Service('GetUsers',   '/users', { method: 'get' }));
   ServiceLocator.addService(new Service('AddUser',    '/user/create', { method: 'post' }));

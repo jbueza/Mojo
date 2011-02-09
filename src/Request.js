@@ -8,14 +8,10 @@
  * @author Blast Radius (jbueza)
  */
 function Request(paramsObj, callerObj, eventObj, controllerObj) {
-  var self = this
-    , self = {
-        paramsObj: paramsObj
-      , callerObj: callerObj
-      , eventObj: eventObj
-      , controllerObj: controllerObj
-    };
-  
+  this.paramsObj = paramsObj;
+  this.callerObj = callerObj;
+  this.eventObj = eventObj;
+  this.controllerObj = controllerObj;
 };
 
 
