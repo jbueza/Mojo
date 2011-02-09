@@ -80,12 +80,26 @@ Application.prototype.on = function(eventName, callback) {
   };
 };
 
+Application.prototype.getPlugins = function(callback) {
+//  console.log(this0)
+   var self = this, path = self.options.pluginSrc;
+   $(self.options.plugins).each(function(index, plugin) {
+     $.getScript(path + plugin + ".js");
+   });
+   callback.call(self);
+};
 Application.prototype.start = function() {
   var self = this;
   $(document).ready(function() {
     self.disconnectControllers(function() {
-      self.connectControllers();
-      
+      if (self.options.plugins.length) { 
+        self.getPlugins(function() {
+          self.connectControllers();
+        });
+      } else {
+        self.connectControllers();
+        
+      }
     });
   });
   

@@ -3,6 +3,7 @@ app
   .configure('appSrc', 'js/')
   .configure('locale', 'en_US')
   .configure('environment', 'prod')
+  .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel'])
 
   
@@ -14,8 +15,7 @@ app
 
   .get('#login-example', function() {
     return [
-      { controller: "ExampleApp.LoginController", params: { user: 22, firstName: "Johnson" }}
+      { controller: "ExampleApp.LoginController" }
     ];
   })
-  
-app.start()
+  .start()
