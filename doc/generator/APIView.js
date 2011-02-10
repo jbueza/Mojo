@@ -28,6 +28,8 @@ APIView.prototype.save = function() {
   
   if (publicName == 'index') {
     publicName = "Full API Documentation";
+  } else {
+    publicName = publicName + " Class";
   }
   
   var intro = [
