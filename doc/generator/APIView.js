@@ -24,10 +24,16 @@ APIView = function(name, content_file, path, encoding) {
 APIView.prototype.save = function() {    
   var self = this;
   
+  var publicName = self.name;
+  
+  if (publicName == 'index') {
+    publicName = "Full API Documentation";
+  }
+  
   var intro = [
       '<html>'
     , '<head>'
-    , '<title>Blast Mojo API: ', self.name, '</title>'
+    , '<title>Blast Mojo: Structural JavaScript Framework: ', publicName, '</title>'
     , "<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>"
     , '<link href="site.css" rel="stylesheet" type="text/css">'
     , '<link href="sunburst.css" rel="stylesheet" type="text/css">'
@@ -41,6 +47,8 @@ APIView.prototype.save = function() {
     , '</html>'
   ].join('');
   
+  
+
   var html = intro + converter.makeHtml(this.content)  + outro
     , buildTo = self.buildDirectory + '/' + self.name
     , fileName = buildTo + '.html';
