@@ -1,7 +1,8 @@
 var fs = require("fs");
 var sys = require("sys");
 
-var textile = require("./textile");
+var showdown = require('./showdown');
+var converter = new showdown.converter();
 
 APIView = function(name, content_file, path, encoding) {
     encoding = encoding || "utf8";
@@ -22,7 +23,25 @@ APIView = function(name, content_file, path, encoding) {
 
 APIView.prototype.save = function() {    
   var self = this;
-  var html = textile.convert(this.content)    
+  
+  var intro = [
+      '<html>'
+    , '<head>'
+    , '<title>Blast Mojo API: ', self.name, '</title>'
+    , "<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>"
+    , '<link href="site.css" rel="stylesheet" type="text/css">'
+    , '<link href="sunburst.css" rel="stylesheet" type="text/css">'
+  ].join('');
+  
+
+  var outro = [
+      '</body>'
+    , '<script src="highlight.min.js"></script>'
+    , '<script>hljs.initHighlighting();</script>'  
+    , '</html>'
+  ].join('');
+  
+  var html = intro + converter.makeHtml(this.content)  + outro
     , buildTo = self.buildDirectory + '/' + self.name
     , fileName = buildTo + '.html';
     

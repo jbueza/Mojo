@@ -1,4 +1,5 @@
 var app = MOJO.create({ mojoSrc: '../src' });
+
 app
   .configure('appSrc', 'js/')
   .configure('locale', 'en_US')

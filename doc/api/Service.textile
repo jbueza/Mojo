@@ -1,4 +1,0 @@
-h1. Service
-
-
-h1. Service Locator

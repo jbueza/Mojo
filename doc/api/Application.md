@@ -1,9 +1,9 @@
-h1. Application
+# Application
 
 
-h2. API
+## API
 
-h3. configure(key, value) 
+### configure(key, value) 
 
 Provides the ability to set configurations for your Mojo application. At the moment, there are the following options:
 
@@ -12,5 +12,5 @@ Provides the ability to set configurations for your Mojo application. At the mom
 * plugins - Choose your favourite jQuery plugins, the application will automatically inject them for you
 * pluginSrc - Path to your plugins directory. Defaults to "js/lib/plugins/"
 
-h3. get(selector, callback) 
+### get(selector, callback) 
 

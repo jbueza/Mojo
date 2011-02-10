@@ -1,0 +1,66 @@
+<html><head><title>Blast Mojo API: index</title><link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'><link href="site.css" rel="stylesheet" type="text/css"><link href="sunburst.css" rel="stylesheet" type="text/css"><h1>Blast Mojo - Version 2 - Structural JavaScript Framework</h1>
+
+<p>Blast Mojo is a patterns-based JavaScript framework that provides a consistent event- driven architecture for complex client-side web applications, built on existing best-of- breed JS libraries. Its objectives are to provide a structured way of developing Rich Internet Applications, abstract complexities by separation of concerns, and maximize re-use of existing code, in order to maintain knowledge and improve on speed and quality of deliverables.</p>
+
+<h2>Get Started</h2>
+
+<pre>
+  <code>//Start Here 
+var app = MOJO.create({ mojoSrc: '../src' }); 
+
+app
+   .configure('appSrc', 'js/')
+     //Bind a controller to an element
+   .get('#registration-example', function() {
+     return [
+       { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
+     ];
+   })
+   .get('#login-example', function() {
+     return [
+       { controller: "ExampleApp.LoginController" }
+     ];
+   })
+   .start()</code>
+</pre>
+
+<h2>Get Started With Advanced Configuration</h2>
+
+<pre>
+  <code>var app = MOJO.create({ mojoSrc: '../src' });
+
+app
+  .configure('appSrc', 'js/')
+  .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
+  .configure('environment', 'prod')               // dev or prod for debugging mode!
+  .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
+  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
+
+  .get('#registration-example', function() {
+    return [
+      { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
+    ];
+  })
+
+  .get('#login-example', function() {
+    return [
+      { controller: "ExampleApp.LoginController" }
+    ];
+  })
+
+  .start()</code>
+</pre>
+
+<h2>Classes</h2>
+
+<ul>
+<li><a href="Application.html" title="Blast Mojo: Application Class">Application</a></li>
+<li><a href="Command.html" title="Blast Mojo: Command Class">Command</a></li>
+<li><a href="Controller.html" title="Blast Mojo: Controller Class">Controller</a></li>
+<li><a href="Core.html" title="Blast Mojo: Core Class">Core</a></li>
+<li><a href="EventEmitter.html" title="Blast Mojo: Event Emitter Class">Event Emitter</a></li>
+<li><a href="Request.html" title="Blast Mojo: Request Class">Request</a></li>
+<li><a href="Service.html" title="Blast Mojo: Service Class">Service</a></li>
+</ul>
+
+<h2>Contributions</h2></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
