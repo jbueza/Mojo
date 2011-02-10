@@ -61,18 +61,12 @@ app
 * [Request](Request.html "Blast Mojo: Request Class")
 * [Service](Service.html "Blast Mojo: Service Class")
 
-## Contributions
+## Guides
 
-Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/blast-mojo
-
-* Discuss large changes on mailing list before coding
-* Javascript code style
-  * has two space indention
-  * maximum 80 column width
-  * keywords followed by open-paren must be separated by a space. eg. <code>if (condition)</code> not <code>if(condition)</code>
-  * no space between function name and open paren e.g. <code>functionName(parameters)</code> not <code>functionName (parameters)</code>
-  * multi-line <code>if</code> statements must have braces.
-  * patches should all pass [JSLint](http://jslint.com)
+* [Blast Mojo Architecture Overview](#)
+* [Writing Your First Controller](#)
+* [Using The Event Emitter For System Messaging Passing](#)
+* [Using Dependency Injection With jQuery Plugins](#)
 
 ## MIT License
 <pre>/*!
@@ -98,8 +92,21 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
    * THE SOFTWARE.
    */
-<<<<<<< HEAD
 </pre>
-=======
-</pre>
->>>>>>> 22be4e829ab7d31340f5a725f2edc56ab180d7a3
+
+## Contributions
+
+Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo) or provide a github pull request to [jbueza](https://github.com/jbueza/jquery-mojo).
+
+* Discuss large changes on mailing list before coding
+* Javascript code style
+  * has two space indention
+  * maximum 80 column width
+  * keywords followed by open-paren must be separated by a space. eg. <code>if (condition)</code> not <code>if(condition)</code>
+  * no space between function name and open paren e.g. <code>functionName(parameters)</code> not <code>functionName (parameters)</code>
+  * multi-line <code>if</code> statements must have braces.
+  * patches should all pass [JSLint](http://jslint.com)
+
+## Contributors
+
+* Brought to you by the Blast Radius Front-End Engineering Team
