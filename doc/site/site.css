@@ -284,9 +284,13 @@ h2 {
 
 h3 {
   font-size: 16px;
+  border-left: 4px solid #fff;
+  padding-left: 5px;
+  color: #b2c8d5;
 }
 h4 {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: bold;
 }
 pre code {
   display: block;
