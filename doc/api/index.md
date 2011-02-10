@@ -74,7 +74,6 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
   * multi-line <code>if</code> statements must have braces.
   * patches should all pass [JSLint](http://jslint.com)
 
-
 ## MIT License
 <pre>/*!
    * The Blast Mojo Framework
@@ -99,4 +98,8 @@ Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/b
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
    * THE SOFTWARE.
    */
+<<<<<<< HEAD
 </pre>
+=======
+</pre>
+>>>>>>> 22be4e829ab7d31340f5a725f2edc56ab180d7a3
