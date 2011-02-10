@@ -63,6 +63,17 @@ app
 
 ## Contributions
 
+Post patches to the "Blast Mojo Mailing List" : http://groups.google.com/group/blast-mojo
+
+* Discuss large changes on mailing list before coding
+* Javascript code style
+  * has two space indention
+  * maximum 80 column width
+  * keywords followed by open-paren must be separated by a space. eg. <code>if (condition)</code> not <code>if(condition)</code>
+  * no space between function name and open paren e.g. <code>functionName(parameters)</code> not <code>functionName (parameters)</code>
+  * multi-line <code>if</code> statements must have braces.
+  * patches should all pass [JSLint](http://jslint.com)
+
 
 ## MIT License
 <pre>/*!
