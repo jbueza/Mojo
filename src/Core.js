@@ -12,9 +12,9 @@ MOJO._resolvedNamespace = function(namespace) {
     return MOJO._namespace._provided['' + namespace];
 };
 MOJO._namespace = function(namespace) {
-  var list = ('' + namespace).split(/\./),
-      sb = [],
-      context = window;
+  var list = ('' + namespace).split(/\./)
+    , obj = []
+    , context = window;
 
   if (!MOJO._namespace._provided) { 
     MOJO._namespace._provided = {};
@@ -23,16 +23,17 @@ MOJO._namespace = function(namespace) {
   for (var i = 0; i < list.length; i += 1) {
       var name = list[i];
       
-      if (! context[name]) {
-          sb[i] = name;
+      if (!context[name]) {
+          obj[i] = name;
           context[name] = function() {};
-          MOJO._namespace._provided[sb.join('.')] = context[name];
+          MOJO._namespace._provided[obj.join('.')] = context[name];
       }
 
       context = context[name];
   }
   return context;
 };
+
 MOJO.controllers = {};
 
 MOJO.query = function() {

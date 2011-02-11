@@ -21,7 +21,7 @@ function Application() {
 
 Application.prototype.configure = function(key, value) {
   this.options[key] = value;
-  console.info("Configure: ", key, " -> ", value);
+  try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
   return this;
 };
 
