@@ -25,7 +25,7 @@ Provides the ability to set configurations for your Mojo application. At the mom
   .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
   .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!</code></pre>
 
-### get(selector, callback) 
+### map(selector, callback) 
 
 Provides the ability to map a particular DOM element (through css selector) to a controller or a number
 of controllers by returning an array of Controller objects. 

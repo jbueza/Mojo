@@ -13,6 +13,7 @@ MOJO._resolvedNamespace = function(namespace) {
 };
 MOJO._namespace = function(namespace) {
   var list = ('' + namespace).split(/\./)
+    , listLength = list.length
     , obj = []
     , context = window;
 
@@ -20,7 +21,7 @@ MOJO._namespace = function(namespace) {
     MOJO._namespace._provided = {};
   }
 
-  for (var i = 0; i < list.length; i += 1) {
+  for (var i = 0; i < listLength; i += 1) {
       var name = list[i];
       
       if (!context[name]) {

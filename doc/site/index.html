@@ -11,12 +11,12 @@ var app = MOJO.create({ mojoSrc: '../src' });
 app
    .configure('appSrc', 'js/')
      //Bind a controller to an element
-   .get('#registration-example', function() {
+   .map('#registration-example', function() {
      return [
        { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
      ];
    })
-   .get('#login-example', function() {
+   .map('#login-example', function() {
      return [
        { controller: "ExampleApp.LoginController" }
      ];
@@ -36,13 +36,13 @@ app
   .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
   .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
 
-  .get('#registration-example', function() {
+  .map('#registration-example', function() {
     return [
       { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
     ];
   })
 
-  .get('#login-example', function() {
+  .map('#login-example', function() {
     return [
       { controller: "ExampleApp.LoginController" }
     ];

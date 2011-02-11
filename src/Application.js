@@ -16,20 +16,26 @@ function Application() {
       localOptions['plugins'] = [];
       localOptions['pluginSrc'] = 'js/lib/plugins/';
       localOptions['environment'] = 'dev';
-      self.map = [];
+      self.siteMap = [];
 };
 
 Application.prototype.configure = function(key, value) {
-  this.options[key] = value;
-  try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
-  return this;
+  if (arguments.length > 1) {
+    this.options[key] = value;
+    try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
+    return this;
+  } else {
+    return this.options[key];
+    //allow app.configure('appSrc') to get appSrc
+  }
+
 };
 
-Application.prototype.get = function(selector, callback) {
+Application.prototype.map = function(selector, callback) {
   var self = this;
   var elements = $(selector);
   elements.each(function(index, item) {
-    self.map.push({ context: item, init: callback });
+    self.siteMap.push({ context: item, init: callback });
   });
   callback.call(this, self);
   return this;
@@ -49,7 +55,7 @@ Application.prototype.setupController = function(context, controller, params) {
 
 Application.prototype.disconnectControllers = function(callback) {
   var self = this;
-  $(self.map).each(function(index, silo) {
+  $(self.siteMap).each(function(index, silo) {
     $(silo.context).unbind();
   });
   
@@ -57,7 +63,7 @@ Application.prototype.disconnectControllers = function(callback) {
 };
 Application.prototype.connectControllers = function() {
   var self = this;
-  $(self.map).each(function(index, mapping) {
+  $(self.siteMap).each(function(index, mapping) {
     
     if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
 
