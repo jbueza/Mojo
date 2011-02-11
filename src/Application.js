@@ -70,7 +70,7 @@ Application.prototype.connectControllers = function() {
         , controllerName    = silo.controller;
       
       if (!MOJO._loaded.length || !$.inArray(silo.controller, MOJO._loaded)) {
-        $.getScript(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
+        MOJO.require(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded Controller: ", controllerName);
           self.setupController(contextElement, controllerName, controllerParams);
         });
@@ -91,7 +91,7 @@ Application.prototype.getPlugins = function(callback) {
 //  console.log(this0)
    var self = this, path = self.options.pluginSrc;
    $(self.options.plugins).each(function(index, plugin) {
-     $.getScript(path + plugin + ".js");
+     MOJO.require(path + plugin + ".js");
    });
    callback.call(self);
 };

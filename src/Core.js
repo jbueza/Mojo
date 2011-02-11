@@ -34,6 +34,17 @@ MOJO._namespace = function(namespace) {
   return context;
 };
 MOJO.controllers = {};
+
+MOJO.query = function() {
+  return jQuery.apply(this, arguments);
+};
+
+MOJO.require = function(path, callback) {
+  $.getScript(path, function() {
+    if (callback) callback.apply(this, arguments);
+  });
+};
+
 MOJO.define = function(className, abstractClass, implementation) {
   if (!MOJO.controllers) { 
     MOJO.controllers = {};
@@ -50,7 +61,7 @@ MOJO.define = function(className, abstractClass, implementation) {
 
 MOJO.create = function(options) {  
   if ( typeof window.Application == 'undefined' || !window.Application) {
-    $.getScript(options.mojoSrc + '/Application.js');
+    MOJO.require(options.mojoSrc + '/Application.js');
   } else {
     return new Application();
   }
