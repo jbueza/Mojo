@@ -1,4 +1,4 @@
-# Blast Mojo - Version 2 - Structural JavaScript Framework
+# Blast Mojo - Lightweight Structural JavaScript Framework
 
 Blast Mojo is a patterns-based JavaScript framework that provides a consistent event- driven architecture for complex client-side web applications, built on existing best-of- breed JS libraries. Its objectives are to provide a structured way of developing Rich Internet Applications, abstract complexities by separation of concerns, and maximize re-use of existing code, in order to maintain knowledge and improve on speed and quality of deliverables.
 
@@ -8,19 +8,14 @@ Lightweight (4kb gzipped), provides you with structure, and is a great framework
 
 <pre>
   <code>//Start Here 
-var app = MOJO.create({ mojoSrc: '../src' }); 
+var app = MOJO.create({ mojoSrc: '../src' });       //Create a Mojo Application instance
 
 app
-   .configure('appSrc', 'js/')
-     //Bind a controller to an element
-   .map('#registration-example', function() {
+   .configure('appSrc', 'js/')                      //Setup your app path
+     
+   .map('#login-example', function() {              //Map #login-example
      return [
-       { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
-     ];
-   })
-   .map('#login-example', function() {
-     return [
-       { controller: "ExampleApp.LoginController" }
+       { controller: "ExampleApp.LoginController" } //Bind one or more controller(s) to a #login-example
      ];
    })
    .start()</code>
