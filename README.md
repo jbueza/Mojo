@@ -2,7 +2,7 @@
 
 ![Blast Mojo Lite Architecture](http://mojo.bueza.com/bml/architecture.png)
 
-Blast Mojo is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work) because of its heroic architecture, weight, and dependencies on Dojo. In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins and using Joose's underlying dependency injection and aspect-oriented programming features.
+Blast Mojo is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work) because of its heroic architecture, weight, and dependencies on Dojo. In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
 
 A prime example of why you would want to use Blast Mojo Lite: you have a 4-6 person team of front-end developers. jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Based on our agency experience having globally distributed teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 
@@ -11,8 +11,8 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 ### Technical Features
 
 * Not a heavyweight MVC framework, we tried that before with Blast Mojo v1
-* Aspect-oriented programming for intercepting functionality (before, after, around) with Joose
-* Dependency injection on any plugin (pull jQuery plugins into your application when you need them) with Joose
+* Aspect-oriented programming for intercepting functionality (before and after)
+* Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
 * Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
 * Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
 * Binders (controllers) are mapped to DOM elements to give components functionality
@@ -33,20 +33,33 @@ Development teams are
 
 1. git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
 1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
-1. Navigate to http://localhost/BlastMojoLite/example/index.html for boilerplate code
+1. Navigate to http://localhost/jquery-mojo/example/index.html for boilerplate code
 
-#### Sitemap
+<pre>
+  <code>var app = MOJO.create({ mojoSrc: '../src' });
 
-A Sitemap is a logical mapping for binding your implementation silos (binders) to DOM elements. As you can see below, we're mapping a Registration binder to the #registration-form DOM element to provide contextual protection and scoped functionality.
-<pre><code>
-//Sitemap.js
-Class('ExampleApp.Sitemap', { isa: 'mojo.Sitemap', has : { sitemap: {
-  init: [ 
-      { pattern: "#registration-form", attach: [ { binder: "ExampleApp.Registration" } ] }
-    , { pattern: "#login-panel", attach: [ { binder: "ExampleApp.Login" } ] }
-  ]
-}}});
-</code></pre>
+app
+  .configure('appSrc', 'js/')
+  .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
+  .configure('environment', 'prod')               // dev or prod for debugging mode!
+  .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
+  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
+
+  .map('#registration-example', function() {
+    return [
+      { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
+    ];
+  })
+
+  .map('#login-example', function() {
+    return [
+      { controller: "ExampleApp.LoginController" }
+    ];
+  })
+
+  .start()
+  </code>
+</pre>
 
 
 ## Why use Blast Mojo?

@@ -90,10 +90,7 @@ Application.prototype.connectControllers = function() {
           self.setupController(contextElement, controllerName, controllerParams);
         });
       } else {
-        //already in memory
-        //console.log("in memory: ", controllerName)
         self.setupController(contextElement, controllerName, controllerParams);
-        
       }
       MOJO._loaded.push(controllerName);
       
