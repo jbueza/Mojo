@@ -9,6 +9,8 @@ function EventEmitter() {
 
 };
 
-EventEmitter.prototype.emit = function(eventType, callback) {
+EventEmitter.emitters = [];
+
+EventEmitter.emit = function(eventType, callback) {
   
 };
