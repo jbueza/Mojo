@@ -53,11 +53,11 @@ Application.prototype.setupController = function(context, controller, params) {
   if ( typeof controllerObj == 'undefined') {
     console.log("UNDEFINED!!");
   }
-  MOJO.controllers[controller].initialize(context, controller, params);
-  var controllerInstance = { name: controller, controller: MOJO.controllers[controller] };
+  controllerObj.initialize(context, controller, params);
+  var controllerInstance = { name: controller, controller: controllerObj };
   if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
   $(context).data('controllers').push(controllerInstance);
-  if( typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') MOJO.controllers[controller].after['Start']();
+  if( typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
 Application.prototype.disconnectControllers = function(callback) {
@@ -102,7 +102,6 @@ Application.prototype.on = function(eventName, callback) {
 };
 
 Application.prototype.getPlugins = function(callback) {
-//  console.log(this0)
    var self = this, path = self.options.pluginSrc;
    $(self.options.plugins).each(function(index, plugin) {
      MOJO.require(path + plugin + ".js");

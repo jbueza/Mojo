@@ -27,7 +27,7 @@ app
   
   .map('#profile-example', function() {
     return [
-      { controller: "ExampleApp.member.ProfileController" }
+      { controller: "ExampleApp.member.ProfileController", params: { 'currentCity': 'Vancouver', 'hometown': 'Winnipeg' }}
     ];
   })
   
