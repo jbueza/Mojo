@@ -107,4 +107,4 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 ## Contributors
 
-* Brought to you by the Blast Radius Front-End Engineering Team
+* Brought to you by the [Blast Radius](http://www.blastradius.com) Front-End Engineering Team

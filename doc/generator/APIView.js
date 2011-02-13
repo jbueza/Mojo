@@ -33,7 +33,7 @@ APIView.prototype.save = function() {
   }
   
   var intro = [
-      '<!doctype html><html>'
+      '<!DOCTYPE html><html>'
     , '<head>'
     , '<title>Blast Mojo: Structural JavaScript Framework: ', publicName, '</title>'
     , "<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>"

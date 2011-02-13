@@ -63,9 +63,6 @@ app
   </code>
 </pre>
 
-
-
-
 ## Contributing
 
 Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo)
