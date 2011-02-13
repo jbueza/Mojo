@@ -10,13 +10,12 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 
 ### Technical Features
 
-* Not a heavyweight MVC framework, we tried that before with Blast Mojo v1
 * Aspect-oriented programming for intercepting functionality (before and after)
 * Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
 * Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
 * Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
-* Binders (controllers) are mapped to DOM elements to give components functionality
-* Binders are used as a way of creating implementation silos (LoginBinder, RegistrationBinder, ChatBinder, NavigationBinder)
+* Controllers (controllers) are mapped to DOM elements to give components functionality
+* Controllers are used as a way of creating implementation silos (LoginBinder, RegistrationBinder, ChatBinder, NavigationBinder)
 
 ### Technical Benefits of being built on top of jQuery
 
@@ -27,7 +26,7 @@ Development teams are
 * provided with a large community for support
 * able to scale their projects effectively by pulling in jQuery plugins they need (no random features you don't need)
 * able to use publish/subscribe by injecting the plugin into the application
-* able to structure their code into Binders which essentially act as implementation silos
+* able to structure their code into Controllers which essentially act as implementation silos
 
 ## Setup
 

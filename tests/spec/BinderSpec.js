@@ -45,7 +45,7 @@ describe("mojo.Binder.bindDomEvent", function() {
   it("should return true upon binding dom events through its event map", function() { });
   it("should throw an error if no arguments are passed", function() { });
 });
-describe("mojo.Binder.unbindEventMap", function() {
+describe("Controller .unbindEventMap", function() {
   var controller;
   beforeEach(function() {
     
@@ -55,11 +55,11 @@ describe("mojo.Binder.unbindEventMap", function() {
   //it("should throw an error if the Event Map is empty", function() { });
 });
 
-describe("mojo.Binder.my.getBinders", function() {
+describe("Controller.my.getBinders", function() {
   var controller;
   beforeEach(function() {
     
   });
-  it("should throw an error if there are no binders", function() { });
+  it("should throw an error if there are no controllers", function() { });
   it("should return an array of binders to a particular context", function() { });
 });
