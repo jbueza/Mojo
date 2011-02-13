@@ -6,7 +6,7 @@ Blast Mojo is a lightweight structural JavaScript framework that has the ability
 
 A prime example of why you would want to use Blast Mojo Lite: you have a 4-6 person team of front-end developers. jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Based on our agency experience having globally distributed teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 
-The Blast Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity -- And finally, you get the awesomeness of jQuery in the palm of your hand because Blast Mojo is built on top of it!
+The Blast Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity.
 
 ### Technical Features
 
@@ -14,8 +14,8 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 * Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
 * Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
 * Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
-* Controllers (controllers) are mapped to DOM elements to give components functionality
-* Controllers are used as a way of creating implementation silos (LoginBinder, RegistrationBinder, ChatBinder, NavigationBinder)
+* Controllers are mapped to DOM elements to give components functionality
+* Controllers are used as a way of creating implementation silos (Login Controller, Registration Controller, Chat Controller, Profile Controller, etc)
 
 ### Technical Benefits of being built on top of jQuery
 
