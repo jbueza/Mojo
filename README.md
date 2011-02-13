@@ -1,8 +1,8 @@
-# Blast Mojo (jQuery Mojo) - Scalable JavaScript Microframework
+# Blast Mojo - Lightweight Structural JavaScript Framework
 
 ![Blast Mojo Lite Architecture](http://mojo.bueza.com/bml/architecture.png)
 
-Blast Mojo is a scalable JavaScript microframework that has the ability to scale up and down based on how big your project is. The original inception of Blast Mojo (version one) was heroic and scaled extremely well on large deployments; however, using Blast Mojo was tough on small deployments (campaign work) because of its heroic architecture, weight, and dependencies on Dojo. In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
+Blast Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
 
 A prime example of why you would want to use Blast Mojo Lite: you have a 4-6 person team of front-end developers. jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Based on our agency experience having globally distributed teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 

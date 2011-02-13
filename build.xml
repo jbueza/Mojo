@@ -13,7 +13,7 @@
   
   <target name="all" depends="init, mojo, doc" />
 
-  <target name="init" description="Creates dist directory or execute any preconditions before compiling Joose and Mojo">
+  <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
     <mkdir dir="${dist}" />
   </target>
   
