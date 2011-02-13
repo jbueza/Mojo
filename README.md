@@ -17,20 +17,23 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 * Controllers are mapped to DOM elements to give components functionality
 * Controllers are used as a way of creating implementation silos (Login Controller, Registration Controller, Chat Controller, Profile Controller, etc)
 
-### Technical Benefits of being built on top of jQuery
+## Why use Blast Mojo?
 
-Development teams are
+* Blast Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
 
-* comfortable with jQuery syntax 
-* comfortable with jQuery documentation 
-* provided with a large community for support
-* able to scale their projects effectively by pulling in jQuery plugins they need (no random features you don't need)
-* able to use publish/subscribe by injecting the plugin into the application
-* able to structure their code into Controllers which essentially act as implementation silos
+* Enforces organization and clean separation of code to ease readability and maintainability
+
+* Capability to pull any jQuery plugin for rapid prototyping and development
+ 
+* Increases productivity of large teams working in parallel, particularly on Agile projects, by dividing work into implementation silos and allowing incremental development
+
+* Reduces developer ramp-up time starting on new projects because they are already accustomed to the coding structures, patterns and practices
+
+* Development speeds up as times goes on compared to the opposite that happens when code becomes too tightly bound
 
 ## Setup
 
-1. git clone http://github.com/carynewfeldt/BlastMojoLite.git into your localhost 
+1. git clone http://github.com/jbueza/jquery-mojo.git into your localhost 
 1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
 1. Navigate to http://localhost/jquery-mojo/example/index.html for boilerplate code
 
@@ -61,19 +64,7 @@ app
 </pre>
 
 
-## Why use Blast Mojo?
 
-* Blast Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
-
-* Enforces organization and clean separation of code to ease readability and maintainability
-
-* Capability to pull any jQuery plugin for rapid prototyping and development
- 
-* Increases productivity of large teams working in parallel, particularly on Agile projects, by dividing work into implementation silos and allowing incremental development
-
-* Reduces developer ramp-up time starting on new projects because they are already accustomed to the coding structures, patterns and practices
-
-* Development speeds up as times goes on compared to the opposite that happens when code becomes too tightly bound
 
 ## Contributing
 
@@ -90,10 +81,8 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 ## TODO
 
-* Refactor all components to be more in line with CommonJS specification
-* Provide capability to reuse commands 
 * Create more examples using different plugins
-* Write unit tests for Binder using qunit
+* Write unit tests
 
 ## MIT Licence
 
