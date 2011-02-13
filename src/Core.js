@@ -15,20 +15,18 @@ MOJO._namespace = function(namespace) {
     , obj = []
     , context = window;
 
-  if (!MOJO._namespace._provided) { 
-    MOJO._namespace._provided = {};
-  }
+  if (!MOJO._namespace._provided) MOJO._namespace._provided = {};
+
 
   for (var i = 0; i < listLength; i += 1) {
-      var name = list[i];
-      
-      if (!context[name]) {
-          obj[i] = name;
-          context[name] = function() {};
-          MOJO._namespace._provided[obj.join('.')] = context[name];
-      }
-
-      context = context[name];
+    var name = list[i];
+    
+    if (!context[name]) {
+      obj[i] = name;
+      context[name] = function() {};
+      MOJO._namespace._provided[obj.join('.')] = context[name];
+    }
+    context = context[name];
   }
   return context;
 };

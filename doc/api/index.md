@@ -58,10 +58,8 @@ app
 ## Classes
 
 * [Application](Application.html "Blast Mojo: Application Class")
-* [Command](Command.html "Blast Mojo: Command Class")
 * [Controller](Controller.html "Blast Mojo: Controller Class")
 * [Core](Core.html "Blast Mojo: Core Class")
-* [Event Emitter](EventEmitter.html "Blast Mojo: Event Emitter Class")
 * [Request](Request.html "Blast Mojo: Request Class")
 * [Service](Service.html "Blast Mojo: Service Class")
 
