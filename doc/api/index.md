@@ -7,19 +7,20 @@ Lightweight (4kb gzipped), provides you with structure, and is a great framework
 ## Get Started
 
 <pre>
-  <code>//Start Here 
-var app = MOJO.create({ mojoSrc: '../src' });       //Create a Mojo Application instance
+  <code>var app = MOJO.create({ mojoSrc: '../src' });       // Create a Mojo application instance
 
 app
-   .configure('appSrc', 'js/')                      //Setup your app path
-     
-   .map('#login-example', function() {              //Map #login-example
-     return [
-       { controller: "ExampleApp.LoginController" } //Bind one or more controller(s) to a #login-example
-     ];
-   })
-   .start()</code>
+  .configure('appSrc', 'js/')                       // Setup where your application lives
+  
+  .map('#login-example', function() {               // Map login-example as an implementation silo
+    return [
+      { controller: "ExampleApp.LoginController" }  // Bind controller(s) to login-example
+    ];
+  })
+
+  .start()</code>
 </pre>
+
 
 ## Get Started With Advanced Configuration
 
