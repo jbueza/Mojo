@@ -1,21 +1,44 @@
-<!DOCTYPE html><html><head><title>Blast Mojo: Structural JavaScript Framework: Service Class</title><link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'><link href="site.css" rel="stylesheet" type="text/css"><link href="sunburst.css" rel="stylesheet" type="text/css"><h1>. Service</h1>
+<!DOCTYPE html><html><head><title>Blast Mojo: Structural JavaScript Framework: Service Class</title><link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'><link href="site.css" rel="stylesheet" type="text/css"><link href="sunburst.css" rel="stylesheet" type="text/css"><h1>Service</h1>
 
 <p>Class representation of a web service call.</p>
 
 <h2>API</h2>
 
-<h3>constructor</h3>
+<h3>invoke(params, callback, scope)</h3>
 
-<p>Creates an instance of the mojo.service.Service class.</p>
+<p>Invokes the service by passing parameters, as well as, a callback with an execution context. The execution context defaults to the method that was originally invoked.</p>
 
-<p><code>var jsonService = new Service("getRSS", "/json/rssFeed", {method: 'post', template: false});</code></p>
+<h3>getName()</h3>
 
-<ul>
-<li>name - </li>
-<li>uri - </li>
-<li>options -</li>
-</ul>
+<p>Returns the name of the web service. Example: "GetUser".</p>
 
-<h4>Example</h4>
+<h3>getURI()</h3>
 
-<h1>Service Locator</h1></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
+<p>Returns the location of the web service. Example: "/api/user/create".</p>
+
+<h3>getParams()</h3>
+
+<p>Returns the options that were originally set upon creation of the web service.</p>
+
+<h1>Service Locator</h1>
+
+<h2>Basic Usage</h2>
+
+<h3>1. Setup your service registry for your application</h3>
+
+<pre><code>
+ServiceLocator.addService(new Service('GetUsers',     '/users'));
+ServiceLocator.addService(new Service('AddFollower',  '/user/follow'));
+ServiceLocator.addService(new Service('UpdateUser', '/user/update'));
+ServiceLocator.addService(new Service('GetUser',   '/users/${id}', { template: true }));
+</code></pre>
+
+<h3>2. Invoke your services through a click</h3>
+
+<pre><code>//Super basic example of using the Service Locator
+$("#btn-follow-user").click(function(event) {
+  ServiceLocator.getService('AddFollower').invoke({ userId: $(this).data('userId') }, function(err, data) {
+    //success!
+  });
+});
+</code></pre></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>

@@ -63,6 +63,10 @@ app
 * [Request](Request.html "Blast Mojo: Request Class")
 * [Service](Service.html "Blast Mojo: Service Class")
 
+#### Experimental
+
+* [Event Emitter](# "Event Emitter")
+
 ## Guides
 
 * [Blast Mojo Architecture Overview](#)

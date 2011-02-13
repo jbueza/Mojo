@@ -1,5 +1,47 @@
 <!DOCTYPE html><html><head><title>Blast Mojo: Structural JavaScript Framework: Request Class</title><link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'><link href="site.css" rel="stylesheet" type="text/css"><link href="sunburst.css" rel="stylesheet" type="text/css"><h1>Request</h1>
 
-<p>Class representation of </p>
+<p>Class representation of an object being passed into all controller methods, typically called
+requestObj. This object contains the eventObj, paramsObj, as well as, invocation.</p>
 
-<h2>API</h2></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
+<h2>API</h2>
+
+<h3>getController()</h3>
+
+<p>Returns the current controller that the request is bound to.</p>
+
+<pre>
+  <code>Login: function(requestObj) {
+    var myController = requestObj.getController();
+  }</code>
+</pre>
+
+<h3>getContextElement()</h3>
+
+<p>Returns the element that the current controller is bound to. Alternatively, within a controller method, you can just call <code>this.getContextElement()</code>.</p>
+
+<h3>getCaller()</h3>
+
+<p>Returns the object that originally invoked it.</p>
+
+<h3>getEvent()</h3>
+
+<p>Returns the event object during the request.</p>
+
+<h2>Basic Usage</h2>
+
+<pre>
+  <code>MOJO.define('ExampleApp.LoginController', {
+    events: [
+        ['context', '.btn-login', 'click', 'Login']
+    ],
+    methods: {
+      Login: function(requestObj) {
+        //you can use this.getContextElement();
+        //or through the requestObj
+        var context = requestObj.getContextElement();
+        var event = requestObj.getEvent();
+        var params = requestObj.getParams();
+      }
+    }
+  });</code>
+</pre></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
