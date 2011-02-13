@@ -63,15 +63,10 @@ app
 * [Request](Request.html "Blast Mojo: Request Class")
 * [Service](Service.html "Blast Mojo: Service Class")
 
-#### Experimental
-
-* [Event Emitter](# "Event Emitter")
-
 ## Guides
 
 * [Blast Mojo Architecture Overview](#)
 * [Writing Your First Controller](#)
-* [Using The Event Emitter For System Messaging Passing](#)
 * [Using Dependency Injection With jQuery Plugins](#)
 
 ## MIT License
