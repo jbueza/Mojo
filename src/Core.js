@@ -47,7 +47,7 @@ MOJO.require = function(path, callback) {
   });
 };
 
-MOJO.define = function(className, abstractClass, implementation) {
+MOJO.define = function(className, implementation) {
   if (!MOJO.controllers) { 
     MOJO.controllers = {};
   }

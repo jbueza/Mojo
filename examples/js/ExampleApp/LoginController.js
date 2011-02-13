@@ -2,7 +2,7 @@
  * @class   Login Controller
  * @author  Jaime Bueza
  */
-MOJO.define('ExampleApp.LoginController', Controller, {
+MOJO.define('ExampleApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
     , ['context', '.btn-logout', 'click', 'Logout']

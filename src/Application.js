@@ -48,7 +48,7 @@ Application.prototype.heal = function() {
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
   MOJO.controllers[controller].initialize(context, controller, params);
-  var controllerInstance = { namee: controller, controller: MOJO.controllers[controller] };
+  var controllerInstance = { name: controller, controller: MOJO.controllers[controller] };
   if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
   $(context).data('controllers').push(controllerInstance);
 };
