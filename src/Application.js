@@ -81,9 +81,7 @@ Application.prototype.connectControllers = function() {
         , sizzleContext     = $(contextElement)
         , controllerParams  = silo.params
         , controllerName    = silo.controller;
-      
-      var isLoaded = $.inArray(controllerName, MOJO._loaded);
-      
+        
       if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
         MOJO.require(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded Controller: ", controllerName);

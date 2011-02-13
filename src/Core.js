@@ -5,9 +5,7 @@ var MOJO = function() {
 };
 
 MOJO._loaded = [];
-MOJO._set = function(parts) {
-  
-};
+
 MOJO._resolvedNamespace = function(namespace) {
     return MOJO._namespace._provided['' + namespace];
 };
@@ -63,9 +61,5 @@ MOJO.define = function(className, implementation) {
 };
 
 MOJO.create = function(options) {  
-  if ( typeof window.Application == 'undefined' || !window.Application) {
-    MOJO.require(options.mojoSrc + '/Application.js');
-  } else {
-    return new Application(options);
-  }
+  return new Application(options);
 };
