@@ -49,19 +49,25 @@ Application.prototype.heal = function() {
 };
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
+  
   var controllerObj = MOJO.controllers[controller];
-  if ( typeof controllerObj == 'undefined') {
-    console.log("UNDEFINED!!");
-  }
+  
+  if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
+  
   controllerObj.initialize(context, controller, params);
+  
   var controllerInstance = { name: controller, controller: controllerObj };
+  
   if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
+  
   $(context).data('controllers').push(controllerInstance);
+  
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
 Application.prototype.disconnectControllers = function(callback) {
   var self = this;
+  
   $(self.siteMap).each(function(index, silo) {
     $(silo.context).unbind();
   });
