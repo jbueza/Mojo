@@ -1,3 +1,6 @@
+ServiceLocator.addService(new Service('UpdateProfile', 'data/success.json'));
+
+
 var app = MOJO.create({ mojoSrc: '../src' });
 
 app
@@ -32,3 +35,4 @@ app
   })
   
   .start()
+  
