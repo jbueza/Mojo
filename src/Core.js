@@ -42,9 +42,11 @@ MOJO.query = function() {
 };
 
 MOJO.require = function(path, callback) {
+  $.ajaxSetup({ async: false });
   $.getScript(path, function() {
     if (callback) callback.apply(this, arguments);
   });
+  $.ajaxSetup({ async: true });
 };
 
 MOJO.define = function(className, implementation) {
@@ -57,7 +59,6 @@ MOJO.define = function(className, implementation) {
     , controller = $.extend(controller, abstractController);
     
     MOJO.controllers[className] = controller;
-    MOJO._loaded.push(className);
 
 };
 
@@ -65,6 +66,6 @@ MOJO.create = function(options) {
   if ( typeof window.Application == 'undefined' || !window.Application) {
     MOJO.require(options.mojoSrc + '/Application.js');
   } else {
-    return new Application();
+    return new Application(options);
   }
 };

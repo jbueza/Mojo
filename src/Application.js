@@ -19,6 +19,8 @@ function Application() {
       self.siteMap = [];
 };
 
+Application.prototype.onComplete = function() {};
+
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
@@ -47,10 +49,15 @@ Application.prototype.heal = function() {
 };
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
+  var controllerObj = MOJO.controllers[controller];
+  if ( typeof controllerObj == 'undefined') {
+    console.log("UNDEFINED!!");
+  }
   MOJO.controllers[controller].initialize(context, controller, params);
   var controllerInstance = { name: controller, controller: MOJO.controllers[controller] };
   if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
   $(context).data('controllers').push(controllerInstance);
+  if( typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') MOJO.controllers[controller].after['Start']();
 };
 
 Application.prototype.disconnectControllers = function(callback) {
@@ -75,15 +82,21 @@ Application.prototype.connectControllers = function() {
         , controllerParams  = silo.params
         , controllerName    = silo.controller;
       
-      if (!MOJO._loaded.length || !$.inArray(silo.controller, MOJO._loaded)) {
+      var isLoaded = $.inArray(controllerName, MOJO._loaded);
+      
+      if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
         MOJO.require(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded Controller: ", controllerName);
           self.setupController(contextElement, controllerName, controllerParams);
         });
       } else {
         //already in memory
+        //console.log("in memory: ", controllerName)
         self.setupController(contextElement, controllerName, controllerParams);
+        
       }
+      MOJO._loaded.push(controllerName);
+      
     });
   });
 
@@ -111,8 +124,9 @@ Application.prototype.start = function() {
         });
       } else {
         self.connectControllers();
-        
       }
+      
+      self.onComplete();
     });
   });
   

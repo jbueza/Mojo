@@ -12,17 +12,10 @@ function Controller() {
   this.contextElement = null;
   this.controllerClass = null;
   this.delegates = [];
+  this.events;
 };
 
-/* 
- * A brave salute to the heroes of the past! They will forever be legendary!
- */
-Controller.prototype.addObservers = function() {};
-Controller.prototype.addCommands = function() {};
-Controller.prototype.addIntercepts = function() {};
-Controller.prototype.addCommand = function(name, location) {
-  this.methods.push({ commandName: name, command: location });
-};
+Controller.prototype.onInit = function() {};
 
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
@@ -42,9 +35,13 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     
     $(root).delegate(selector, eventName, function(evt) {
       var requestObj = new Request({}, this, evt, self);
+      if(typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
       self.methods[commandName].call(self, requestObj);
+      if(typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
     });
   });
+  
+  self.onInit();
 };
 
 /* 
@@ -64,6 +61,11 @@ Controller.prototype.bind = function(element) {
   
 };
 
-Controller.prototype.intercept = function(when, callback, callbackInterceptor, params) {
-  
-};
+/* 
+ * A brave salute to the heroes of the past! They will forever be legendary!
+ */
+Controller.prototype.addObservers = function() {};
+Controller.prototype.addCommands = function() {};
+Controller.prototype.addCommand = function(name, location) {};
+
+
