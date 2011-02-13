@@ -102,7 +102,7 @@ app
 
 ## Contributions
 
-Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo) or provide a github pull request to [jbueza](https://github.com/jbueza/jquery-mojo).
+Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo) or provide a github pull request to [jbueza](https://github.com/jbueza/blastmojo).
 
 * Discuss large changes on mailing list before coding
 * Javascript code style
