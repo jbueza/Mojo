@@ -56,7 +56,7 @@ APIView.prototype.save = function() {
     , fileName = buildTo + '.html';
     
   fs.writeFile(fileName, html, function(err) {
-    if(err) {
+    if (err) {
         sys.puts(err);
     } else {
         sys.puts(fileName + '' + " was generated!");

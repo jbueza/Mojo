@@ -6,6 +6,8 @@ MOJO.define('ExampleApp.member.ProfileController', {
     Save: function(requestObj) {
       console.log(this);
       console.log("Saving profile...");
+      
+      ServiceLocator.getService('GetNotes').invoke({}, "render", this);
     }
   },
   after: {

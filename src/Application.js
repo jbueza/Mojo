@@ -57,7 +57,7 @@ Application.prototype.setupController = function(context, controller, params) {
   var controllerInstance = { name: controller, controller: controllerObj };
   if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
   $(context).data('controllers').push(controllerInstance);
-  if( typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
+  if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
 Application.prototype.disconnectControllers = function(callback) {
