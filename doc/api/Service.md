@@ -2,10 +2,10 @@
 
 Class representation of a web service call.
 
-##. API
+## API
 
 
-###. constructor
+### constructor
 
 Creates an instance of the mojo.service.Service class.
 
@@ -20,3 +20,5 @@ Creates an instance of the mojo.service.Service class.
 
 
 # Service Locator
+
+

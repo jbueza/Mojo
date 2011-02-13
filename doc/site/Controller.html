@@ -4,8 +4,30 @@
 
 <h2>API</h2>
 
-<h3>initialize()</h3>
+<h3>initialize(context, controllerName, paramsObj)</h3>
 
 <h3>getContextElement()</h3>
 
-<h3>intercept(when, callback, callbackInterceptor, params)</h3></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
+<h3>intercept(when, callback, callbackInterceptor, paramsObj)</h3>
+
+<h2>Usage</h2>
+
+<pre><code>/* 
+ * @class   Login Controller
+ * @author  Jaime Bueza
+ */
+MOJO.define('ExampleApp.LoginController', {
+  events: [
+      ['context', '.btn-login', 'click', 'Login']
+    , ['context', '.btn-logout', 'click', 'Logout']
+  ],
+  commands: {
+    Login: function(requestObj) {
+      var context = requestObj.getContextElement();
+      alert("Logged in from " + this.controllerClass);
+    },
+    Logout: function(requestObj) {
+      alert("Logged out from " + this.controllerClass);
+    }
+  }
+});</code></pre></body><script src="highlight.min.js"></script><script>hljs.initHighlighting();</script></html>
