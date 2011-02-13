@@ -4,6 +4,12 @@ Blast Mojo is a patterns-based JavaScript framework that provides a consistent e
 
 Lightweight (4kb gzipped), provides you with structure, and is a great framework for building event-driven mobile web or desktop web applications for your distributed teams. The only dependency is jQuery (Sizzle) for its fast selector engine.
 
+
+## Architecture
+
+![Blast Mojo Architecture](BlastMojo-NewArchitecture.png "Blast Mojo Architecture")
+
+
 ## Get Started
 
 <pre>
