@@ -18,9 +18,16 @@ app
       { controller: "ExampleApp.LoginController" }
     ];
   })
+  
   .map('#login-example2', function() {
     return [
       { controller: "ExampleApp.LoginController" }
+    ];
+  })
+  
+  .map('#profile-example', function() {
+    return [
+      { controller: "ExampleApp.member.ProfileController" }
     ];
   })
   

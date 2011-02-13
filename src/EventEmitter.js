@@ -5,10 +5,10 @@
  * 
  * @author Blast Radius (jbueza)
  */
-function Event() {
+function EventEmitter() {
 
 };
 
-EventEmitter.prototype.emit = function(eventType) {
+EventEmitter.prototype.emit = function(eventType, callback) {
   
 };

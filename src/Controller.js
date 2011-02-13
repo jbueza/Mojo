@@ -1,7 +1,9 @@
 /* 
  * Controller Class
  *
- * Provides an implementation silo for developers
+ * An abstract class used in implementing Mojo Controllers. A Controller is an 
+ * object that encapsulates all event handling, dispatching and intercepting in 
+ * a Mojo application.
  * 
  * @class       Controller
  * @author      Blast Radius (jbueza)
