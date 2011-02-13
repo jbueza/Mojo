@@ -17,10 +17,9 @@ MOJO.define('ExampleApp.member.ProfileController', {
   },
   after: {
     Start: function() {
-      var context = this.contextElement;
-      //prefill!
+      var self = this;
       $.each(this.params, function(key, value) {
-        $("input[name='" + key + "']", context).val(value);
+        $("input[name='" + key + "']", self.getContextElement()).val(value);
       });
     }
   }
