@@ -304,3 +304,7 @@ a, a:active, a:visited {
 a:hover {
   color: #fff;
 }
+
+p {
+  margin-bottom: 15px;
+}
