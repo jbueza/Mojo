@@ -7,7 +7,7 @@ MOJO.define('ExampleApp.RegistrationController', {
       ['context', '.btn-submit-registration', 'click', 'Register']
     , ['dom', '.btn-test-outside', 'click', 'Register']
   ],
-  commands: {
+  methods: {
     Register: function(requestObj) {
       var context = requestObj.getContextElement();
       alert("REGISTER from " + this.controllerClass);

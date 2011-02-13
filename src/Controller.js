@@ -21,7 +21,7 @@ Controller.prototype.addObservers = function() {};
 Controller.prototype.addCommands = function() {};
 Controller.prototype.addIntercepts = function() {};
 Controller.prototype.addCommand = function(name, location) {
-  this.commands.push({ commandName: name, command: location });
+  this.methods.push({ commandName: name, command: location });
 };
 
 Controller.prototype.initialize = function(context, controllerName, params) {
@@ -42,7 +42,7 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     
     $(root).delegate(selector, eventName, function(evt) {
       var requestObj = new Request({}, this, evt, self);
-      self.commands[commandName].call(self, requestObj);
+      self.methods[commandName].call(self, requestObj);
     });
   });
 };
