@@ -1,8 +1,4 @@
-var MOJO = function() {
-  //return new MOJO();
-  this.system = null;
-  return this;
-};
+var MOJO = function() {};
 
 MOJO._loaded = [];
 

@@ -1,17 +1,25 @@
-# Controller
+# Mojo Core
 
-An abstract class used in implementing Mojo Controllers. A Controller is an object that encapsulates all event handling, dispatching and intercepting in a Mojo application.
+Provides helper methods for managing your Mojo applications (namespacing, requiring, and creation).
+
+
+## Properties
+
+### controllers
+
+List of Mojo Controllers available to applications.
 
 ## API
 
-### onInit()
+### require(path, callback)
 
-Event triggered when Controller initialization completes.
+Fetches a resource. Currently piggybacks off of jQuery's require() and blocks.
 
-### initialize(context, controllerName, paramsObj)
+### define(className, implementation)
 
-Setups up bindings from its events map.
+Namespaces, provides, and creates a Mojo controller.
 
-### getContextElement()
+### create(options) 
 
-Returns the DOM element that the current controller is bound to
+Returns a new Mojo application instance.
+
