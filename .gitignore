@@ -6,9 +6,3 @@ Thumbs.db
 *.diff
 *.patch
 .sass-cache/*
-dist/*
-
-bml.bat
-bml.sh
-build-plugin-manager.xml
-doc/wiki/PluginManagementSpecification.md
