@@ -10,10 +10,10 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 
 ### Building From Source
 
-<code>
-  $ git@github.com:jbueza/blastmojo.git && cd blastmojo
+<pre><code>
+  $ git@github.com:jbueza/blastmojo.git &amp;&amp; cd blastmojo
   $ ant
-</code>
+</code></pre>
 
 ### Technical Features
 
