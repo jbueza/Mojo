@@ -144,6 +144,7 @@ function Application() {
       localOptions['plugins'] = [];
       localOptions['pluginSrc'] = 'js/lib/plugins/';
       localOptions['environment'] = 'dev';
+      localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
       self.siteMap = [];
 };
 
@@ -411,6 +412,7 @@ MOJO.query = function() {
 };
 
 MOJO.require = function(path, callback) {
+  //move to CommonJS AMD spec coming soon!
   $.ajaxSetup({ async: false });
   $.getScript(path, function() {
     if (callback) callback.apply(this, arguments);

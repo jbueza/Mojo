@@ -13,6 +13,11 @@
       margin-right: 15px;
       padding: 15px;
     }
+    
+    #gallery-example {
+      display: block;
+      float: left
+    }
     .success {
       display: none;
       color: green;
@@ -20,7 +25,9 @@
       background: #fefefe;
       padding: 10px;
     }
+    
   </style>
+  <link rel="stylesheet" href="css/skin.css" type="text/css">
 </head>
 <body>
   <div id="registration-example" class="example">
@@ -84,6 +91,7 @@
     <button class="btn-login">Login</button>
     <button class="btn-logout">Logout</button>
   </div>
+  
   <hr>
   
   <div class="reusable">
@@ -95,6 +103,27 @@
   <div class="reusable">
     <a href="#" class="btn-test-outside">I'm reusable!</a>
   </div>
+  
+  <div id="gallery-example">
+    <h2>My Photo Gallery (jCarousel plugin injection)</h2>
+    <ul id="mycarousel" class="jcarousel-skin-tango"> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        <li><img src="images/logo-blast-mojo.png" width="75" height="75" alt="" /></li> 
+        
+    </ul>
+  </div>
+  
   
   <script src="js/lib/jquery-1.5.min.js"></script>
   <script src="../dist/mojo.min.js"></script>

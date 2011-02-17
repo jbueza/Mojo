@@ -36,5 +36,11 @@ app
     ];
   })
   
+  .map('#gallery-example', function() {
+    return [
+      { controller: "ExampleApp.GalleryController" }
+    ];
+  })
+  
   .start()
   
