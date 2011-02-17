@@ -12,6 +12,8 @@ Lightweight (4kb gzipped), provides you with structure, and is a great framework
 
 ## Get Started
 
+[Download Mojo](https://github.com/jbueza/blastmojo/zipball/v0.1.1-stable)
+
 <pre>
   <code>var app = MOJO.create({ mojoSrc: '../src' });       // Create a Mojo application instance
 
