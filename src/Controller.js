@@ -56,6 +56,7 @@ Controller.prototype.getContextElement = function() {
 };
 
 /* 
+ * Provides the capability to set params on controllers: (key, value) or get (key)
  * @member Controller
  */
  
@@ -67,20 +68,3 @@ Controller.prototype.param = function(key, value) {
     return this.params[key];
   }
 };
-
-/*
- * @member  Controller
- * @return  {Boolean}
- */
-Controller.prototype.bind = function(element) {
-  
-};
-
-/* 
- * A brave salute to the heroes of the past! They will forever be legendary!
- */
-Controller.prototype.addObservers = function() {};
-Controller.prototype.addCommands = function() {};
-Controller.prototype.addCommand = function(name, location) {};
-
-
