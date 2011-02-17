@@ -16,6 +16,7 @@ function Application() {
       localOptions['plugins'] = [];
       localOptions['pluginSrc'] = 'js/lib/plugins/';
       localOptions['environment'] = 'dev';
+      localOptions['selector'] = jQuery;
       self.siteMap = [];
 };
 
