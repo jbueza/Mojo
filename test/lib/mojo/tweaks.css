@@ -1,14 +1,19 @@
 body {
   font-size: 11px;
+  text-shadow: none;
 }
 a, a:link, a:active {
-  color: #fff;
+  color: #000;
 }
 a:hover {
   color: #ccc !important;
 }
+
+a.description {
+  color: #fff;
+}
 .banner {
-  background: #000;
+  background: #356AA0;
   color: #fff;
 }
 .runner {
@@ -17,16 +22,36 @@ a:hover {
 }
 
 .suite {
-  background: #356AA0;
+  background: #4096EE;
+     -moz-box-shadow: 0 0 1px black;
+  -webkit-box-shadow: 0 0 1px black;
+          box-shadow: 0 0 1px black;
   /*background: #4096EE;*/
 }
+.suite.passed {
+  background: #006E2E;
+}
+
 .spec {
   background: #000;
 }
+
+
+
 .spec.passed a {
   color: green;
   text-shadow: none;
 }
 .spec.passed a:hover {
   color: #000 !important;
+}
+
+
+
+.messages {
+  color: #000;
+}
+
+.stackTrace {
+  max-height: 15em;
 }

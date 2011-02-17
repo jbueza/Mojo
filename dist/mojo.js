@@ -70,6 +70,7 @@ function Controller() {
   this.controllerClass = null;
   this.delegates = [];
   this.events;
+  return this;
 };
 
 Controller.prototype.onInit = function() {};
