@@ -1,4 +1,4 @@
-describe("Mojo Application", function() {
+describe("Application", function() {
 
   beforeEach(function() {
     

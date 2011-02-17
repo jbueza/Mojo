@@ -1,0 +1,28 @@
+body {
+  font-size: 11px;
+}
+a, a:link, a:active {
+  color: #fff;
+}
+a:hover {
+  color: #ccc !important;
+}
+.banner {
+  background: #356AA0;
+  color: #fff;
+}
+.runner {
+  background: #4096EE;
+  border: 1px solid #000;
+}
+
+.suite {
+  background: #333;
+}
+.spec {
+  background: #000;
+}
+.spec.passed a {
+  color: green;
+  text-shadow: none;
+}

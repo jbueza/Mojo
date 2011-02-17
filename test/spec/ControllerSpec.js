@@ -1,4 +1,4 @@
-describe("Mojo Controller", function() {
+describe("Controller", function() {
 
   beforeEach(function() {
     
