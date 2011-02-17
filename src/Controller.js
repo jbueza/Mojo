@@ -55,6 +55,19 @@ Controller.prototype.getContextElement = function() {
   return this.contextElement;
 };
 
+/* 
+ * @member Controller
+ */
+ 
+Controller.prototype.param = function(key, value) {
+  if (arguments.length > 1) {
+    this.params[key] = value;
+    return this;
+  } else {
+    return this.params[key];
+  }
+};
+
 /*
  * @member  Controller
  * @return  {Boolean}

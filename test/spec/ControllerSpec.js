@@ -33,7 +33,11 @@ describe("Controller", function() {
   
   describe("parameters", function() {
     it("should be able to have optional parameters associated with it", function() { 
-      expect(controller.params.user).toEqual('jbueza');
+      expect(controller.param('user')).toEqual('jbueza');
+    });
+    it("should allow developers to add parameters on demand", function() {
+      controller.param('myNewParam', true);
+      expect(controller.param('myNewParam')).toBe(true);
     });
   });
 

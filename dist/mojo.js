@@ -70,7 +70,6 @@ function Controller() {
   this.controllerClass = null;
   this.delegates = [];
   this.events;
-  return this;
 };
 
 Controller.prototype.onInit = function() {};
@@ -109,6 +108,19 @@ Controller.prototype.initialize = function(context, controllerName, params) {
 Controller.prototype.getContextElement = function() {
   if (!this.contextElement) return null;
   return this.contextElement;
+};
+
+/* 
+ * @member Controller
+ */
+ 
+Controller.prototype.param = function(key, value) {
+  if (arguments.length > 1) {
+    this.params[key] = value;
+    return this;
+  } else {
+    return this.params[key];
+  }
 };
 
 /*
@@ -158,9 +170,7 @@ Application.prototype.configure = function(key, value) {
     return this;
   } else {
     return this.options[key];
-    //allow app.configure('appSrc') to get appSrc
   }
-
 };
 
 Application.prototype.map = function(selector, callback) {

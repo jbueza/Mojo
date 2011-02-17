@@ -29,9 +29,7 @@ Application.prototype.configure = function(key, value) {
     return this;
   } else {
     return this.options[key];
-    //allow app.configure('appSrc') to get appSrc
   }
-
 };
 
 Application.prototype.map = function(selector, callback) {
