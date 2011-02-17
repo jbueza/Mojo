@@ -16,7 +16,7 @@ function Application() {
       localOptions['plugins'] = [];
       localOptions['pluginSrc'] = 'js/lib/plugins/';
       localOptions['environment'] = 'dev';
-      localOptions['selector'] = jQuery;
+      localOptions['selector'] = jQuery || new Error('Unable to find jQuery');
       self.siteMap = [];
 };
 
