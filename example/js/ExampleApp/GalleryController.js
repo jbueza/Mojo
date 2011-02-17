@@ -14,9 +14,9 @@ MOJO.define('ExampleApp.GalleryController', {
   },
   after: {
     Start: function() {
-      console.log("Hello there");
-      $("#mycarousel").jcarousel({
-      });
+
+      //initialize!
+      $("#mycarousel", this.getContextElement()).jcarousel();
     }
   }
 });
