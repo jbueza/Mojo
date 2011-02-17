@@ -8,16 +8,17 @@ a:hover {
   color: #ccc !important;
 }
 .banner {
-  background: #356AA0;
+  background: #000;
   color: #fff;
 }
 .runner {
-  background: #4096EE;
+  background: #356AA0;
   border: 1px solid #000;
 }
 
 .suite {
-  background: #333;
+  background: #356AA0;
+  /*background: #4096EE;*/
 }
 .spec {
   background: #000;
