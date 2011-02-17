@@ -20,15 +20,22 @@ describe("Controller", function() {
     expect(controller.controllerClass).toEqual('TestController');
   });
   
-  it("should be able to have optional parameters associated with it", function() { 
-    expect(controller.params.user).toEqual('jbueza');
-  });
-  
-  it("should have an 'onInit' event", function() { 
-    expect(controller.onInit).toBeDefined();
-  });
-  
   it("should return a context element when callling getContextElement()", function() { 
     expect(controller.getContextElement()).toBeDefined();
   });
+  
+  describe("events", function() {
+    
+    it("should have an 'onInit' event", function() { 
+      expect(controller.onInit).toBeDefined();
+    });
+  });
+  
+  describe("parameters", function() {
+    it("should be able to have optional parameters associated with it", function() { 
+      expect(controller.params.user).toEqual('jbueza');
+    });
+  });
+
+
 });
