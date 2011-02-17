@@ -2,6 +2,7 @@ describe("Controller", function() {
   var controller
     , element = $("#an-element")
     , params = { user: 'jbueza'};
+    
   beforeEach(function() {
     controller = new Controller();
     controller.initialize(element, 'TestController', params);

@@ -10,7 +10,7 @@ app
   .configure('environment', 'prod')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel'])
-  .configure('selector', 'dojo')
+  .configure('selector', jQuery.sub())
   
   .map('#registration-example', function() {
     return [
