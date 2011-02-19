@@ -2,6 +2,7 @@
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for mojo and min target" name="src" value="${PREFIX}/src" />
+  <property description="Folder for mojo and min target" name="vendor" value="${PREFIX}/vendor" />
   <property description="Folder for mojo and min target" name="docgen" value="${PREFIX}/doc/generator/generate.js" />
 
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
