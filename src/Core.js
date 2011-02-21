@@ -2,7 +2,7 @@
   var MOJO = function() {};
   MOJO.controllers = {};
   MOJO.applications = {};
-  
+  MOJO.options = {};
   MOJO._loaded = [];
   /* 
    * @private
@@ -56,11 +56,12 @@
   
   MOJO.require = function(dependencies, callback) {
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
-    var last = dependencies.length;
+    var last = dependencies.length
+      , path = MOJO.options.baseSrc;
     
     for ( var i = 0; i < last; i++) {
       var dep = MOJO.resolve(dependencies[i]);
-
+      
       console.log(dep);
     }
 
@@ -98,7 +99,6 @@
 
     } else if ( typeof args[1] == 'object' ) {
       //defined module
-      //MOJO.define('Application', function())
       controller = args[1];
     }
     
@@ -109,7 +109,8 @@
   };
 
   MOJO.create = function(options) {  
-    return new Application(options);
+    $.extend(this.options, options);
+    return new Application();
   };
 
   window.MOJO = MOJO;
