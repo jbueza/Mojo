@@ -1,4 +1,4 @@
-MOJO.define('Controller', [],function() {
+MOJO.define('Controller', [], function() {
   
 /* 
  * Controller Class
@@ -26,7 +26,6 @@ Controller.prototype.initialize = function(context, controllerName, params) {
   self.controllerClass = controllerName;
   
   self.params = params;
-  
   $(self.events).each(function(index, observer) {
     var root = $(document)
       , scope = observer[0]

@@ -24,13 +24,23 @@
 
 (function(win, doc) {
   var MOJO = function() {};
-
+  MOJO.controllers = {};
+  MOJO.applications = {};
+  
   MOJO._loaded = [];
   /* 
    * @private
    */
   MOJO._resolvedNamespace = function(namespace) {
       return MOJO._namespace._provided['' + namespace];
+  };
+  
+  MOJO.resolve = function(name) {
+    if (MOJO._namespace._provided[name]) {
+      return name.replace(/\./gi, '/');
+    }
+    
+    return false;
   };
   /*
    * @private
@@ -59,7 +69,6 @@
     return context;
   };
 
-  MOJO.controllers = {};
 
   MOJO.query = function() {
     return jQuery.apply(this, arguments);
@@ -67,9 +76,17 @@
   MOJO.queryFirst = function() {
     return MOJO.query.apply(this, arguments)[0];
   };
+
   
-  MOJO.require = function() {
+  MOJO.require = function(dependencies, callback) {
+    if (!$.isArray(dependencies)) dependencies = [ dependencies ];
+    var last = dependencies.length;
     
+    for ( var i = 0; i < last; i++) {
+      console.log(dependencies[i]);
+    }
+
+
   };
   
   MOJO.fetch = function(path, callback) {
@@ -85,7 +102,7 @@
   //should allow anonymous modules: define(dependencies, factory)
   //should allow id, dependencies, factory
   //shoulw allow id, factory
-  MOJO.define = function() {
+  MOJO.define = function define() {
     
     var args = arguments, len = args.length;
     
@@ -94,36 +111,24 @@
     }
     
     var controller;
-    
-    console.log(args);
- /*
-    
-     if (len > 2) {
-       //resolve dependencies
-       controller = args[2].call(this);
-     } else if ( typeof args[1] == 'object' ) {
-       //MOJO.define('MyController', {});  (Application based controllers)
-       controller = (typeof factory == 'function') ? factory.call(this) : factory;
 
-       console.log(controller);
-       //, abstractController = new Controller()
-       //, controller = $.extend(controller, abstractController);
+    if (len > 2) {
+      //resolve dependencies
+      controller = args[2];
+    } else if ( $.isArray(args[0] ) ) {
+      //anonymous module
 
-     } else if ( typeof args[1] == 'function' ) {
-       //MOJO.define('Application', function())
-     }
-     */
- 
-    
-    
-    if(typeof args[0] == 'string') {
-      controller = MOJO._namespace(args[0]);
-      MOJO.controllers[args[0]] = controller;
+    } else if ( typeof args[1] == 'object' ) {
+      //defined module
+      //MOJO.define('Application', function())
+      controller = args[1];
     }
     
-    
+    if(typeof args[0] == 'string') {
+      MOJO._namespace(args[0]);
+      MOJO.controllers[args[0]] = controller;
+    }    
   };
-
 
   MOJO.create = function(options) {  
     return new Application(options);
@@ -167,7 +172,7 @@ Request.prototype.getEvent = function() {
 };
 window.Request = Request;
 return Request;
-});MOJO.define('Controller', [],function() {
+});MOJO.define('Controller', [], function() {
   
 /* 
  * Controller Class
@@ -184,7 +189,6 @@ return Request;
 function Controller() {
   this.contextElement = null;
   this.controllerClass = null;
-  this.delegates = [];
   this.events;
 };
 
@@ -196,7 +200,6 @@ Controller.prototype.initialize = function(context, controllerName, params) {
   self.controllerClass = controllerName;
   
   self.params = params;
-  
   $(self.events).each(function(index, observer) {
     var root = $(document)
       , scope = observer[0]
@@ -204,7 +207,7 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       , eventName = observer[2]
       , commandName = observer[3];
       
-    if (scope == "context") root = $(context);
+    if (scope == "context") root = $(context);    
     
     $(root).delegate(selector, eventName, function(evt) {
       var requestObj = new Request({}, this, evt, self);
@@ -256,13 +259,13 @@ function Application() {
   if (!this.options) this.options = {};
   
   var self = this, localOptions = self.options;
-      localOptions['appSrc'] = 'js/';
-      localOptions['locale'] = 'en_CA';
-      localOptions['plugins'] = [];
-      localOptions['pluginSrc'] = 'js/lib/plugins/';
-      localOptions['environment'] = 'dev';
-      localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
-      self.siteMap = [];
+    localOptions['appSrc'] = 'js/';
+    localOptions['locale'] = 'en_CA';
+    localOptions['plugins'] = [];
+    localOptions['pluginSrc'] = 'js/lib/plugins/';
+    localOptions['environment'] = 'dev';
+    localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
+    self.siteMap = [];
 };
 
 Application.prototype.onComplete = function() {};
@@ -298,11 +301,9 @@ Application.prototype.setupController = function(context, controller, params) {
     , abstractController = new Controller()
     , controllerObj = $.extend(controllerObj, abstractController);
   MOJO.controllers[controller] = controllerObj;
+  
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
-  
   controllerObj.initialize(context, controller, params);
-  
-  var controllerInstance = { name: controller, controller: controllerObj };  
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -310,7 +311,7 @@ Application.prototype.disconnectControllers = function(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
-    $(silo.context).unbind();
+    $(silo.context).unbind().undelegate();
   });
   
   callback.apply(self);

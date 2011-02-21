@@ -12,13 +12,13 @@ function Application() {
   if (!this.options) this.options = {};
   
   var self = this, localOptions = self.options;
-      localOptions['appSrc'] = 'js/';
-      localOptions['locale'] = 'en_CA';
-      localOptions['plugins'] = [];
-      localOptions['pluginSrc'] = 'js/lib/plugins/';
-      localOptions['environment'] = 'dev';
-      localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
-      self.siteMap = [];
+    localOptions['appSrc'] = 'js/';
+    localOptions['locale'] = 'en_CA';
+    localOptions['plugins'] = [];
+    localOptions['pluginSrc'] = 'js/lib/plugins/';
+    localOptions['environment'] = 'dev';
+    localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
+    self.siteMap = [];
 };
 
 Application.prototype.onComplete = function() {};
@@ -54,11 +54,9 @@ Application.prototype.setupController = function(context, controller, params) {
     , abstractController = new Controller()
     , controllerObj = $.extend(controllerObj, abstractController);
   MOJO.controllers[controller] = controllerObj;
+  
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
-  
   controllerObj.initialize(context, controller, params);
-  
-  var controllerInstance = { name: controller, controller: controllerObj };  
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -66,7 +64,7 @@ Application.prototype.disconnectControllers = function(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
-    $(silo.context).unbind();
+    $(silo.context).unbind().undelegate();
   });
   
   callback.apply(self);

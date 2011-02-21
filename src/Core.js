@@ -1,12 +1,22 @@
 (function(win, doc) {
   var MOJO = function() {};
-
+  MOJO.controllers = {};
+  MOJO.applications = {};
+  
   MOJO._loaded = [];
   /* 
    * @private
    */
   MOJO._resolvedNamespace = function(namespace) {
       return MOJO._namespace._provided['' + namespace];
+  };
+  
+  MOJO.resolve = function(name) {
+    if (MOJO._namespace._provided[name]) {
+      return name.replace(/\./gi, '/');
+    }
+    
+    return false;
   };
   /*
    * @private
@@ -35,7 +45,6 @@
     return context;
   };
 
-  MOJO.controllers = {};
 
   MOJO.query = function() {
     return jQuery.apply(this, arguments);
@@ -43,25 +52,33 @@
   MOJO.queryFirst = function() {
     return MOJO.query.apply(this, arguments)[0];
   };
+
   
-  MOJO.require = function() {
+  MOJO.require = function(dependencies, callback) {
+    if (!$.isArray(dependencies)) dependencies = [ dependencies ];
+    var last = dependencies.length;
     
+    for ( var i = 0; i < last; i++) {
+      console.log(dependencies[i]);
+    }
+
+
   };
   
   MOJO.fetch = function(path, callback) {
     //rename to fetch, as we're setting up require() for CommonJS AMD
-    $.ajaxSetup({ async: false });
+//    $.ajaxSetup({ async: false });
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
-   $.ajaxSetup({ async: true });
+//   $.ajaxSetup({ async: true });
   };
 
 
   //should allow anonymous modules: define(dependencies, factory)
   //should allow id, dependencies, factory
   //shoulw allow id, factory
-  MOJO.define = function() {
+  MOJO.define = function define() {
     
     var args = arguments, len = args.length;
     
@@ -70,36 +87,24 @@
     }
     
     var controller;
-    
-    console.log(args);
- /*
-    
-     if (len > 2) {
-       //resolve dependencies
-       controller = args[2].call(this);
-     } else if ( typeof args[1] == 'object' ) {
-       //MOJO.define('MyController', {});  (Application based controllers)
-       controller = (typeof factory == 'function') ? factory.call(this) : factory;
 
-       console.log(controller);
-       //, abstractController = new Controller()
-       //, controller = $.extend(controller, abstractController);
+    if (len > 2) {
+      //resolve dependencies
+      controller = args[2];
+    } else if ( $.isArray(args[0] ) ) {
+      //anonymous module
 
-     } else if ( typeof args[1] == 'function' ) {
-       //MOJO.define('Application', function())
-     }
-     */
- 
-    
-    
-    if(typeof args[0] == 'string') {
-      controller = MOJO._namespace(args[0]);
-      MOJO.controllers[args[0]] = controller;
+    } else if ( typeof args[1] == 'object' ) {
+      //defined module
+      //MOJO.define('Application', function())
+      controller = args[1];
     }
     
-    
+    if(typeof args[0] == 'string') {
+      MOJO._namespace(args[0]);
+      MOJO.controllers[args[0]] = controller;
+    }    
   };
-
 
   MOJO.create = function(options) {  
     return new Application(options);

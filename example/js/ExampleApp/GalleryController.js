@@ -14,7 +14,6 @@ MOJO.define('ExampleApp.GalleryController', {
   },
   after: {
     Start: function() {
-      console.log(this);
       //initialize!
       $("#mycarousel", this.getContextElement()).jcarousel();
     }
