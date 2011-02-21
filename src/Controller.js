@@ -15,7 +15,6 @@ MOJO.define('Controller', [],function() {
 function Controller() {
   this.contextElement = null;
   this.controllerClass = null;
-  this.delegates = [];
   this.events;
 };
 
@@ -35,7 +34,7 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       , eventName = observer[2]
       , commandName = observer[3];
       
-    if (scope == "context") root = $(context);
+    if (scope == "context") root = $(context);    
     
     $(root).delegate(selector, eventName, function(evt) {
       var requestObj = new Request({}, this, evt, self);
