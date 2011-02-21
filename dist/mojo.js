@@ -156,7 +156,13 @@
     }    
   };
 
-  MOJO.create = function(options) {  
+  MOJO.create = function(options) {
+    if (typeof options == 'undefined') {
+      options = {};
+      if (!options.baseSrc) options.baseSrc = 'js/';
+      if (!options.mojoSrc) options.mojoSrc = '../src';
+    }
+
     $.extend(this.options, options);
     return new Application();
   };
@@ -349,7 +355,6 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
-  // HEAL ME BRO!!!!
   $(self.siteMap).each(function(index, mapping) {
     var silos = mapping.init.call(this);
     $(silos).each(function(i, silo) {

@@ -15,7 +15,6 @@ describe("Service", function() {
 
   it("should be a GET if the service name starts with 'get'", function() {
     expect(getTest.getOptions().method).toBe('get');
-    
   });
 
   it("should be a POST if the service name starts with 'add'", function() {
@@ -25,7 +24,6 @@ describe("Service", function() {
 
   it("should be a POST if the service name starts with 'del'", function() {
     expect(delTest.getOptions().method).toBe('post');
-
   });
 
   it("should be a POST if the service name starts with 'update'", function() {
@@ -40,17 +38,16 @@ describe("Service", function() {
   it("should allow the developer to turn off templating", function() {
     test.option('template', false);
     expect(test.option('template')).toBeFalsy();
-    
   });
 
-  it("should allow the user to specify templating", function() {
+  it("should allow the developer to turn on templating", function() {
     test.option('template', true);
     expect(test.option('template')).toBeTruthy();
   });
 
   it("should return a properly templated URI", function() {
-    getTest.invoke({ userId: 'jbueza' }, function() {}, this);
     //FML, there's no $.tmpl in jQuery 1.5
+    //getTest.invoke({ userId: 'jbueza' }, function() {}, this);
   });
 
   
