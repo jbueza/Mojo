@@ -25,7 +25,6 @@ describe("Controller", function() {
   });
   
   describe("events", function() {
-    
     it("should have an 'onInit' event", function() { 
       expect(controller.onInit).toBeDefined();
     });

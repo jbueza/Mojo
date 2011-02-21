@@ -1,6 +1,8 @@
 describe("Application", function() {
   var app = MOJO.create();
-  app.configure('appName', 'MyTestApp');
+  app
+    .configure('appName', 'MyTestApp')
+    .configure('pluginSrc', '../example/js/lib/plugins/')
   
   beforeEach(function() {
   });
@@ -9,8 +11,8 @@ describe("Application", function() {
     expect(app.configure('appName')).toEqual('MyTestApp');
   });
   
-  it("should allow developers to specify a different base library", function() {
-    app.configure('selector', jQuery);
+  it("should allow developers to specify a different selector engine", function() {
+    app.configure('selector', jQuery.sub());
     expect(app.configure('selector')).toBeDefined();
   });
   
@@ -22,5 +24,7 @@ describe("Application", function() {
 
   });
   it("should map controllers when invoking start", function() { });
-  it("should fetch all plugins that the application is dependent on", function() { });
+  it("should fetch all plugins that the application is dependent on", function() { 
+    //app.start();
+  });
 });

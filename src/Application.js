@@ -1,4 +1,4 @@
-MOJO.define('Application', [], function() {
+MOJO.define('Application', ['Controller'], function() {
 /*
  * Application Class
  *
@@ -19,7 +19,9 @@ function Application() {
     localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
 };
-
+/* 
+ * Triggered when application is fully bootstrapped
+ */
 Application.prototype.onComplete = function() {};
 
 Application.prototype.configure = function(key, value) {
