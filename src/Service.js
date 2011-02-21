@@ -1,55 +1,34 @@
 MOJO.define('Service', [], function() {
 /* 
   @author       Jaime Bueza
-  @description  Provides a look up for RESTful web services by using
-                the service locator pattern. Frontend service locator needs to be
-                browser compatible so we use only GET/POST for web services.
-  @dependencies jQuery (John Resig)
+  @description  Class representation of a web service call
+  @dependencies jQuery
     
-  //Setup your services so your frontend can invoke any service at any time
-  ServiceLocator.addService(new Service('GetUsers',   '/users', { method: 'get' }));
-  ServiceLocator.addService(new Service('AddUser',    '/user/create', { method: 'post' }));
-  ServiceLocator.addService(new Service('UpdateUser', '/user/update', { method: 'post' }));
-  ServiceLocator.addService(new Service('DeleteUser', '/user/delete', { method: 'post' }));
-  
-  ServiceLocator.addService(new Service('GetUser',   '/users/${id}', { method: 'get', template: true }));
-
-  //click handler on get users
-  var User = {
-    render: function(response) {
-      //$("#userView").html(response); //for html based responses.
-      $("#userTemplate").tmpl(response).appendTo("#view"); //for jq tmpl json responses
-    }
-  };
-  
-  $("#btn-get-users").click(function() {
-    ServiceLocator.getService('GetNotes').invoke({}, "render", User);
-  });
-  
 */
-  
 function Service(name, uri, options) {
+  
+  var defaults = { 
+      method: options.method || function() {
+        var type = "get";
+          if (name.match(/^get/i)) {
+            type = "get";
+          } else if (name.match(/^add|del|update/i)) {
+            type = "post";
+          }
+          return type;
+      }()
+    , template: false };
   this.name = name;
   this.uri = uri;
-  this.options = options;
+  this.options = $.extend({}, defaults, options);
 };
 
 Service.prototype.invoke = function(params, callback, scope) {
-
   var self = this;
   
   var options = this.getOptions() || {}
-    , method = options.method || function() {
-      var type = "get";
-      
-      if (self.getName().match(/^get/i)) {
-        type = "get";
-      } else if (self.getName().match(/^add|del|update/i)) {
-        type = "post";
-      }
-      return type;
-    }()
-    , uri = this.uri || '/api'
+    , method = options.method
+    , uri = self.getURI()
     , responseType = options.responseType || 'JSON';
     
   if (options.template) {
