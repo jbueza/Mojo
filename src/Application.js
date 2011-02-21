@@ -74,7 +74,6 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
-  // HEAL ME BRO!!!!
   $(self.siteMap).each(function(index, mapping) {
     var silos = mapping.init.call(this);
     $(silos).each(function(i, silo) {
