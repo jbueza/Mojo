@@ -10,8 +10,8 @@ describe("Application", function() {
   });
   
   it("should allow developers to specify a different base library", function() {
-    app.configure('library', jQuery);
-    expect(app.configure('library')).toBeDefined();
+    app.configure('selector', jQuery);
+    expect(app.configure('selector')).toBeDefined();
   });
   
   
