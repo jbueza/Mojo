@@ -12,7 +12,7 @@
   };
   
   MOJO.resolve = function(name) {
-    if (MOJO._namespace._provided[name]) {
+    if (!MOJO._namespace._provided[name]) {
       return name.replace(/\./gi, '/');
     }
     
@@ -59,10 +59,12 @@
     var last = dependencies.length;
     
     for ( var i = 0; i < last; i++) {
-      console.log(dependencies[i]);
+      var dep = MOJO.resolve(dependencies[i]);
+
+      console.log(dep);
     }
 
-
+    if(callback) callback.call(this);
   };
   
   MOJO.fetch = function(path, callback) {

@@ -36,7 +36,7 @@
   };
   
   MOJO.resolve = function(name) {
-    if (MOJO._namespace._provided[name]) {
+    if (!MOJO._namespace._provided[name]) {
       return name.replace(/\./gi, '/');
     }
     
@@ -83,19 +83,21 @@
     var last = dependencies.length;
     
     for ( var i = 0; i < last; i++) {
-      console.log(dependencies[i]);
+      var dep = MOJO.resolve(dependencies[i]);
+
+      console.log(dep);
     }
 
-
+    if(callback) callback.call(this);
   };
   
   MOJO.fetch = function(path, callback) {
     //rename to fetch, as we're setting up require() for CommonJS AMD
-    $.ajaxSetup({ async: false });
+//    $.ajaxSetup({ async: false });
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
-   $.ajaxSetup({ async: true });
+//   $.ajaxSetup({ async: true });
   };
 
 
@@ -172,8 +174,7 @@ Request.prototype.getEvent = function() {
 };
 window.Request = Request;
 return Request;
-});MOJO.define('Controller', [], function() {
-  
+});MOJO.define('Controller', [], function() {  
 /* 
  * Controller Class
  *
@@ -193,6 +194,7 @@ function Controller() {
 };
 
 Controller.prototype.onInit = function() {};
+Controller.prototype.onParamChange = function() {};
 
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
@@ -237,6 +239,7 @@ Controller.prototype.getContextElement = function() {
 Controller.prototype.param = function(key, value) {
   if (arguments.length > 1) {
     this.params[key] = value;
+    this.onParamChange();
     return this;
   } else {
     return this.params[key];
@@ -259,12 +262,11 @@ function Application() {
   if (!this.options) this.options = {};
   
   var self = this, localOptions = self.options;
-    localOptions['appSrc'] = 'js/';
     localOptions['locale'] = 'en_CA';
     localOptions['plugins'] = [];
     localOptions['pluginSrc'] = 'js/lib/plugins/';
     localOptions['environment'] = 'dev';
-    localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
+    localOptions['library'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
 };
 
@@ -317,7 +319,8 @@ Application.prototype.disconnectControllers = function(callback) {
   callback.apply(self);
 };
 Application.prototype.connectControllers = function() {
-  var self = this;
+  var self = this
+    , controllers2load = [];
   $(self.siteMap).each(function(index, mapping) {
     
     if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
@@ -330,18 +333,37 @@ Application.prototype.connectControllers = function() {
         , controllerParams  = silo.params
         , controllerName    = silo.controller;
         
+        
+        if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {                
+          controllers2load.push(silo.controller);
+        } else {
+          self.setupController(contextElement, controllerName, controllerParams);
+          MOJO._loaded.push(controllerName);
+          
+        }
+        
+        
+      
+      /*  
       if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
         MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
-          console.log("Loaded Controller: ", controllerName);
+          try { console.info("Loaded: ", controllerName); } catch(err) {}
           self.setupController(contextElement, controllerName, controllerParams);
         });
       } else {
         self.setupController(contextElement, controllerName, controllerParams);
       }
       MOJO._loaded.push(controllerName);
-      
+      */
     });
+
   });
+  
+    
+    MOJO.require(controllers2load, function() {
+      console.log("Dependencies Loaded");
+    });
+  
 
 };
 Application.prototype.on = function(eventName, callback) {

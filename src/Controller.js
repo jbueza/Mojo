@@ -1,5 +1,4 @@
-MOJO.define('Controller', [], function() {
-  
+MOJO.define('Controller', [], function() {  
 /* 
  * Controller Class
  *
