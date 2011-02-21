@@ -12,7 +12,7 @@ Lightweight (4kb gzipped), provides you with structure, and is a great framework
 
 ## Get Started
 
-[Download Mojo](https://github.com/jbueza/blastmojo/zipball/v0.1.2-stable)
+[Download Mojo](https://github.com/jbueza/blastmojo/zipball/v0.1.5)
 
 <pre>
   <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });       // Create a Mojo application instance
@@ -31,7 +31,7 @@ app
 ## Get Started With Advanced Configuration
 
 <pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src' });
+  <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });
 
 app
   .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
