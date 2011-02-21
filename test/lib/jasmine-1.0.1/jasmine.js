@@ -1849,12 +1849,6 @@ jasmine.Runner.prototype.results = function() {
  * @param {String} description
  */
 jasmine.Spec = function(env, suite, description) {
-  if (!env) {
-    throw new Error('jasmine.Env() required');
-  }
-  if (!suite) {
-    throw new Error('jasmine.Suite() required');
-  }
   var spec = this;
   spec.id = env.nextSpecId ? env.nextSpecId() : null;
   spec.env = env;
@@ -2416,6 +2410,6 @@ jasmine.getGlobal().clearInterval = function(timeoutKey) {
 jasmine.version_= {
   "major": 1,
   "minor": 0,
-  "build": 0,
-  "revision": 1284494074
+  "build": 1,
+  "revision": 1286311016
 };

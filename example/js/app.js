@@ -7,7 +7,7 @@ app
   .configure('locale', 'en_US')
   .configure('environment', 'prod')
   .configure('pluginSrc', 'js/lib/plugins/')  
-  .configure('plugins', ['jqmodal', 'jcarousel'])
+  .configure('plugins', ['jqmodal', 'jcarousel', 'pubsub'])
   .configure('selector', jQuery.sub()) // or dojo.query, or MooTools, or Ext
 
   .map('#registration-example', function() {
