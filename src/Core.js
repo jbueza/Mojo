@@ -53,19 +53,29 @@
     return MOJO.query.apply(this, arguments)[0];
   };
 
-  
+  //brutal hackery
   MOJO.require = function(dependencies, callback) {
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
     var last = dependencies.length
-      , path = MOJO.options.baseSrc;
+      , path = MOJO.options.baseSrc
+      , callbackIndex = 0
+      , finished = false;
     
     for ( var i = 0; i < last; i++) {
-      var dep = MOJO.resolve(dependencies[i]);
-      
-      console.log(dep);
+      var path = MOJO.options.baseSrc + MOJO.resolve(dependencies[i]) + ".js";
+      $.getScript(path, function(){
+        callbackIndex++;  //callback counter so we can invoke a resolution event
+                          //at the end of loading all dependencies
+      });
     }
 
-    if(callback) callback.call(this);
+    var interval = setInterval(function() {
+      if(callback && callbackIndex == last) { 
+        clearInterval(interval);
+        callback.call(this);
+      }
+    }, 10);
+    
   };
   
   MOJO.fetch = function(path, callback) {
