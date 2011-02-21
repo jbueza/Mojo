@@ -6,7 +6,7 @@ MOJO.define('Service', [], function() {
     
 */
 function Service(name, uri, options) {
-  
+  if (typeof options == 'undefined' ) options = {};
   var defaults = { 
       method: options.method || function() {
         var type = "get";
@@ -20,6 +20,7 @@ function Service(name, uri, options) {
     , template: false };
   this.name = name;
   this.uri = uri;
+  
   this.options = $.extend({}, defaults, options);
 };
 
@@ -71,6 +72,13 @@ Service.prototype.getURI = function() {
 };
 Service.prototype.getOptions = function() {
   return this.options;
+};
+Service.prototype.option = function() {
+  if (arguments.length > 1) {
+    this.options[arguments[0]] = arguments[1];
+  } else {
+    return this.options[arguments[0]];
+  }
 };
 
 window.Service = Service;
