@@ -26,8 +26,9 @@
   var MOJO = function() {};
   MOJO.controllers = {};
   MOJO.applications = {};
-  
+  MOJO.options = {};
   MOJO._loaded = [];
+  
   /* 
    * @private
    */
@@ -77,18 +78,28 @@
     return MOJO.query.apply(this, arguments)[0];
   };
 
-  
+  //brutal hackery
   MOJO.require = function(dependencies, callback) {
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
-    var last = dependencies.length;
-    
+    var last = dependencies.length
+      , path = MOJO.options.baseSrc
+      , callbackIndex = 0; 
+        
     for ( var i = 0; i < last; i++) {
-      var dep = MOJO.resolve(dependencies[i]);
-
-      console.log(dep);
+      var path = MOJO.options.baseSrc + MOJO.resolve(dependencies[i]) + ".js";
+      $.getScript(path, function() {
+        callbackIndex++;  //callback counter so we can invoke a resolution event
+                          //at the end of loading all dependencies
+      });
     }
 
-    if(callback) callback.call(this);
+    var interval = setInterval(function() {
+      if(callback && callbackIndex == last) { 
+        clearInterval(interval);
+        callback.call(this);
+      }
+    }, 25);
+    
   };
   
   MOJO.fetch = function(path, callback) {
@@ -122,7 +133,6 @@
 
     } else if ( typeof args[1] == 'object' ) {
       //defined module
-      //MOJO.define('Application', function())
       controller = args[1];
     }
     
@@ -133,7 +143,8 @@
   };
 
   MOJO.create = function(options) {  
-    return new Application(options);
+    $.extend(this.options, options);
+    return new Application();
   };
 
   window.MOJO = MOJO;
@@ -174,7 +185,7 @@ Request.prototype.getEvent = function() {
 };
 window.Request = Request;
 return Request;
-});MOJO.define('Controller', [], function() {  
+});MOJO.define('Controller', ['Request'], function() {  
 /* 
  * Controller Class
  *
@@ -266,7 +277,7 @@ function Application() {
     localOptions['plugins'] = [];
     localOptions['pluginSrc'] = 'js/lib/plugins/';
     localOptions['environment'] = 'dev';
-    localOptions['library'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
+    localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
 };
 
@@ -321,6 +332,30 @@ Application.prototype.disconnectControllers = function(callback) {
 Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
+    
+    // HEAL ME BRO!!!!
+    $(self.siteMap).each(function(index, mapping) {
+      var silos = mapping.init.call(this);
+      $(silos).each(function(i, silo) {
+        if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) { 
+          controllers2load.push(silo.controller);
+        } else {
+          MOJO._loaded.push(silo.controller);
+        }
+      });
+    });
+        
+    MOJO.require(controllers2load, function() {
+      console.log("Dependencies Loaded");
+      $(self.siteMap).each(function(index, mapping) {
+        if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
+        var silos = mapping.init.call(this);
+        $(silos).each(function(i, silo) {
+          self.setupController(mapping.context, silo.controller, silo.params);
+        });
+      });      
+    });
+/*
   $(self.siteMap).each(function(index, mapping) {
     
     if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
@@ -341,28 +376,21 @@ Application.prototype.connectControllers = function() {
           MOJO._loaded.push(controllerName);
           
         }
-        
-        
-      
-      /*  
-      if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
-        MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
-          try { console.info("Loaded: ", controllerName); } catch(err) {}
-          self.setupController(contextElement, controllerName, controllerParams);
-        });
-      } else {
-        self.setupController(contextElement, controllerName, controllerParams);
-      }
-      MOJO._loaded.push(controllerName);
-      */
+      //if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
+      //  MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
+      //    try { console.info("Loaded: ", controllerName); } catch(err) {}
+      //    self.setupController(contextElement, controllerName, controllerParams);
+      //  });
+      //} else {
+      //  self.setupController(contextElement, controllerName, controllerParams);
+      //}
+      //MOJO._loaded.push(controllerName);
     });
 
   });
-  
-    
-    MOJO.require(controllers2load, function() {
-      console.log("Dependencies Loaded");
-    });
+  */
+
+
   
 
 };

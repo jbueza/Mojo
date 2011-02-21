@@ -8,7 +8,7 @@ app
   .configure('environment', 'prod')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel'])
-  .configure('selector', jQuery.sub()) // or dojo, or MooTools, or Ext
+  .configure('selector', jQuery.sub()) // or dojo.query, or MooTools, or Ext
 
   .map('#registration-example', function() {
     return [

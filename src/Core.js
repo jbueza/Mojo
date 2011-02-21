@@ -4,6 +4,7 @@
   MOJO.applications = {};
   MOJO.options = {};
   MOJO._loaded = [];
+  
   /* 
    * @private
    */
@@ -35,35 +36,46 @@
     for (var i = 0; i < listLength; i += 1) {
       var name = list[i];
 
-      if (!context[name]) {
+      if (!context[ name ]) {
         obj[i] = name;
         context[name] = function() {};
-        MOJO._namespace._provided[obj.join('.')] = context[name];
+        MOJO._namespace._provided[obj.join('.')] = context[ name ];
       }
-      context = context[name];
+      context = context[ name ];
     }
     return context;
   };
-
-
+  /* 
+   * Returns an array of DOM nodes
+   */
   MOJO.query = function() {
     return jQuery.apply(this, arguments);
   };
+  /* 
+   * Returns the first element in a node list
+   */
   MOJO.queryFirst = function() {
     return MOJO.query.apply(this, arguments)[0];
   };
-
-  //brutal hackery
+  
+  /* 
+   * Fetch an array of dependencies, then fire a callback when done
+   * @param dependencies {Array}
+   * @param callback {Function}
+   */
   MOJO.require = function(dependencies, callback) {
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
     var last = dependencies.length
       , path = MOJO.options.baseSrc
-      , callbackIndex = 0
-      , finished = false;
-    
-    for ( var i = 0; i < last; i++) {
-      var path = MOJO.options.baseSrc + MOJO.resolve(dependencies[i]) + ".js";
-      $.getScript(path, function(){
+      , callbackIndex = 0; 
+            
+    for ( var i = 0; i < last; i++ ) {
+      var dep = dependencies[i];
+      var path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
+      MOJO._loaded.push(dependencies[i]);
+      
+      $.getScript(path, function() {
+        //these are all loaded asynchronously
         callbackIndex++;  //callback counter so we can invoke a resolution event
                           //at the end of loading all dependencies
       });
@@ -74,10 +86,12 @@
         clearInterval(interval);
         callback.call(this);
       }
-    }, 10);
+    }, 25);
     
   };
-  
+  /* 
+   * @deprecated - Should be used as require() instead
+   */
   MOJO.fetch = function(path, callback) {
     //rename to fetch, as we're setting up require() for CommonJS AMD
 //    $.ajaxSetup({ async: false });
