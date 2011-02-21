@@ -14,7 +14,6 @@ describe("Application", function() {
     expect(app.configure('selector')).toBeDefined();
   });
   
-  
   it("should have an onComplete event", function() {
     expect(app.onComplete).toBeDefined();
   });
