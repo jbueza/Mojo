@@ -19,6 +19,7 @@ function Controller() {
 };
 
 Controller.prototype.onInit = function() {};
+Controller.prototype.onParamChange = function() {};
 
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
@@ -63,6 +64,7 @@ Controller.prototype.getContextElement = function() {
 Controller.prototype.param = function(key, value) {
   if (arguments.length > 1) {
     this.params[key] = value;
+    this.onParamChange();
     return this;
   } else {
     return this.params[key];
