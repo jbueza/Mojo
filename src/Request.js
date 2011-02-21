@@ -1,3 +1,4 @@
+MOJO.define('Request', [], function() {
 /* 
  * Request 
  *
@@ -30,3 +31,6 @@ Request.prototype.getCaller = function() {
 Request.prototype.getEvent = function() {
   return this.eventObj;
 };
+window.Request = Request;
+return Request;
+});

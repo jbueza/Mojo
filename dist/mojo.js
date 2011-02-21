@@ -22,6 +22,117 @@
  * THE SOFTWARE.
  */
 
+(function(win, doc) {
+  var MOJO = function() {};
+
+  MOJO._loaded = [];
+  /* 
+   * @private
+   */
+  MOJO._resolvedNamespace = function(namespace) {
+      return MOJO._namespace._provided['' + namespace];
+  };
+  /*
+   * @private
+   */
+  MOJO._namespace = function(namespace) {
+    var list = ('' + namespace).split(/\./)
+      , listLength = list.length
+      , obj = []
+      , context = window || {};
+
+    if (!MOJO._namespace._provided) MOJO._namespace._provided = {};
+    
+    if (MOJO._namespace._provided[namespace] == namespace) throw new Error (namespace + " has already been defined.");
+
+
+    for (var i = 0; i < listLength; i += 1) {
+      var name = list[i];
+
+      if (!context[name]) {
+        obj[i] = name;
+        context[name] = function() {};
+        MOJO._namespace._provided[obj.join('.')] = context[name];
+      }
+      context = context[name];
+    }
+    return context;
+  };
+
+  MOJO.controllers = {};
+
+  MOJO.query = function() {
+    return jQuery.apply(this, arguments);
+  };
+  MOJO.queryFirst = function() {
+    return MOJO.query.apply(this, arguments)[0];
+  };
+  
+  MOJO.require = function() {
+    
+  };
+  
+  MOJO.fetch = function(path, callback) {
+    //rename to fetch, as we're setting up require() for CommonJS AMD
+    $.ajaxSetup({ async: false });
+    $.getScript(path, function() {
+      if (callback) callback.apply(this, arguments);
+    });
+   $.ajaxSetup({ async: true });
+  };
+
+
+  //should allow anonymous modules: define(dependencies, factory)
+  //should allow id, dependencies, factory
+  //shoulw allow id, factory
+  MOJO.define = function() {
+    
+    var args = arguments, len = args.length;
+    
+    for ( var i = 0; i < len; i++ ) { 
+      if ( typeof args[i] == 'function' ) args[i] = args[i].call(this);
+    }
+    
+    var controller;
+    
+    console.log(args);
+ /*
+    
+     if (len > 2) {
+       //resolve dependencies
+       controller = args[2].call(this);
+     } else if ( typeof args[1] == 'object' ) {
+       //MOJO.define('MyController', {});  (Application based controllers)
+       controller = (typeof factory == 'function') ? factory.call(this) : factory;
+
+       console.log(controller);
+       //, abstractController = new Controller()
+       //, controller = $.extend(controller, abstractController);
+
+     } else if ( typeof args[1] == 'function' ) {
+       //MOJO.define('Application', function())
+     }
+     */
+ 
+    
+    
+    if(typeof args[0] == 'string') {
+      controller = MOJO._namespace(args[0]);
+      MOJO.controllers[args[0]] = controller;
+    }
+    
+    
+  };
+
+
+  MOJO.create = function(options) {  
+    return new Application(options);
+  };
+
+  window.MOJO = MOJO;
+   
+})(window, document);
+MOJO.define('Request', [], function() {
 /* 
  * Request 
  *
@@ -53,7 +164,12 @@ Request.prototype.getCaller = function() {
 
 Request.prototype.getEvent = function() {
   return this.eventObj;
-};/* 
+};
+window.Request = Request;
+return Request;
+});MOJO.define('Controller', [],function() {
+  
+/* 
  * Controller Class
  *
  * An abstract class used in implementing Mojo Controllers. A Controller is an 
@@ -111,6 +227,7 @@ Controller.prototype.getContextElement = function() {
 };
 
 /* 
+ * Provides the capability to set params on controllers: (key, value) or get (key)
  * @member Controller
  */
  
@@ -122,23 +239,10 @@ Controller.prototype.param = function(key, value) {
     return this.params[key];
   }
 };
-
-/*
- * @member  Controller
- * @return  {Boolean}
- */
-Controller.prototype.bind = function(element) {
-  
-};
-
-/* 
- * A brave salute to the heroes of the past! They will forever be legendary!
- */
-Controller.prototype.addObservers = function() {};
-Controller.prototype.addCommands = function() {};
-Controller.prototype.addCommand = function(name, location) {};
-
-
+window.Controller = Controller;
+return Controller;
+});
+MOJO.define('Application', [], function() {
 /*
  * Application Class
  *
@@ -190,18 +294,15 @@ Application.prototype.heal = function() {
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
   
-  var controllerObj = MOJO.controllers[controller];
-  
+  var controllerObj = MOJO.controllers[controller]
+    , abstractController = new Controller()
+    , controllerObj = $.extend(controllerObj, abstractController);
+  MOJO.controllers[controller] = controllerObj;
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   
   controllerObj.initialize(context, controller, params);
   
-  var controllerInstance = { name: controller, controller: controllerObj };
-  
-  if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
-  
-  $(context).data('controllers').push(controllerInstance);
-  
+  var controllerInstance = { name: controller, controller: controllerObj };  
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -229,7 +330,7 @@ Application.prototype.connectControllers = function() {
         , controllerName    = silo.controller;
         
       if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
-        MOJO.require(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
+        MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded Controller: ", controllerName);
           self.setupController(contextElement, controllerName, controllerParams);
         });
@@ -250,7 +351,7 @@ Application.prototype.on = function(eventName, callback) {
 Application.prototype.getPlugins = function(callback) {
    var self = this, path = self.options.pluginSrc;
    $(self.options.plugins).each(function(index, plugin) {
-     MOJO.require(path + plugin + ".js");
+     MOJO.fetch(path + plugin + ".js");
    });
    callback.call(self);
 };
@@ -270,7 +371,12 @@ Application.prototype.start = function() {
     });
   });
   
-};/* 
+};
+  window.Application = Application;
+  return Application;
+});
+MOJO.define('Service', [], function() {
+/* 
   @author       Jaime Bueza
   @description  Provides a look up for RESTful web services by using
                 the service locator pattern. Frontend service locator needs to be
@@ -365,7 +471,11 @@ Service.prototype.getOptions = function() {
   return this.options;
 };
 
+window.Service = Service;
+return Service;
 
+});
+MOJO.define('ServiceLocator', [], function() {
 /*
  * @author        Jaime Bueza
  * @description   Provides a singleton that we can access to fetch services for invocation
@@ -387,63 +497,7 @@ var ServiceLocator = {
     this.services = {}; 
   }
 };
-var MOJO = function() {};
+  window.ServiceLocator = ServiceLocator;
+  return ServiceLocator;
 
-MOJO._loaded = [];
-
-MOJO._resolvedNamespace = function(namespace) {
-    return MOJO._namespace._provided['' + namespace];
-};
-MOJO._namespace = function(namespace) {
-  var list = ('' + namespace).split(/\./)
-    , listLength = list.length
-    , obj = []
-    , context = window;
-
-  if (!MOJO._namespace._provided) MOJO._namespace._provided = {};
-
-
-  for (var i = 0; i < listLength; i += 1) {
-    var name = list[i];
-    
-    if (!context[name]) {
-      obj[i] = name;
-      context[name] = function() {};
-      MOJO._namespace._provided[obj.join('.')] = context[name];
-    }
-    context = context[name];
-  }
-  return context;
-};
-
-MOJO.controllers = {};
-
-MOJO.query = function() {
-  return jQuery.apply(this, arguments);
-};
-
-MOJO.require = function(path, callback) {
-  //move to CommonJS AMD spec coming soon!
-  $.ajaxSetup({ async: false });
-  $.getScript(path, function() {
-    if (callback) callback.apply(this, arguments);
-  });
-  $.ajaxSetup({ async: true });
-};
-
-MOJO.define = function(className, implementation) {
-  if (!MOJO.controllers) { 
-    MOJO.controllers = {};
-  }
-  var controller = MOJO._namespace(className)
-    , controller = implementation
-    , abstractController = new Controller()
-    , controller = $.extend(controller, abstractController);
-    
-    MOJO.controllers[className] = controller;
-
-};
-
-MOJO.create = function(options) {  
-  return new Application(options);
-};
+});

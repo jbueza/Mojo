@@ -1,3 +1,5 @@
+MOJO.define('Controller', [],function() {
+  
 /* 
  * Controller Class
  *
@@ -68,3 +70,6 @@ Controller.prototype.param = function(key, value) {
     return this.params[key];
   }
 };
+window.Controller = Controller;
+return Controller;
+});

@@ -1,3 +1,4 @@
+MOJO.define('Application', [], function() {
 /*
  * Application Class
  *
@@ -49,18 +50,15 @@ Application.prototype.heal = function() {
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
   
-  var controllerObj = MOJO.controllers[controller];
-  
+  var controllerObj = MOJO.controllers[controller]
+    , abstractController = new Controller()
+    , controllerObj = $.extend(controllerObj, abstractController);
+  MOJO.controllers[controller] = controllerObj;
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   
   controllerObj.initialize(context, controller, params);
   
-  var controllerInstance = { name: controller, controller: controllerObj };
-  
-  if (typeof sizzleContext.data('controllers') == 'undefined') sizzleContext.data('controllers', []);
-  
-  $(context).data('controllers').push(controllerInstance);
-  
+  var controllerInstance = { name: controller, controller: controllerObj };  
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -88,7 +86,7 @@ Application.prototype.connectControllers = function() {
         , controllerName    = silo.controller;
         
       if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
-        MOJO.require(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
+        MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
           console.log("Loaded Controller: ", controllerName);
           self.setupController(contextElement, controllerName, controllerParams);
         });
@@ -109,7 +107,7 @@ Application.prototype.on = function(eventName, callback) {
 Application.prototype.getPlugins = function(callback) {
    var self = this, path = self.options.pluginSrc;
    $(self.options.plugins).each(function(index, plugin) {
-     MOJO.require(path + plugin + ".js");
+     MOJO.fetch(path + plugin + ".js");
    });
    callback.call(self);
 };
@@ -130,3 +128,6 @@ Application.prototype.start = function() {
   });
   
 };
+  window.Application = Application;
+  return Application;
+});

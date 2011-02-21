@@ -1,6 +1,5 @@
 ServiceLocator.addService(new Service('UpdateProfile', 'data/success.json'));
 
-
 var app = MOJO.create({ mojoSrc: '../src' });
 
 app
@@ -11,7 +10,7 @@ app
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel'])
   .configure('library', jQuery.sub()) // or dojo, or MooTools, or Ext
-  
+
   .map('#registration-example', function() {
     return [
       { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
@@ -23,24 +22,23 @@ app
       { controller: "ExampleApp.LoginController" }
     ];
   })
-  
+
   .map('#login-example2', function() {
     return [
       { controller: "ExampleApp.LoginController" }
     ];
   })
-  
+
   .map('#profile-example', function() {
     return [
       { controller: "ExampleApp.member.ProfileController", params: { 'currentCity': 'Vancouver', 'hometown': 'Winnipeg' }}
     ];
   })
-  
+
   .map('#gallery-example', function() {
     return [
       { controller: "ExampleApp.GalleryController" }
     ];
   })
-  
+
   .start()
-  

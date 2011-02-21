@@ -2,7 +2,7 @@
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for mojo and min target" name="src" value="${PREFIX}/src" />
-  <property description="Folder for mojo and min target" name="vendor" value="${PREFIX}/vendor" />
+  <property description="Folder for vendors" name="vendor" value="${PREFIX}/vendor" />
   <property description="Folder for mojo and min target" name="docgen" value="${PREFIX}/doc/generator/generate.js" />
 
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
@@ -11,7 +11,7 @@
   <!-- Blast Mojo Core -->
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
-  
+    
   <target name="all" depends="init, mojo, doc" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
@@ -22,11 +22,12 @@
     <echo message="Building ${BM}" />
     <concat destfile="${BM}">
       <fileset file="LICENSE" />
+      <fileset file="${src}/Core.js" />
       <fileset file="${src}/Request.js" />
       <fileset file="${src}/Controller.js" />
-      <fileset file="${src}/Application.js" />
+      <fileset file="${src}/Application.js" />      
       <fileset file="${src}/Service.js" />
-      <fileset file="${src}/Core.js" />      
+      <fileset file="${src}/ServiceLocator.js" />
     </concat>
     <echo message="${BM} built." />
     
