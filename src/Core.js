@@ -117,6 +117,11 @@
 
     if (len > 2) {
       //resolve dependencies
+/*
+      MOJO.require(args[1], function() {
+        console.log("Resolving dependencies through id, [deps], factory");
+      });*/
+
       controller = args[2];
     } else if ( $.isArray(args[0] ) ) {
       //anonymous module
