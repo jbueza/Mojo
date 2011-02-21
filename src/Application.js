@@ -72,66 +72,27 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
-    // HEAL ME BRO!!!!
+  // HEAL ME BRO!!!!
+  $(self.siteMap).each(function(index, mapping) {
+    var silos = mapping.init.call(this);
+    $(silos).each(function(i, silo) {
+      if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) { 
+        controllers2load.push(silo.controller);
+      } else {
+        MOJO._loaded.push(silo.controller);
+      }
+    });
+  });
+      
+  MOJO.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
+      if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
       var silos = mapping.init.call(this);
       $(silos).each(function(i, silo) {
-        if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) { 
-          controllers2load.push(silo.controller);
-        } else {
-          MOJO._loaded.push(silo.controller);
-        }
+        self.setupController(mapping.context, silo.controller, silo.params);
       });
-    });
-        
-    MOJO.require($.unique(controllers2load), function() {
-      console.log("Dependencies Loaded");
-      $(self.siteMap).each(function(index, mapping) {
-        if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
-        var silos = mapping.init.call(this);
-        $(silos).each(function(i, silo) {
-          self.setupController(mapping.context, silo.controller, silo.params);
-        });
-      });      
-    });
-/*
-  $(self.siteMap).each(function(index, mapping) {
-    
-    if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
-
-    var silos = mapping.init.call(this);
-    
-    $(silos).each(function(i, silo) {
-      var contextElement    = mapping.context
-        , sizzleContext     = $(contextElement)
-        , controllerParams  = silo.params
-        , controllerName    = silo.controller;
-        
-        
-        if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {                
-          controllers2load.push(silo.controller);
-        } else {
-          self.setupController(contextElement, controllerName, controllerParams);
-          MOJO._loaded.push(controllerName);
-          
-        }
-      //if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) {        
-      //  MOJO.fetch(self.options.appSrc +  (controllerName.replace(/\./g, "\/") + ".js"), function(response) {
-      //    try { console.info("Loaded: ", controllerName); } catch(err) {}
-      //    self.setupController(contextElement, controllerName, controllerParams);
-      //  });
-      //} else {
-      //  self.setupController(contextElement, controllerName, controllerParams);
-      //}
-      //MOJO._loaded.push(controllerName);
-    });
-
+    });      
   });
-  */
-
-
-  
-
 };
 Application.prototype.on = function(eventName, callback) {
   return function() {
