@@ -4,7 +4,6 @@ describe("Request", function() {
   });
 
   it("should have the capability to return its controller", function() {
-    
   });
   
   it("should have the capability to return its context element", function() {

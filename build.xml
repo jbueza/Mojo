@@ -30,8 +30,7 @@
       <fileset file="${src}/ServiceLocator.js" />
     </concat>
     <echo message="${BM} built." />
-    
-    
+      
     <echo message="Building ${BM_MIN}" />
     <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
       <arg line="${BM} -o ${BM_MIN} --charset UTF-8 --preserve-semi" />
