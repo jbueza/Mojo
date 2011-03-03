@@ -29,6 +29,10 @@ describe("Service", function() {
   it("should be a POST if the service name starts with 'update'", function() {
     expect(updateTest.getOptions().method).toBe('post');
   });
+  
+  it("should allow developers to set the responseType to html", function() {
+    
+  });
 
   it("should have templating off by default", function() {
     var testDefaultService = new Service("GetWhat", "/api/test");
@@ -46,7 +50,6 @@ describe("Service", function() {
   });
 
   it("should return a properly templated URI", function() {
-    //FML, there's no $.tmpl in jQuery 1.5
     //getTest.invoke({ userId: 'jbueza' }, function() {}, this);
   });
 
