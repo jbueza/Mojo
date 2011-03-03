@@ -117,6 +117,9 @@
 
     if (len > 2) {
       //resolve dependencies
+      //id, [deps], factory
+      
+      //MOJO.require(args[1], function)
 /*
       MOJO.require(args[1], function() {
         console.log("Resolving dependencies through id, [deps], factory");
@@ -124,7 +127,9 @@
 
       controller = args[2];
     } else if ( $.isArray(args[0] ) ) {
-      //anonymous module
+      MOJO.require(args[0], function() {
+        console.log("Anonymous Module");
+      });
 
     } else if ( typeof args[1] == 'object' ) {
       //defined module
@@ -133,6 +138,7 @@
     
     if(typeof args[0] == 'string') {
       MOJO._namespace(args[0]);
+      MOJO._loaded['' + args[0]] = controller;
       MOJO.controllers[args[0]] = controller;
     }    
   };
@@ -148,6 +154,17 @@
     return new Application();
   };
 
+  MOJO.extend = function() {
+    var F = function() {}; 
+    return function(child, parent) {
+    F.prototype = parent.prototype;	
+      child.prototype = new F();	
+      child.__super__ = parent.prototype;	
+      child.prototype.constructor = child;
+    };
+  };
+  
+  
   window.MOJO = MOJO;
    
 })(window, document);

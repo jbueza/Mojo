@@ -3,6 +3,8 @@
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for mojo and min target" name="src" value="${PREFIX}/src" />
   <property description="Folder for vendors" name="vendor" value="${PREFIX}/vendor" />
+  <property description="Folder for vendors" name="example_app" value="${PREFIX}/example/js" />
+  
   <property description="Folder for mojo and min target" name="docgen" value="${PREFIX}/doc/generator/generate.js" />
 
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
@@ -11,17 +13,40 @@
   <!-- Blast Mojo Core -->
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
-    
-  <target name="all" depends="init, mojo, doc" />
+  <property name="APP" value="${dist}/app.js" />
+  <property name="APP_MIN" value="${dist}/app.min.js" />
+  <target name="all" depends="init, mojo, doc, app" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
     <mkdir dir="${dist}" />
   </target>
   
+  <target name="app" description="Should concatenate application controllers and more">
+    <echo message="Building ${APP}" />
+    <concat destfile="${APP}">
+      <fileset file="${BM_MIN}" />
+      
+      <fileset file="${example_app}/ExampleApp/LoginController.js" />
+      <fileset file="${example_app}/ExampleApp/RegistrationController.js" />
+      <fileset file="${example_app}/ExampleApp/GalleryController.js" />
+      <fileset file="${example_app}/ExampleApp/member/ProfileController.js" />
+<!--
+      <fileset file="${example_app}/app.js" />
+-->
+    </concat>
+    <echo message="${APP} built." />
+    
+    
+    <echo message="Building ${APP_MIN}" />
+    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
+      <arg line="${APP} -o ${APP_MIN} --charset UTF-8 --preserve-semi" />
+    </java>
+    <echo message="${APP_MIN} built." />
+  </target>
+  
   <target name="mojo" description="Main mojo build, concatenates source files">
     <echo message="Building ${BM}" />
     <concat destfile="${BM}">
-      <fileset file="LICENSE" />
       <fileset file="${src}/Core.js" />
       <fileset file="${src}/Request.js" />
       <fileset file="${src}/Controller.js" />
