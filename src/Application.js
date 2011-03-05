@@ -120,7 +120,6 @@ Application.prototype.start = function() {
       } else {
         self.connectControllers();
       }
-      
       self.onComplete();
     });
   });
