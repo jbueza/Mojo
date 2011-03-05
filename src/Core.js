@@ -67,14 +67,13 @@
     
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
     var last = dependencies.length
-      , path = MOJO.options.baseSrc
+      , path
       , callbackIndex = 0; 
       
     var allocated = MOJO.controllers;
     for ( var i = 0; i < last; i++ ) {
       var dep = dependencies[i];
-      console.log(dep);
-      var path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
+      path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
       MOJO._loaded.push(dep);
       $.getScript(path, function() {
         //these are all loaded asynchronously
@@ -101,28 +100,14 @@
   };
 
   //no more amd :(
-  MOJO.define = function(id, factory) {
-    console.log("Invoked Define: ", arguments);
-    var args = arguments, len = args.length;
-    
-    for ( var i = 0; i < len; i++ ) { 
-      if ( typeof args[i] == 'function' ) args[i] = args[i].call(this);
+  MOJO.define = function(id, factory) {    
+    if ('function' == typeof factory) {
+      factory = factory.call(this);
     }
-    
-    var controller;
-
-    if (len > 2) {
-      //resolve dependencies
-      //id, [deps], factory
-      controller = args[2];
-    } else if ( $.isArray(args[0] ) ) {     //anonymous module
-    } else if ( typeof args[1] == 'object' ) { //defined module
-      controller = args[1];
-    }
-    if(typeof args[0] == 'string') {
-      MOJO._namespace(args[0]);
-      MOJO._loaded['' + args[0]] = controller;
-      MOJO.controllers[args[0]] = controller;
+    if(typeof id == 'string') {
+      MOJO._namespace( id );
+      MOJO._loaded[ id ] = factory;
+      MOJO.controllers[ id ] = factory;
     }    
   };
 

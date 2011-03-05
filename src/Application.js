@@ -74,15 +74,11 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
-
-    console.log(MOJO._loaded);
-    
   $(self.siteMap).each(function(index, mapping) {
     var silos = mapping.init.call(this);
     
     $(silos).each(function(i, silo) {
-      if (!silo.controller in MOJO._loaded) { 
-        console.log("LOAD THIS: ", silo.controller);
+      if (!MOJO.controllers.hasOwnProperty(silo.controller)) { 
         controllers2load.push(silo.controller);
       } else {
         MOJO._loaded[silo.controller] = silo.controller;

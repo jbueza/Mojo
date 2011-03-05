@@ -1,10 +1,10 @@
-MOJO.define('Service', function() {
 /* 
   @author       Jaime Bueza
   @description  Class representation of a web service call
-  @dependencies jQuery
-    
+  @dependencies jQuery  
 */
+MOJO.define('Service', function() {
+
 function Service(name, uri, options) {
   if (typeof options == 'undefined' ) options = {};
   var defaults = { 
@@ -76,6 +76,7 @@ Service.prototype.getOptions = function() {
 Service.prototype.option = function() {
   if (arguments.length > 1) {
     this.options[arguments[0]] = arguments[1];
+    return this;
   } else {
     return this.options[arguments[0]];
   }

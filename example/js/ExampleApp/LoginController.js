@@ -5,9 +5,7 @@
 MOJO.define('ExampleApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
-    , ['context', '.btn-logout', 'click', 'Logout']
-    , ['context', '.btn-ajax-test', '', 'LoginServiceCall']
-    
+    , ['context', '.btn-logout', 'click', 'Logout']    
   ],
   methods: {
     Login: function(requestObj) {
@@ -26,7 +24,6 @@ MOJO.define('ExampleApp.LoginController', {
   after: {
     Start: function() {
       //Initialization
-      console.log("Mapped Login Controller");
     },
     Login: function() {
       console.log("[intercept] After Login");
