@@ -1,4 +1,4 @@
-MOJO.define('Service', [], function() {
+MOJO.define('Service', function() {
 /* 
   @author       Jaime Bueza
   @description  Class representation of a web service call

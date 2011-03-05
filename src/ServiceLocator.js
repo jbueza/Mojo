@@ -1,10 +1,11 @@
-MOJO.define('ServiceLocator', [], function() {
 /*
  * @author        Jaime Bueza
  * @description   Provides a singleton that we can access to fetch services for invocation
                   http://java.sun.com/blueprints/corej2eepatterns/Patterns/ServiceLocator.html
  * @class         ServiceLocator
  */
+MOJO.define('ServiceLocator', function() {
+
 var ServiceLocator = {
   services: {},
   addService: function(service) {

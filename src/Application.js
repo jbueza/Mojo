@@ -1,4 +1,4 @@
-MOJO.define('Application', ['Controller'], function() {
+MOJO.define('Application', function() {
 /*
  * Application Class
  *
@@ -27,7 +27,7 @@ Application.prototype.onComplete = function() {};
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
-    try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
+    if (this.options.environment == 'dev') try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
     return this;
   } else {
     return this.options[key];
@@ -74,17 +74,22 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
+
+    console.log(MOJO._loaded);
+    
   $(self.siteMap).each(function(index, mapping) {
     var silos = mapping.init.call(this);
+    
     $(silos).each(function(i, silo) {
-      if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) { 
+      if (!silo.controller in MOJO._loaded) { 
+        console.log("LOAD THIS: ", silo.controller);
         controllers2load.push(silo.controller);
       } else {
-        MOJO._loaded.push(silo.controller);
+        MOJO._loaded[silo.controller] = silo.controller;
       }
     });
   });
-      
+  
   MOJO.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
       if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
@@ -125,6 +130,7 @@ Application.prototype.start = function() {
   });
   
 };
+
   window.Application = Application;
   return Application;
 });

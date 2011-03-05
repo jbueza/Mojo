@@ -24,11 +24,12 @@
   <target name="app" description="Should concatenate application controllers and more">
     <echo message="Building ${APP}" />
     <concat destfile="${APP}">
+<!--
       <fileset file="${BM_MIN}" />
+-->
       
       <fileset file="${example_app}/ExampleApp/LoginController.js" />
       <fileset file="${example_app}/ExampleApp/RegistrationController.js" />
-      <fileset file="${example_app}/ExampleApp/GalleryController.js" />
       <fileset file="${example_app}/ExampleApp/member/ProfileController.js" />
 <!--
       <fileset file="${example_app}/app.js" />

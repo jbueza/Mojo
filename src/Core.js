@@ -64,16 +64,18 @@
    * @param callback {Function}
    */
   MOJO.require = function(dependencies, callback) {
+    
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
     var last = dependencies.length
       , path = MOJO.options.baseSrc
       , callbackIndex = 0; 
-            
+      
+    var allocated = MOJO.controllers;
     for ( var i = 0; i < last; i++ ) {
       var dep = dependencies[i];
+      console.log(dep);
       var path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
-      MOJO._loaded.push(dependencies[i]);
-      
+      MOJO._loaded.push(dep);
       $.getScript(path, function() {
         //these are all loaded asynchronously
         callbackIndex++;  //callback counter so we can invoke a resolution event
@@ -93,20 +95,14 @@
    * @deprecated - Should be used as require() instead
    */
   MOJO.fetch = function(path, callback) {
-    //rename to fetch, as we're setting up require() for CommonJS AMD
-//    $.ajaxSetup({ async: false });
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
-//   $.ajaxSetup({ async: true });
   };
 
-
-  //should allow anonymous modules: define(dependencies, factory)
-  //should allow id, dependencies, factory
-  //shoulw allow id, factory
-  MOJO.define = function define() {
-    
+  //no more amd :(
+  MOJO.define = function(id, factory) {
+    console.log("Invoked Define: ", arguments);
     var args = arguments, len = args.length;
     
     for ( var i = 0; i < len; i++ ) { 
@@ -118,24 +114,11 @@
     if (len > 2) {
       //resolve dependencies
       //id, [deps], factory
-      
-      //MOJO.require(args[1], function)
-/*
-      MOJO.require(args[1], function() {
-        console.log("Resolving dependencies through id, [deps], factory");
-      });*/
-
       controller = args[2];
-    } else if ( $.isArray(args[0] ) ) {
-      MOJO.require(args[0], function() {
-        console.log("Anonymous Module");
-      });
-
-    } else if ( typeof args[1] == 'object' ) {
-      //defined module
+    } else if ( $.isArray(args[0] ) ) {     //anonymous module
+    } else if ( typeof args[1] == 'object' ) { //defined module
       controller = args[1];
     }
-    
     if(typeof args[0] == 'string') {
       MOJO._namespace(args[0]);
       MOJO._loaded['' + args[0]] = controller;

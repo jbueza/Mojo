@@ -26,6 +26,7 @@ MOJO.define('ExampleApp.LoginController', {
   after: {
     Start: function() {
       //Initialization
+      console.log("Mapped Login Controller");
     },
     Login: function() {
       console.log("[intercept] After Login");

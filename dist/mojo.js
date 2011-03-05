@@ -64,16 +64,18 @@
    * @param callback {Function}
    */
   MOJO.require = function(dependencies, callback) {
+    
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
     var last = dependencies.length
       , path = MOJO.options.baseSrc
       , callbackIndex = 0; 
-            
+      
+    var allocated = MOJO.controllers;
     for ( var i = 0; i < last; i++ ) {
       var dep = dependencies[i];
+      console.log(dep);
       var path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
-      MOJO._loaded.push(dependencies[i]);
-      
+      MOJO._loaded.push(dep);
       $.getScript(path, function() {
         //these are all loaded asynchronously
         callbackIndex++;  //callback counter so we can invoke a resolution event
@@ -93,20 +95,14 @@
    * @deprecated - Should be used as require() instead
    */
   MOJO.fetch = function(path, callback) {
-    //rename to fetch, as we're setting up require() for CommonJS AMD
-//    $.ajaxSetup({ async: false });
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
-//   $.ajaxSetup({ async: true });
   };
 
-
-  //should allow anonymous modules: define(dependencies, factory)
-  //should allow id, dependencies, factory
-  //shoulw allow id, factory
-  MOJO.define = function define() {
-    
+  //no more amd :(
+  MOJO.define = function(id, factory) {
+    console.log("Invoked Define: ", arguments);
     var args = arguments, len = args.length;
     
     for ( var i = 0; i < len; i++ ) { 
@@ -118,24 +114,11 @@
     if (len > 2) {
       //resolve dependencies
       //id, [deps], factory
-      
-      //MOJO.require(args[1], function)
-/*
-      MOJO.require(args[1], function() {
-        console.log("Resolving dependencies through id, [deps], factory");
-      });*/
-
       controller = args[2];
-    } else if ( $.isArray(args[0] ) ) {
-      MOJO.require(args[0], function() {
-        console.log("Anonymous Module");
-      });
-
-    } else if ( typeof args[1] == 'object' ) {
-      //defined module
+    } else if ( $.isArray(args[0] ) ) {     //anonymous module
+    } else if ( typeof args[1] == 'object' ) { //defined module
       controller = args[1];
     }
-    
     if(typeof args[0] == 'string') {
       MOJO._namespace(args[0]);
       MOJO._loaded['' + args[0]] = controller;
@@ -154,10 +137,21 @@
     return new Application();
   };
 
+  MOJO.extend = function() {
+    var F = function() {}; 
+    return function(child, parent) {
+    F.prototype = parent.prototype;	
+      child.prototype = new F();	
+      child.__super__ = parent.prototype;	
+      child.prototype.constructor = child;
+    };
+  };
+  
+  
   window.MOJO = MOJO;
    
 })(window, document);
-MOJO.define('Request', ['Controller'], function() {
+MOJO.define('Request', function() {
 /* 
  * Request 
  *
@@ -192,7 +186,7 @@ Request.prototype.getEvent = function() {
 };
 window.Request = Request;
 return Request;
-});MOJO.define('Controller', ['Request'], function() {  
+});MOJO.define('Controller', function() {  
 /* 
  * Controller Class
  *
@@ -266,7 +260,7 @@ Controller.prototype.param = function(key, value) {
 window.Controller = Controller;
 return Controller;
 });
-MOJO.define('Application', ['Controller'], function() {
+MOJO.define('Application', function() {
 /*
  * Application Class
  *
@@ -295,7 +289,7 @@ Application.prototype.onComplete = function() {};
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
-    try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
+    if (this.options.environment == 'dev') try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
     return this;
   } else {
     return this.options[key];
@@ -342,17 +336,22 @@ Application.prototype.connectControllers = function() {
   var self = this
     , controllers2load = [];
     
+
+    console.log(MOJO._loaded);
+    
   $(self.siteMap).each(function(index, mapping) {
     var silos = mapping.init.call(this);
+    
     $(silos).each(function(i, silo) {
-      if (!MOJO._loaded.length || $.inArray(silo.controller, MOJO._loaded) == -1) { 
+      if (!silo.controller in MOJO._loaded) { 
+        console.log("LOAD THIS: ", silo.controller);
         controllers2load.push(silo.controller);
       } else {
-        MOJO._loaded.push(silo.controller);
+        MOJO._loaded[silo.controller] = silo.controller;
       }
     });
   });
-      
+  
   MOJO.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
       if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
@@ -393,10 +392,11 @@ Application.prototype.start = function() {
   });
   
 };
+
   window.Application = Application;
   return Application;
 });
-MOJO.define('Service', [], function() {
+MOJO.define('Service', function() {
 /* 
   @author       Jaime Bueza
   @description  Class representation of a web service call
@@ -483,13 +483,14 @@ window.Service = Service;
 return Service;
 
 });
-MOJO.define('ServiceLocator', [], function() {
 /*
  * @author        Jaime Bueza
  * @description   Provides a singleton that we can access to fetch services for invocation
                   http://java.sun.com/blueprints/corej2eepatterns/Patterns/ServiceLocator.html
  * @class         ServiceLocator
  */
+MOJO.define('ServiceLocator', function() {
+
 var ServiceLocator = {
   services: {},
   addService: function(service) {
