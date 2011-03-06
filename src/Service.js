@@ -51,6 +51,7 @@ Service.prototype.invoke = function(params, callback, scope) {
       
       console.log(data);
       if ( responseType == 'JSON' ) { 
+        console.log("as json");
         data = $.parseJSON(data); 
       }
         
