@@ -1,37 +1,42 @@
 describe("Service", function() {
-  var test = new Service("GetUsers", "data/user/${userId}", { template: true})
-    , getTest = new Service("GetUsers", "data/getUsers.json", { template: true})
-    , postTest = new Service("AddUser", "data/getUsers.json", { template: true})
-    , delTest = new Service("DeleteUser", "data/getUsers.json", { template: true})
-    , updateTest = new Service("UpdateUser", "data/getUsers.json", { template: true});
+  var testService = new Service("GetUsers", "data/user/{userId}", { template: true})
+    , getTestServiceServiceService = new Service("GetUsers", "data/getUsers.json")
+    , postTestService = new Service("AddUser", "data/getUsers.json")
+    , delTestService = new Service("DeleteUser", "data/getUsers.json")
+    , updateTestService = new Service("UpdateUser", "data/getUsers.json");
   
   it("should always have a name", function() {
-    expect(getTest.getName()).toBe("GetUsers");
+    expect(getTestServiceService.getName()).toBe("GetUsers");
   });
 
   it("should always have a uri", function() {
-    expect(getTest.getURI()).toBe("data/getUsers.json");
+    expect(getTestServiceService.getURI()).toBe("data/getUsers.json");
   });
 
   it("should be a GET if the service name starts with 'get'", function() {
-    expect(getTest.getOptions().method).toBe('get');
+    expect(getTestServiceService.getOptions().method).toBe('get');
   });
 
   it("should be a POST if the service name starts with 'add'", function() {
-    expect(postTest.getOptions().method).toBe('post');
+    expect(postTestService.getOptions().method).toBe('post');
     
   });
 
   it("should be a POST if the service name starts with 'del'", function() {
-    expect(delTest.getOptions().method).toBe('post');
+    expect(delTestService.getOptions().method).toBe('post');
   });
 
   it("should be a POST if the service name starts with 'update'", function() {
-    expect(updateTest.getOptions().method).toBe('post');
+    expect(updateTestService.getOptions().method).toBe('post');
   });
   
-  it("should allow developers to set the responseType to html", function() {
+  it("should allow developers to set the contentType to html", function() {
+    var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html"});
+    htmlService.invoke(null, function(err, data) {
+      console.log(data);
+    }, this);
     
+
   });
 
   it("should have templating off by default", function() {
@@ -50,9 +55,13 @@ describe("Service", function() {
   });
 
   it("should return a properly templated URI", function() {
-    //getTest.invoke({ userId: 'jbueza' }, function() {}, this);
+    testService
+    
+    
   });
+});
 
-  
+
+describe("Kentico Service", function() {
   
 });

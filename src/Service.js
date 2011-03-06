@@ -48,6 +48,8 @@ Service.prototype.invoke = function(params, callback, scope) {
 
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
+      
+      console.log(data);
       if ( responseType == 'JSON' ) { 
         data = $.parseJSON(data); 
       }
@@ -69,12 +71,17 @@ Service.prototype.invoke = function(params, callback, scope) {
 Service.prototype.getName = function() {
   return this.name;
 };
+
 Service.prototype.getURI = function() {
   return this.uri;
 };
 Service.prototype.getOptions = function() {
   return this.options;
 };
+
+/*
+ * Sets or Gets an option of the current Service
+ */
 Service.prototype.option = function() {
   if (arguments.length > 1) {
     this.options[arguments[0]] = arguments[1];
@@ -83,7 +90,6 @@ Service.prototype.option = function() {
     return this.options[arguments[0]];
   }
 };
-
 
 Service.prototype.parseTemplate = function(content, params) {
   $.each(params, function(key, value) {

@@ -412,8 +412,9 @@ Service.prototype.invoke = function(params, callback, scope) {
     , responseType = options.responseType || 'JSON';
     
   if (options.template) {
-    uri = $.tmpl(uri, params);
-    params = null;
+    uri = self.parseTemplate(uri, params);
+    if (method == 'get') params = null; //blank out params now since they're already in the template
+                                        //but only if it's an http GET
   }
   
   $.ajaxSetup({
@@ -425,6 +426,8 @@ Service.prototype.invoke = function(params, callback, scope) {
 
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
+      
+      console.log(data);
       if ( responseType == 'JSON' ) { 
         data = $.parseJSON(data); 
       }
@@ -446,12 +449,17 @@ Service.prototype.invoke = function(params, callback, scope) {
 Service.prototype.getName = function() {
   return this.name;
 };
+
 Service.prototype.getURI = function() {
   return this.uri;
 };
 Service.prototype.getOptions = function() {
   return this.options;
 };
+
+/*
+ * Sets or Gets an option of the current Service
+ */
 Service.prototype.option = function() {
   if (arguments.length > 1) {
     this.options[arguments[0]] = arguments[1];
@@ -461,18 +469,12 @@ Service.prototype.option = function() {
   }
 };
 
-
 Service.prototype.parseTemplate = function(content, params) {
   $.each(params, function(key, value) {
     content = content.split("{" + key + "}").join(value);
   });
-  
   return content;
-
 };
-
-
-
 
 window.Service = Service;
 return Service;
