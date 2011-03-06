@@ -11,11 +11,19 @@
   <property name="compiler" value="${PREFIX}/build/yuicompressor-2.4.2.jar" />
 
   <!-- Blast Mojo Core -->
+  
+  <property name="CORE" value="${dist}/core.js" />
+  <property name="CORE_MIN" value="${dist}/core.min.js" />
+  
+  
+  
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo.min.js" />
   <property name="APP" value="${dist}/app.js" />
   <property name="APP_MIN" value="${dist}/app.min.js" />
-  <target name="all" depends="init, mojo, doc" />
+  
+  
+  <target name="all" depends="init, core, mojo_base, doc" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
     <mkdir dir="${dist}" />
@@ -42,14 +50,47 @@
     <echo message="${APP_MIN} built." />
   </target>
   
-  <target name="mojo" description="Main mojo build, concatenates source files">
-    <echo message="Building ${BM}" />
-    <concat destfile="${BM}">
+  <target name="core" description="Concatenate Core, Request, Controller, and Application classes">
+    <echo message="Building ${CORE}" />
+    <concat destfile="${CORE}">
       <fileset file="${src}/Core.js" />
       <fileset file="${src}/Request.js" />
       <fileset file="${src}/Controller.js" />
       <fileset file="${src}/Application.js" />      
+    </concat>
+    <echo message="${CORE} built." />
+      
+    <echo message="Building ${CORE_MIN}" />
+    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
+      <arg line="${CORE} -o ${CORE_MIN} --charset UTF-8 --preserve-semi" />
+    </java>
+    <echo message="${CORE_MIN} built." />
+  </target>
+  
+  <target name="mojo_base" description="Main mojo build, concatenates source files">
+    <echo message="Building ${BM}" />
+    <concat destfile="${BM}">
+      <fileset file="${CORE}" />
       <fileset file="${src}/Service.js" />
+      <fileset file="${src}/ServiceLocator.js" />
+    </concat>
+    <echo message="${BM} built." />
+      
+    <echo message="Building ${BM_MIN}" />
+    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
+      <arg line="${BM} -o ${BM_MIN} --charset UTF-8 --preserve-semi" />
+    </java>
+    <echo message="${BM_MIN} built." />
+  </target>
+  
+  
+  <target name="mojo_enterprise" description="Enterprise version of Mojo (includes bindings/proxies for Kentico and more ENTERPRISE stuff), concatenates source files">
+    <echo message="Building ${BM}" />
+    <concat destfile="${BM}">
+      <fileset file="${CORE}" />
+      <fileset file="${src}/Service.js" />
+      <fileset file="${src}/KenticoService.js" />
+      <fileset file="${src}/ATGService.js" />
       <fileset file="${src}/ServiceLocator.js" />
     </concat>
     <echo message="${BM} built." />
@@ -61,6 +102,8 @@
     <echo message="${BM_MIN} built." />
         
   </target>
+  
+  
   
   <target name="doc">
     <echo>Generating documentation...</echo>
