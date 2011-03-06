@@ -34,8 +34,9 @@ Service.prototype.invoke = function(params, callback, scope) {
     , responseType = options.responseType || 'JSON';
     
   if (options.template) {
-    uri = $.tmpl(uri, params);
-    params = null;
+    uri = self.parseTemplate(uri, params);
+    if (method == 'get') params = null; //blank out params now since they're already in the template
+                                        //but only if it's an http GET
   }
   
   $.ajaxSetup({
@@ -84,19 +85,12 @@ Service.prototype.option = function() {
 };
 
 
-Service.parseTemplate = function(content, params) {
-  
-  console.log("call")
-  var ret = [];
+Service.prototype.parseTemplate = function(content, params) {
   $.each(params, function(key, value) {
-    ret.push(content.split(key).join(value));
+    content = content.split("{" + key + "}").join(value);
   });
-
-  return ret.join('');
+  return content;
 };
-
-
-
 
 window.Service = Service;
 return Service;
