@@ -36,7 +36,9 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     if (scope == "context") root = $(context);    
     
     $(root).delegate(selector, eventName, function(evt) {
+ 
       var requestObj = new Request({}, this, evt, self);
+      
       if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
       self.methods[commandName].call(self, requestObj);
       if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
