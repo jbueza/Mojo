@@ -55,6 +55,8 @@ Service.prototype.invoke = function(params, callback, scope) {
         data = $.parseJSON(data); 
       }
         
+        
+      console.log("passed")  
       if ( typeof callback == 'function' ) {
         callback.call(scope, null, data);
       } else {
