@@ -37,7 +37,6 @@
       <fileset file="${example_app}/ExampleApp/RegistrationController.js" />
       <fileset file="${example_app}/ExampleApp/GalleryController.js" />
       <fileset file="${example_app}/ExampleApp/member/ProfileController.js" />
-
       <fileset file="${example_app}/app.js" />
     </concat>
     <echo message="${APP} built." />

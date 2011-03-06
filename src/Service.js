@@ -41,7 +41,7 @@ Service.prototype.invoke = function(params, callback, scope) {
       dataTypeString: responseType
     , type: method
     , cache: options.cache || 'false'
-    , contentType: "application/json; charset=utf-8"
+    , contentType: options.contentType || "application/json; charset=utf-8"
   });
 
   $.ajax({ url: uri, data: params })
