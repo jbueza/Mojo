@@ -18,8 +18,6 @@ function Application() {
     localOptions['environment'] = 'dev';
     localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
-
-    //TODO: lol
 };
 /* 
  * Triggered when application is fully bootstrapped
