@@ -78,7 +78,7 @@ Service.prototype.getURI = function() {
 Service.prototype.getOptions = function() {
   return this.options;
 };
-
+//test 
 /*
  * Sets or Gets an option of the current Service
  */
@@ -97,6 +97,7 @@ Service.prototype.parseTemplate = function(content, params) {
   });
   return content;
 };
+
 
 window.Service = Service;
 return Service;
