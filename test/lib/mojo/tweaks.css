@@ -1,7 +1,11 @@
 body {
   font-size: 11px;
   text-shadow: none;
+  background-color: #ccc;
+  font-family: helvetica, arial, sans-serif;
 }
+
+/*
 a, a:link, a:active {
   color: #000;
 }
@@ -26,7 +30,6 @@ a.description {
      -moz-box-shadow: 0 0 1px black;
   -webkit-box-shadow: 0 0 1px black;
           box-shadow: 0 0 1px black;
-  /*background: #4096EE;*/
 }
 .suite.passed {
   background: #006E2E;
@@ -54,4 +57,4 @@ a.description {
 
 .stackTrace {
   max-height: 15em;
-}
+}*/

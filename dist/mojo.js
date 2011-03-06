@@ -420,18 +420,18 @@ Service.prototype.invoke = function(params, callback, scope) {
   $.ajaxSetup({
       dataTypeString: responseType
     , type: method
+    , async: options.async || 'true'
     , cache: options.cache || 'false'
     , contentType: options.contentType || "application/json; charset=utf-8"
   });
 
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
-      
-      console.log(data);
-      if ( responseType == 'JSON' ) { 
+      // 'this' refers to the jq xhr object
+      if ( responseType == 'JSON' && this.contentType.match(/javascript/g)) { 
         data = $.parseJSON(data); 
       }
-        
+
       if ( typeof callback == 'function' ) {
         callback.call(scope, null, data);
       } else {

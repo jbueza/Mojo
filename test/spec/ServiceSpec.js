@@ -1,20 +1,20 @@
 describe("Service", function() {
   var testService = new Service("GetUsers", "data/user/{userId}", { template: true})
-    , getTestServiceServiceService = new Service("GetUsers", "data/getUsers.json")
+    , getTestService = new Service("GetUsers", "data/getUsers.json")
     , postTestService = new Service("AddUser", "data/getUsers.json")
     , delTestService = new Service("DeleteUser", "data/getUsers.json")
     , updateTestService = new Service("UpdateUser", "data/getUsers.json");
   
   it("should always have a name", function() {
-    expect(getTestServiceService.getName()).toBe("GetUsers");
+    expect(getTestService.getName()).toBe("GetUsers");
   });
 
   it("should always have a uri", function() {
-    expect(getTestServiceService.getURI()).toBe("data/getUsers.json");
+    expect(getTestService.getURI()).toBe("data/getUsers.json");
   });
 
   it("should be a GET if the service name starts with 'get'", function() {
-    expect(getTestServiceService.getOptions().method).toBe('get');
+    expect(getTestService.getOptions().method).toBe('get');
   });
 
   it("should be a POST if the service name starts with 'add'", function() {
@@ -31,12 +31,11 @@ describe("Service", function() {
   });
   
   it("should allow developers to set the contentType to html", function() {
-    var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html"});
+    var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });
+      
     htmlService.invoke(null, function(err, data) {
-      console.log(data);
+      expect(data).toBe('<p>Hello World</p>');
     }, this);
-    
-
   });
 
   it("should have templating off by default", function() {
@@ -45,17 +44,17 @@ describe("Service", function() {
   });
 
   it("should allow the developer to turn off templating", function() {
-    test.option('template', false);
-    expect(test.option('template')).toBeFalsy();
+    testService.option('template', false);
+    expect(testService.option('template')).toBeFalsy();
   });
 
   it("should allow the developer to turn on templating", function() {
-    test.option('template', true);
-    expect(test.option('template')).toBeTruthy();
+    testService.option('template', true);
+    expect(testService.option('template')).toBeTruthy();
   });
 
   it("should return a properly templated URI", function() {
-    testService
+  
     
     
   });
