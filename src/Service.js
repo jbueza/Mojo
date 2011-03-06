@@ -24,6 +24,15 @@ function Service(name, uri, options) {
   this.options = $.extend({}, defaults, options);
 };
 
+Service.prototype.parseTemplate = function(content, params) {
+  var ret = "";
+  $.each(params, function(key, value) {
+    ret += content.split(key).join(value);
+  });
+
+  return ret;
+};
+
 Service.prototype.invoke = function(params, callback, scope) {
   var self = this;
   
