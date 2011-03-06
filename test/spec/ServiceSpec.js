@@ -19,7 +19,6 @@ describe("Service", function() {
 
   it("should be a POST if the service name starts with 'add'", function() {
     expect(postTestService.getOptions().method).toBe('post');
-    
   });
 
   it("should be a POST if the service name starts with 'del'", function() {
@@ -32,7 +31,6 @@ describe("Service", function() {
   
   it("should allow developers to set the contentType to html", function() {
     var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });
-      
     htmlService.invoke(null, function(err, data) {
       expect(data).toBe('<p>Hello World</p>');
     }, this);
@@ -54,9 +52,7 @@ describe("Service", function() {
   });
 
   it("should return a properly templated URI", function() {
-  
-    
-    
+    expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
   });
 });
 

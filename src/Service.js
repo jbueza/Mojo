@@ -34,7 +34,7 @@ Service.prototype.invoke = function(params, callback, scope) {
     , responseType = options.responseType || 'JSON';
     
   if (options.template) {
-    uri = self.parseTemplate(uri, params);
+    uri = self.parse(uri, params);
     if (method == 'get') params = null; //blank out params now since they're already in the template
                                         //but only if it's an http GET
   }
@@ -91,7 +91,7 @@ Service.prototype.option = function() {
   }
 };
 
-Service.prototype.parseTemplate = function(content, params) {
+Service.prototype.parse = function(content, params) {
   $.each(params, function(key, value) {
     content = content.split("{" + key + "}").join(value);
   });
