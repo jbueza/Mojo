@@ -85,8 +85,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 ## TODO
 
-* Create more examples using different plugins
-* Write unit tests
+* Write MORE tests arghhhhhh
 
 ## MIT Licence
 
