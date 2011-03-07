@@ -13,14 +13,14 @@
   <!-- Blast Mojo Core -->
   
   <property name="CORE" value="${dist}/core.js" />
-  <property name="CORE_MIN" value="${dist}/core.min.js" />
+  <property name="CORE_MIN" value="${dist}/core_min.js" />
   
   
   
   <property name="BM" value="${dist}/mojo.js" />
-  <property name="BM_MIN" value="${dist}/mojo.min.js" />
+  <property name="BM_MIN" value="${dist}/mojo_min.js" />
   <property name="APP" value="${dist}/app.js" />
-  <property name="APP_MIN" value="${dist}/app.min.js" />
+  <property name="APP_MIN" value="${dist}/app_min.js" />
   
   
   <target name="all" depends="init, core, mojo_base, doc" />
