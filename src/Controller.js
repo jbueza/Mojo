@@ -20,12 +20,17 @@ function Controller() {
 Controller.prototype.onInit = function() {};
 Controller.prototype.onParamChange = function() {};
 
+
+Controller.prototype.params = {};
+
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
+
   self.contextElement = context;
   self.controllerClass = controllerName;
   
-  self.params = params;
+  if ('undefined' != typeof params || !params) self.params = params;
+
   $(self.events).each(function(index, observer) {
     var root = $(document)
       , scope = observer[0]
@@ -38,9 +43,9 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     $(root).delegate(selector, eventName, function(evt) {
  
       var requestObj = new Request({}, this, evt, self);
-      
+
       if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
-      self.methods[commandName].call(self, requestObj);
+      self.methods[commandName].call(MOJO.controllers[controllerName], requestObj);
       if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
     });
   });
@@ -63,6 +68,7 @@ Controller.prototype.getContextElement = function() {
  */
  
 Controller.prototype.param = function(key, value) {
+  if ('undefined' == typeof this.params) this.params = {};
   if (arguments.length > 1) {
     this.params[key] = value;
     this.onParamChange();

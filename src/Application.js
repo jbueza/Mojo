@@ -40,7 +40,8 @@ Application.prototype.map = function(selector, callback) {
   elements.each(function(index, item) {
     self.siteMap.push({ context: item, init: callback });
   });
-  callback.call(this, self);
+  
+  if ('function' == typeof callback) callback.call(this, self);
   return this;
 };
 
@@ -50,9 +51,13 @@ Application.prototype.heal = function() {
 };
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
-  
-  var controllerObj = MOJO.controllers[controller]
-    , abstractController = new Controller()
+
+  var controllerObj = MOJO.controllers[controller];
+
+
+
+  var abstractController = new Controller()
+    , controllerObj = $.extend(controllerObj, controllerObj.methods)
     , controllerObj = $.extend(controllerObj, abstractController);
   MOJO.controllers[controller] = controllerObj;
   
@@ -75,7 +80,12 @@ Application.prototype.connectControllers = function() {
     , controllers2load = [];
     
   $(self.siteMap).each(function(index, mapping) {
-    var silos = mapping.init.call(this);
+    var silos;
+    if ('function' == typeof mapping.init ) { 
+      silos = mapping.init.call(this);
+    } else {
+      silos = mapping.init;
+    }
     
     $(silos).each(function(i, silo) {
       if (!MOJO.controllers.hasOwnProperty(silo.controller)) { 
@@ -89,7 +99,8 @@ Application.prototype.connectControllers = function() {
   MOJO.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
       if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
-      var silos = mapping.init.call(this);
+      var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
+
       $(silos).each(function(i, silo) {
         self.setupController(mapping.context, silo.controller, silo.params);
       });
