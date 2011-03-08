@@ -45,17 +45,10 @@ Application.prototype.map = function(selector, callback) {
   return this;
 };
 
-Application.prototype.heal = function() {
-  //will self heal all dependencies
-  return this;
-};
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
 
   var controllerObj = MOJO.controllers[controller];
-
-
-
   var abstractController = new Controller()
     , controllerObj = $.extend(controllerObj, controllerObj.methods)
     , controllerObj = $.extend(controllerObj, abstractController);
@@ -63,6 +56,7 @@ Application.prototype.setupController = function(context, controller, params) {
   
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   controllerObj.initialize(context, controller, params);
+  $(context).data('controller', controllerObj);
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -96,16 +90,20 @@ Application.prototype.connectControllers = function() {
     });
   });
   
-  MOJO.require($.unique(controllers2load), function() {
-    $(self.siteMap).each(function(index, mapping) {
-      if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
-      var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
+  if ( self.options.environment == 'dev' ) {
+    MOJO.require($.unique(controllers2load), function() {
+      $(self.siteMap).each(function(index, mapping) {
+      
+        if (self.options.environment == 'dev') try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+        var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
 
-      $(silos).each(function(i, silo) {
-        self.setupController(mapping.context, silo.controller, silo.params);
-      });
-    });      
-  });
+        $(silos).each(function(i, silo) {
+          self.setupController(mapping.context, silo.controller, silo.params);
+        });
+      });      
+    });
+  }
+
 };
 Application.prototype.on = function(eventName, callback) {
   return function() {
@@ -136,6 +134,15 @@ Application.prototype.start = function() {
   });
   
 };
+
+Application.prototype.restart = function() {
+  var self = this;
+  self.disconnectControllers(function() {
+    self.connectControllers();
+    self.onComplete();
+  });
+};
+
 
   window.Application = Application;
   return Application;

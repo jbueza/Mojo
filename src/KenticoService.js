@@ -52,15 +52,18 @@ KenticoService.prototype.invoke = function(params, callback, scope) {
       
       if(options.contentType != 'text/html') data = $.parseJSON(data); 
         
-      if ( typeof callback == 'function' ) {
-        callback.call(scope, null, data);
-      } else {
-        //string
-        scope[callback](null, data);
-      }        
+      if ( 'undefined' != typeof callback ) {
+        if ( typeof callback == 'function' ) {
+          callback.call(scope, null, data);
+        } else {
+          //string
+          scope[callback](null, data);
+        }
+      }
+    
     })
     .error(function() {
-      callback.call(scope, "Unable to execute XHR", arguments);
+      if ('undefined' != typeof callback) callback.call(scope, "Unable to execute XHR", arguments);
     });
 };
 
