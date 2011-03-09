@@ -10,10 +10,41 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 
 ### Building From Source
 
-<pre><code>
+<pre>
   $ git@github.com:jbueza/blastmojo.git &amp;&amp; cd blastmojo
   $ ant
-</code></pre>
+</pre>
+
+## Getting Setup
+
+1. git clone http://github.com/jbueza/blastmojo.git into your localhost 
+1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
+1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
+
+<pre>
+var app = MOJO.create({ mojoSrc: '../src' });
+
+app
+  .configure('appSrc', 'js/')
+  .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
+  .configure('environment', 'prod')               // dev or prod for debugging mode!
+  .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
+  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
+
+  .map('#registration-example', function() {
+    return [
+      { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
+    ];
+  })
+
+  .map('#login-example', function() {
+    return [
+      { controller: "ExampleApp.LoginController" }
+    ];
+  })
+
+  .start()
+</pre>
 
 ### Technical Features
 
@@ -37,38 +68,6 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 * Reduces developer ramp-up time starting on new projects because they are already accustomed to the coding structures, patterns and practices
 
 * Development speeds up as times goes on compared to the opposite that happens when code becomes too tightly bound
-
-## Setup
-
-1. git clone http://github.com/jbueza/blastmojo.git into your localhost 
-1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
-1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
-
-<pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src' });
-
-app
-  .configure('appSrc', 'js/')
-  .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
-  .configure('environment', 'prod')               // dev or prod for debugging mode!
-  .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
-  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
-
-  .map('#registration-example', function() {
-    return [
-      { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
-    ];
-  })
-
-  .map('#login-example', function() {
-    return [
-      { controller: "ExampleApp.LoginController" }
-    ];
-  })
-
-  .start()
-  </code>
-</pre>
 
 ## Contributing
 
