@@ -64,7 +64,7 @@ Application.prototype.disconnectControllers = function(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
-    $(silo.context).unbind().undelegate();
+    //$(silo.context).unbind().undelegate();
   });
   
   callback.apply(self);
@@ -135,7 +135,7 @@ Application.prototype.start = function() {
   
 };
 
-Application.prototype.restart = function() {
+Application.prototype.remap = function() {
   var self = this;
   self.disconnectControllers(function() {
     self.connectControllers();
