@@ -64,7 +64,7 @@ Application.prototype.disconnectControllers = function(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
-    //$(silo.context).unbind().undelegate();
+    $(silo.context).unbind().undelegate();
   });
   
   callback.apply(self);
