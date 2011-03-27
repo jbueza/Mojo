@@ -85,6 +85,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 ## TODO
 
 * Write MORE tests arghhhhhh
+* make app.js even MORE easier...use YUI style seed inclusion!
 
 ## MIT Licence
 
