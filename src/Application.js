@@ -24,6 +24,18 @@ function Application() {
  */
 Application.prototype.onComplete = function() {};
 
+/* 
+ * Provides the capability to set/get properties of the application, such as,
+ * logging, plugins, mode (dev/prod)
+ * 
+ * @param key { String }
+ * @param value { Object }
+ *
+ * Additionally, you can get a property from the application by specifying only the key
+ * app.configure('logging') 
+ *
+ * @returns application instance { Object }
+ */
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
@@ -33,7 +45,14 @@ Application.prototype.configure = function(key, value) {
     return this.options[key];
   }
 };
-
+/* 
+ * Reads the css selector from a map and executes the callback, which is actually 
+ * just a function that returns an array of controllers with parameters
+ * 
+ * @param selector { String | HTML Element } 
+ * @param callback { Function }
+ * 
+ */
 Application.prototype.map = function(selector, callback) {
   var self = this;
   var elements = $(selector);
@@ -118,6 +137,10 @@ Application.prototype.getPlugins = function(callback) {
    callback.call(self);
 };
 
+/* 
+ * Starts the application instance by fetching all plugins, fetching all controllers,
+ * mapping the controllers to dom nodes, as well as, emits onComplete
+ */
 Application.prototype.start = function() {
   var self = this;
   $(document).ready(function() {
