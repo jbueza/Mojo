@@ -142,8 +142,9 @@ Application.prototype.remap = function() {
     self.onComplete();
   });
 };
+  
 
-
+  ('undefined' == typeof window) ? process.Application = Application : window.Application = Application;
   window.Application = Application;
   return Application;
 });
