@@ -208,12 +208,17 @@ function Controller() {
 Controller.prototype.onInit = function() {};
 Controller.prototype.onParamChange = function() {};
 
+
+Controller.prototype.params = {};
+
 Controller.prototype.initialize = function(context, controllerName, params) {
   var self = this;
+
   self.contextElement = context;
   self.controllerClass = controllerName;
   
-  self.params = params;
+  if ('undefined' != typeof params || !params) self.params = params;
+
   $(self.events).each(function(index, observer) {
     var root = $(document)
       , scope = observer[0]
@@ -226,9 +231,9 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     $(root).delegate(selector, eventName, function(evt) {
  
       var requestObj = new Request({}, this, evt, self);
-      
+
       if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
-      self.methods[commandName].call(self, requestObj);
+      self.methods[commandName].call(MOJO.controllers[controllerName], requestObj);
       if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
     });
   });
@@ -251,6 +256,7 @@ Controller.prototype.getContextElement = function() {
  */
  
 Controller.prototype.param = function(key, value) {
+  if ('undefined' == typeof this.params) this.params = {};
   if (arguments.length > 1) {
     this.params[key] = value;
     this.onParamChange();
@@ -288,6 +294,18 @@ function Application() {
  */
 Application.prototype.onComplete = function() {};
 
+/* 
+ * Provides the capability to set/get properties of the application, such as,
+ * logging, plugins, mode (dev/prod)
+ * 
+ * @param key { String }
+ * @param value { Object }
+ *
+ * Additionally, you can get a property from the application by specifying only the key
+ * app.configure('logging') 
+ *
+ * @returns application instance { Object }
+ */
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
@@ -297,31 +315,37 @@ Application.prototype.configure = function(key, value) {
     return this.options[key];
   }
 };
-
+/* 
+ * Reads the css selector from a map and executes the callback, which is actually 
+ * just a function that returns an array of controllers with parameters
+ * 
+ * @param selector { String | HTML Element } 
+ * @param callback { Function }
+ * 
+ */
 Application.prototype.map = function(selector, callback) {
   var self = this;
   var elements = $(selector);
   elements.each(function(index, item) {
     self.siteMap.push({ context: item, init: callback });
   });
-  callback.call(this, self);
+  
+  if ('function' == typeof callback) callback.call(this, self);
   return this;
 };
 
-Application.prototype.heal = function() {
-  //will self heal all dependencies
-  return this;
-};
 Application.prototype.setupController = function(context, controller, params) {
   var sizzleContext = $(context);
-  
-  var controllerObj = MOJO.controllers[controller]
-    , abstractController = new Controller()
+
+  var controllerObj = MOJO.controllers[controller];
+  var abstractController = new Controller()
+    , controllerObj = $.extend(controllerObj, controllerObj.methods)
     , controllerObj = $.extend(controllerObj, abstractController);
   MOJO.controllers[controller] = controllerObj;
   
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   controllerObj.initialize(context, controller, params);
+  $(context).data('controller', controllerObj);
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -339,7 +363,12 @@ Application.prototype.connectControllers = function() {
     , controllers2load = [];
     
   $(self.siteMap).each(function(index, mapping) {
-    var silos = mapping.init.call(this);
+    var silos;
+    if ('function' == typeof mapping.init ) { 
+      silos = mapping.init.call(this);
+    } else {
+      silos = mapping.init;
+    }
     
     $(silos).each(function(i, silo) {
       if (!MOJO.controllers.hasOwnProperty(silo.controller)) { 
@@ -350,15 +379,20 @@ Application.prototype.connectControllers = function() {
     });
   });
   
-  MOJO.require($.unique(controllers2load), function() {
-    $(self.siteMap).each(function(index, mapping) {
-      if (self.options.environment == 'dev') try { console.log("Mapping: ", mapping.context); } catch (err) {}
-      var silos = mapping.init.call(this);
-      $(silos).each(function(i, silo) {
-        self.setupController(mapping.context, silo.controller, silo.params);
-      });
-    });      
-  });
+  if ( self.options.environment == 'dev' ) {
+    MOJO.require($.unique(controllers2load), function() {
+      $(self.siteMap).each(function(index, mapping) {
+      
+        if (self.options.environment == 'dev') try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+        var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
+
+        $(silos).each(function(i, silo) {
+          self.setupController(mapping.context, silo.controller, silo.params);
+        });
+      });      
+    });
+  }
+
 };
 Application.prototype.on = function(eventName, callback) {
   return function() {
@@ -373,6 +407,10 @@ Application.prototype.getPlugins = function(callback) {
    callback.call(self);
 };
 
+/* 
+ * Starts the application instance by fetching all plugins, fetching all controllers,
+ * mapping the controllers to dom nodes, as well as, emits onComplete
+ */
 Application.prototype.start = function() {
   var self = this;
   $(document).ready(function() {
@@ -390,6 +428,16 @@ Application.prototype.start = function() {
   
 };
 
+Application.prototype.remap = function() {
+  var self = this;
+  self.disconnectControllers(function() {
+    self.connectControllers();
+    self.onComplete();
+  });
+};
+  
+
+  ('undefined' == typeof window) ? process.Application = Application : window.Application = Application;
   window.Application = Application;
   return Application;
 });
@@ -449,15 +497,18 @@ Service.prototype.invoke = function(params, callback, scope) {
         data = $.parseJSON(data); 
       }
 
-      if ( typeof callback == 'function' ) {
-        callback.call(scope, null, data);
-      } else {
-        //string
-        scope[callback](null, data);
-      }        
+      if ( 'undefined' != typeof callback ) {
+        if ( typeof callback == 'function' ) {
+          callback.call(scope, null, data);
+        } else {
+          //string
+          scope[callback](null, data);
+        }
+      }
+  
     })
     .error(function() {
-      callback.call(scope, "Unable to execute XHR", arguments);
+      if ( 'undefined' != typeof callback ) callback.call(scope, "Unable to execute XHR", arguments);
     });
 
 

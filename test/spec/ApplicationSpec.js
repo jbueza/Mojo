@@ -1,3 +1,15 @@
+//setup
+
+MOJO.define('TestController', {
+  events: [],
+  methodS: {},
+  after: {
+    Start: function() {
+      console.log("Mapped");
+    }
+  }
+});
+
 describe("Application", function() {
   var app = MOJO.create();
   app.configure('appName', 'MyTestApp');
@@ -18,7 +30,9 @@ describe("Application", function() {
   });
   
   it("should be able to bind a dom element with a particular selector", function() { 
-
+    
+//    app.map('#an-element',   function() {   return [ { controller: 'TestController' } ]});
+    app.map('#an-element', [ { controller: "TestController"} ]);
   });
   it("should map controllers when invoking start", function() { 
   
