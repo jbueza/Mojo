@@ -22,8 +22,11 @@ Returns the options that were originally set upon creation of the web service.
 
 # Service Locator
 
-## Basic Usage 
+The service locator is a singleton that serves as a registry for your web service calls. This would allows you easily
+invoke services at different endpoints without changing service URLs in several different places in the application ( 
+[Service Locator Pattern from java.sun.com](http://java.sun.com/blueprints/corej2eepatterns/Patterns/ServiceLocator.html) ).
 
+## Basic Usage 
 
 ### 1. Setup your service registry for your application
 
