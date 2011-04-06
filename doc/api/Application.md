@@ -33,21 +33,17 @@ of controllers by returning an array of Controller objects.
 * selector - {String|DOM} CSS Selector or HTML Element
 * callback - {Function} Executes a callback that returns an array of Controller objects that you wish to map to this particular DOM element
 
-### heal()
-
-Provides the ability to self-heal any broken depenencies (missing plugins, utilities, core components, or even application-specific controllers).
-
 ### setupController(context, controller, params) 
 
 Provides a reusable private method for mapping controllers to 'context' (DOM elements), as well as, pass the a key:value parameter object into the controller upon instantiation. Developers should not be calling this method directly, as it is already used by 'connectControllers()'.
 
 ### disconnectControllers(onComplete)
 
-Provides the ability to unbind all controllrers from all contexts, as well as, provides your application with an onComplete callback.
+Provides the ability to unbind all controllers from all contexts, as well as, provides your application with an onComplete callback.
 
 ### connectControllers()
 
-Provides the ability to map all DOM elemenets to Controllers based on your bootstrap JavaScript file (typically called app.js). Developers can call this if they (for some reason) want to remap controllers--This isn't recommended as you can use event delegation instead through your Event Map.
+Provides the ability to map all DOM elements to Controllers based on your bootstrap JavaScript file (typically called app.js). Developers can call this if they (for some reason) want to remap controllers--This isn't recommended as you can use event delegation instead through your Event Map.
 
 ### on(eventName, callback) 
 
