@@ -5,7 +5,6 @@ MOJO.define('TestController', {
   methodS: {},
   after: {
     Start: function() {
-      console.log("Mapped");
     }
   }
 });
@@ -15,6 +14,9 @@ describe("Application", function() {
   app.configure('appName', 'MyTestApp');
   app.configure('pluginSrc', '../example/js/lib/plugins/');
 
+  beforeEach(function() {
+    app.configure('plugins', []);
+  });
 
   it("should be able to set a configuration setting", function() { 
     expect(app.configure('appName')).toEqual('MyTestApp');
@@ -30,14 +32,19 @@ describe("Application", function() {
   });
   
   it("should be able to bind a dom element with a particular selector", function() { 
-    
-//    app.map('#an-element',   function() {   return [ { controller: 'TestController' } ]});
     app.map('#an-element', [ { controller: "TestController"} ]);
-  });
-  it("should map controllers when invoking start", function() { 
-  
+    app.configure('plugins', []);
+    app.start();
+    window.setTimeout(function() {
+      expect(jQuery('#an-element')[0].mojoControllers.length).toEqual(1);
+      app.disconnectControllers();
+    }, 100);
   });
   it("should fetch all plugins that the application is dependent on", function() { 
-    
+    app.configure('plugins', ['jcarousel']);
+    app.getPlugins(function() {
+        expect(jQuery.jcarousel).toBeDefined();
+    });
+
   });
 });

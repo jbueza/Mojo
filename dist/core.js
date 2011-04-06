@@ -345,7 +345,9 @@ Application.prototype.setupController = function(context, controller, params) {
   
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   controllerObj.initialize(context, controller, params);
-  $(context).data('controller', controllerObj);
+  //$(context).data('controller', controllerObj);
+  if('undefined' == typeof context.mojoControllers) context.mojoControllers = [];
+  context.mojoControllers.push({controller: controllerObj});
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
@@ -356,7 +358,7 @@ Application.prototype.disconnectControllers = function(callback) {
     $(silo.context).unbind().undelegate();
   });
   
-  callback.apply(self);
+  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(self);
 };
 Application.prototype.connectControllers = function() {
   var self = this
@@ -404,7 +406,7 @@ Application.prototype.getPlugins = function(callback) {
    $(self.options.plugins).each(function(index, plugin) {
      MOJO.fetch(path + plugin + ".js");
    });
-   callback.call(self);
+   if ('undefined' != typeof callback && 'function' == typeof callback) callback.call(self);
 };
 
 /* 
