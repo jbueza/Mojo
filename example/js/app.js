@@ -1,14 +1,11 @@
-ServiceLocator.addService(new Service('UpdateProfile', 'data/success.json'));
-
-var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });
+var app = MOJO.create({ baseSrc: 'js/' });
 
 app
   .configure('appName', 'ExampleApp')
   .configure('locale', 'en_US')
-  .configure('environment', 'prod')
+  .configure('environment', 'dev')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel', 'pubsub'])
-  .configure('selector', jQuery.sub()) //or dojo.query, or MooTools, or Ext
 
   .map('#registration-example', function() {
     return [
