@@ -84,8 +84,8 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 ## TODO
 
-* Write MORE tests arghhhhhh
-* make app.js even MORE easier...use YUI style seed inclusion!
+* Write more unit tests
+* app.configure('plugins', '*') should grab all plugins in a directory (suggestion by Julien)
 
 ## MIT Licence
 
