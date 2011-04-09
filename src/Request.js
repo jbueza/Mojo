@@ -5,7 +5,7 @@
  * Encapsulates request-specific parameters, and context-specific 
  * information.
  *
- * @author Blast Radius (jbueza)
+ * @author Blast Radius
  */
 MOJO.define('Request', function() {
   
