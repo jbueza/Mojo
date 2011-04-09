@@ -1,16 +1,16 @@
 describe("Service", function() {
   var testService = new Service("GetUsers", "data/user/{userId}", { template: true})
-    , getTestService = new Service("GetUsers", "data/getUsers.json")
-    , postTestService = new Service("AddUser", "data/getUsers.json")
-    , delTestService = new Service("DeleteUser", "data/getUsers.json")
-    , updateTestService = new Service("UpdateUser", "data/getUsers.json");
+    , getTestService = new Service("GetUsers", "data/user.js")
+    , postTestService = new Service("AddUser", "data/user.js")
+    , delTestService = new Service("DeleteUser", "data/user.js")
+    , updateTestService = new Service("UpdateUser", "data/user.js");
   
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
   });
 
   it("should always have a uri", function() {
-    expect(getTestService.getURI()).toBe("data/getUsers.json");
+    expect(getTestService.getURI()).toBe("data/user.js");
   });
 
   it("should be a GET if the service name starts with 'get'", function() {
@@ -28,6 +28,18 @@ describe("Service", function() {
   it("should be a POST if the service name starts with 'update'", function() {
     expect(updateTestService.getOptions().method).toBe('post');
   });
+  
+  it("should allow null for passing parameters into the service call", function() {
+    getTestService.invoke(null, function(err, data) { 
+      expect(err).toBeUndefined();
+    }, null);
+  });
+  it("should allow empty hash object for passing parameters into the service call", function() {
+    getTestService.invoke({}, function(err, data) { 
+      expect(err).toBeUndefined();
+    }, null);
+  });
+
   
   it("should allow developers to set the contentType to html", function() {
     var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });

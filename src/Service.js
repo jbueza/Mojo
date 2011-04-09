@@ -49,7 +49,6 @@ Service.prototype.invoke = function(params, callback, scope) {
 
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
-      // 'this' refers to the jq xhr object
       if ( responseType == 'JSON' && this.contentType.match(/javascript/g)) { 
         data = $.parseJSON(data); 
       }
