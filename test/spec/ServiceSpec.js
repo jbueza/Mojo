@@ -33,7 +33,7 @@ describe("Service", function() {
     var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });
     htmlService.invoke(null, function(err, data) {
       expect(data).toBe('<p>Hello World</p>');
-    }, this);
+    }, null);
   });
 
   it("should have templating off by default", function() {
