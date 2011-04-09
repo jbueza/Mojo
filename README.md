@@ -22,7 +22,7 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
 
 <pre>
-var app = MOJO.create({ mojoSrc: '../src' });
+var app = MOJO.create({ baseSrc: 'js/' });
 
 app
   .configure('appSrc', 'js/')
