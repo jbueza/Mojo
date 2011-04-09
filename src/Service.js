@@ -69,14 +69,21 @@ Service.prototype.invoke = function(params, callback, scope) {
 
 
 };
-
+/* 
+ * Returns the name of the service
+ */
 Service.prototype.getName = function() {
   return this.name;
 };
-
+/*
+ * Returns the uri of the service
+ */
 Service.prototype.getURI = function() {
   return this.uri;
 };
+/*
+ * Returns the options that were set upon service instantiation
+ */
 Service.prototype.getOptions = function() {
   return this.options;
 };
