@@ -3,7 +3,8 @@ describe("Service", function() {
     , getTestService = new Service("GetUsers", "data/user.js")
     , postTestService = new Service("AddUser", "data/user.js")
     , delTestService = new Service("DeleteUser", "data/user.js")
-    , updateTestService = new Service("UpdateUser", "data/user.js");
+    , updateTestService = new Service("UpdateUser", "data/user.js")
+    , brokenService = new Service("Broken", "data/broken.js");
   
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
@@ -42,13 +43,17 @@ describe("Service", function() {
   });
   
   it("should not have an error object passed into the callback on a successful service call", function() {
-
     getTestService.invoke({}, function(err, data) { expect(err).toEqual(null); }, null);
   });
-  it("should have pass the response back into the callback", function() {
+  
+  it("should have pass the response back into the callback on a successful service call", function() {
     getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
   });
-
+  
+  it("should have an error object get passed into the callback on an erroneous service call", function() {
+    brokenService.invoke({}, function(err, data) { expect(err).toBeDefined(); }, null);
+  });
+  
   it("should have templating off by default", function() {
     var testDefaultService = new Service("GetWhat", "/api/test");
     expect(testDefaultService.option('template')).toBeFalsy();
