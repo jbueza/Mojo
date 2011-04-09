@@ -66,9 +66,8 @@ Service.prototype.invoke = function(params, callback, scope) {
     .error(function() {
       if ( 'undefined' != typeof callback ) callback.call(scope, "Unable to execute XHR", arguments);
     });
-
-
 };
+
 /* 
  * Returns the name of the service
  */
@@ -100,6 +99,10 @@ Service.prototype.option = function() {
   }
 };
 
+/* 
+ * Provides a helper function for quick templating of RESTful urls
+ * eg/ http://mysite.com/api/user/123
+ */
 Service.prototype.parse = function(content, params) {
   $.each(params, function(key, value) {
     content = content.split("{" + key + "}").join(value);
