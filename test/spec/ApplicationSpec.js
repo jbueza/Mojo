@@ -58,12 +58,21 @@ describe("Application", function() {
   });
   
   describe("When an application invokes setupController()", function() {
-    it("should throw an error no context is passed into the function", function() {
-      expect(true).toBeTruthy();
+    var setupApp = MOJO.create();
+    it("should throw an error when 'context' parameter is missing()", function() {
+      expect(function() {
+        setupApp.setupController(null, 'TestController', function() {});
+      }).toThrow("'context' is a required parameter");
+    });
+    
+    it("should throw an error when 'controller' parameter is missing()", function() {
+      expect(function() {
+        setupApp.setupController(jQuery("<div>"), null, function() {});
+      }).toThrow("'controller' is a required parameter");
     });
   });
   
-  describe("When an application disconnects its associated controllers", function() {
+  describe("When an application disconnects its associated controllers when invoking disconnectControllers()", function() {
     
     it("should throw an error when 'node' parameter is missing when invoking disconnectController()", function() {
       expect(function() {

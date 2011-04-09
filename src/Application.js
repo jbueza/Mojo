@@ -66,6 +66,10 @@ Application.prototype.map = function Map(selector, callback) {
 };
 
 Application.prototype.setupController = function setupController(context, controller, params) {
+  if ( 'undefined' == typeof context || !context ) throw new Error("'context' is a required parameter");
+  if ( 'undefined' == typeof controller || !controller ) throw new Error("'controller' is a required parameter");
+  
+  
   var sizzleContext = $(context);
 
   var controllerObj = MOJO.controllers[controller];
@@ -172,12 +176,6 @@ Application.prototype.remap = function() {
     self.connectControllers();
     self.onComplete();
   });
-};
-  
-
-Application.prototype.destroy = function() {
-  delete this;
-  return this;
 };
 
   ('undefined' == typeof window) ? process.Application = Application : window.Application = Application;

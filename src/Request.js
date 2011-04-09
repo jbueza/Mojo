@@ -10,6 +10,11 @@
 MOJO.define('Request', function() {
   
 function Request(paramsObj, callerObj, eventObj, controllerObj) {
+  if ('undefined' == typeof paramsObj || !paramsObj) throw new Error("'paramsObj' is required");
+  if ('undefined' == typeof callerObj || !callerObj) throw new Error("'callerObj' is required");
+  if ('undefined' == typeof eventObj || !eventObj) throw new Error("'eventObj' is required");
+  if ('undefined' == typeof controllerObj || !controllerObj) throw new Error("'controllerObj' is required");
+  
   this.paramsObj = paramsObj;
   this.callerObj = callerObj;
   this.eventObj = eventObj;
