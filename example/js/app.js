@@ -5,9 +5,10 @@ var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });
 app
   .configure('appName', 'ExampleApp')
   .configure('locale', 'en_US')
-  .configure('environment', 'dev')
+  .configure('environment', 'prod')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel', 'pubsub'])
+  .configure('selector', jQuery.sub()) //or dojo.query, or MooTools, or Ext
 
   .map('#registration-example', function() {
     return [

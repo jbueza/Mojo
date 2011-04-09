@@ -10,23 +10,17 @@ MOJO.define('ExampleApp.LoginController', {
   methods: {
     Login: function(requestObj) {
       var context = requestObj.getContextElement();
+      
+      console.log(this);
       alert("Logged in from " + this.controllerClass);
     },
     Logout: function(requestObj) {
       alert("Logged out from " + this.controllerClass);
     }
   },
-  before: {
-    Login: function() {
-      console.log("[intercept] Before Login");
-    }
-  },
   after: {
     Start: function() {
       //Initialization
-    },
-    Login: function() {
-      console.log("[intercept] After Login");
     }
   }
 });

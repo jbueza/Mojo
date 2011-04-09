@@ -15,8 +15,6 @@
   <property name="CORE" value="${dist}/core.js" />
   <property name="CORE_MIN" value="${dist}/core_min.js" />
   
-  
-  
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo_min.js" />
   <property name="APP" value="${dist}/app.js" />
