@@ -41,9 +41,12 @@ describe("Service", function() {
     htmlService.invoke(null, function(err, data) { expect(data).toBe('<p>Hello World</p>'); }, null);
   });
   
+  it("should not have an error object passed into the callback on a successful service call", function() {
+
+    getTestService.invoke({}, function(err, data) { expect(err).toEqual(null); }, null);
+  });
   it("should have pass the response back into the callback", function() {
     getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
-    
   });
 
   it("should have templating off by default", function() {
