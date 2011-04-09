@@ -57,5 +57,7 @@ describe("Application", function() {
         expect(jQuery.jcarousel).toBeDefined();
     });
   });
+  
+
 
 });
