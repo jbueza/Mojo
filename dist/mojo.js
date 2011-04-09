@@ -396,16 +396,14 @@ Application.prototype.connectControllers = function() {
   }
 
 };
-Application.prototype.on = function(eventName, callback) {
-  return function() {
-  };
-};
 
-Application.prototype.getPlugins = function(callback) {
+Application.prototype.getPlugins = function(options, callback) {
    var self = this, path = self.options.pluginSrc;
+   if (!options.async) $.ajaxSetup({async: false});
    $(self.options.plugins).each(function(index, plugin) {
      MOJO.fetch(path + plugin + ".js");
    });
+   if (!options.async) $.ajaxSetup({async: true});
    if ('undefined' != typeof callback && 'function' == typeof callback) callback.call(self);
 };
 
@@ -438,6 +436,11 @@ Application.prototype.remap = function() {
   });
 };
   
+
+Application.prototype.destroy = function() {
+  delete this;
+  return this;
+};
 
   ('undefined' == typeof window) ? process.Application = Application : window.Application = Application;
   window.Application = Application;
