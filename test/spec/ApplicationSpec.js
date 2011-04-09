@@ -51,6 +51,7 @@ describe("Application", function() {
     var a = MOJO.create();
     a.configure('pluginSrc', '../example/js/lib/plugins/');
     a.configure('plugins', ['jcarousel']);
+    a.configure('pluginsAsync', false);
     a.getPlugins(function() {
       expect(jQuery.jcarousel).toBeDefined();
     });
@@ -63,11 +64,26 @@ describe("Application", function() {
   });
   
   describe("When an application disconnects its associated controllers", function() {
-    it("should allow developers to disconnect a specific controller", function() {
-      
+    
+    it("should throw an error when 'node' parameter is missing when invoking disconnectController()", function() {
+      expect(function() {
+        app.disconnectController(null, 'TestController', function() {});
+      }).toThrow("'node' is a required parameter");
     });
+    
+    it("should throw an error when 'controller' parameter is missing when invoking disconnectController()", function() {
+      expect(function() {
+        app.disconnectController(jQuery("<div>"), null, function() {});
+      }).toThrow("'controller' is a required parameter");
+    });
+    
     it("should allow developers to disconnect all controllers from the application", function() {
-      
+      var newApp = MOJO.create();
+      jQuery(document.body).append(jQuery("<div id='disconnect-test'>"));
+      newApp.map("#disconnect-test", [ { controller: "TestController"} ])
+            .start();
+      newApp.disconnectControllers();
+      expect(jQuery("#disconnect-test")[0].mojoControllers).toBeUndefined();
     });
   });
 

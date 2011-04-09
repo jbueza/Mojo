@@ -285,6 +285,7 @@ function Application() {
     localOptions['locale'] = 'en_CA';
     localOptions['plugins'] = [];
     localOptions['pluginSrc'] = 'js/lib/plugins/';
+    localOptions['pluginsAsync'] = true;
     localOptions['environment'] = 'dev';
     localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
@@ -334,7 +335,7 @@ Application.prototype.map = function Map(selector, callback) {
   return this;
 };
 
-Application.prototype.setupController = function(context, controller, params) {
+Application.prototype.setupController = function setupController(context, controller, params) {
   var sizzleContext = $(context);
 
   var controllerObj = MOJO.controllers[controller];
@@ -350,19 +351,23 @@ Application.prototype.setupController = function(context, controller, params) {
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
-Application.prototype.disconnectController = function DisconnectController(node, controller, callback) {
-  
+Application.prototype.disconnectController = function disconnectController(node, controller) {
+  if ( 'undefined' == typeof node || !node ) throw new Error("'node' is a required parameter");
+  if ( 'undefined' == typeof controller || !controller ) throw new Error("'controller' is a required parameter");
+  $(node).unbind().undelegate();
+  delete $(node)[0].mojoControllers;
+  return this;
 };
-Application.prototype.disconnectControllers = function DisconnectControllers(callback) {
+Application.prototype.disconnectControllers = function disconnectControllers(callback) {
   var self = this;
-  
-  $(self.siteMap).each(function(index, silo) {
+  $(this.siteMap).each(function(index, silo) {
     $(silo.context).unbind().undelegate();
+    delete $(silo.context)[0].mojoControllers;
   });
-  
-  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(self);
+  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(this);
 };
-Application.prototype.connectControllers = function ConnectControllers() {
+
+Application.prototype.connectControllers = function connectControllers() {
   var self = this
     , controllers2load = [];
     
@@ -399,13 +404,14 @@ Application.prototype.connectControllers = function ConnectControllers() {
 
 };
 
-Application.prototype.getPlugins = function(options, callback) {
+Application.prototype.getPlugins = function(callback) {
    var self = this, path = self.options.pluginSrc;
-   if (!options.async) $.ajaxSetup({async: false});
+   
+   if (!self.options.pluginsAsync) $.ajaxSetup({async: false});
    $(self.options.plugins).each(function(index, plugin) {
      MOJO.fetch(path + plugin + ".js");
    });
-   if (!options.async) $.ajaxSetup({async: true});
+   if (!self.options.pluginsAsync) $.ajaxSetup({async: true});
    if ('undefined' != typeof callback && 'function' == typeof callback) callback.call(self);
 };
 
