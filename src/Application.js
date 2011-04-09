@@ -69,7 +69,6 @@ Application.prototype.setupController = function setupController(context, contro
   if ( 'undefined' == typeof context || !context ) throw new Error("'context' is a required parameter");
   if ( 'undefined' == typeof controller || !controller ) throw new Error("'controller' is a required parameter");
   
-  
   var sizzleContext = $(context);
 
   var controllerObj = MOJO.controllers[controller];
