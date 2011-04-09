@@ -323,7 +323,7 @@ Application.prototype.configure = function(key, value) {
  * @param callback { Function }
  * 
  */
-Application.prototype.map = function(selector, callback) {
+Application.prototype.map = function Map(selector, callback) {
   var self = this;
   var elements = $(selector);
   elements.each(function(index, item) {
@@ -350,7 +350,10 @@ Application.prototype.setupController = function(context, controller, params) {
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
-Application.prototype.disconnectControllers = function(callback) {
+Application.prototype.disconnectController = function DisconnectController(node, controller, callback) {
+  
+};
+Application.prototype.disconnectControllers = function DisconnectControllers(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
@@ -359,7 +362,7 @@ Application.prototype.disconnectControllers = function(callback) {
   
   if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(self);
 };
-Application.prototype.connectControllers = function() {
+Application.prototype.connectControllers = function ConnectControllers() {
   var self = this
     , controllers2load = [];
     

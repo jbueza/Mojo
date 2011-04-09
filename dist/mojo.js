@@ -323,7 +323,7 @@ Application.prototype.configure = function(key, value) {
  * @param callback { Function }
  * 
  */
-Application.prototype.map = function(selector, callback) {
+Application.prototype.map = function Map(selector, callback) {
   var self = this;
   var elements = $(selector);
   elements.each(function(index, item) {
@@ -350,7 +350,10 @@ Application.prototype.setupController = function(context, controller, params) {
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
 };
 
-Application.prototype.disconnectControllers = function(callback) {
+Application.prototype.disconnectController = function DisconnectController(node, controller, callback) {
+  
+};
+Application.prototype.disconnectControllers = function DisconnectControllers(callback) {
   var self = this;
   
   $(self.siteMap).each(function(index, silo) {
@@ -359,7 +362,7 @@ Application.prototype.disconnectControllers = function(callback) {
   
   if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(self);
 };
-Application.prototype.connectControllers = function() {
+Application.prototype.connectControllers = function ConnectControllers() {
   var self = this
     , controllers2load = [];
     
@@ -496,7 +499,6 @@ Service.prototype.invoke = function(params, callback, scope) {
 
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
-      // 'this' refers to the jq xhr object
       if ( responseType == 'JSON' && this.contentType.match(/javascript/g)) { 
         data = $.parseJSON(data); 
       }
@@ -514,17 +516,23 @@ Service.prototype.invoke = function(params, callback, scope) {
     .error(function() {
       if ( 'undefined' != typeof callback ) callback.call(scope, "Unable to execute XHR", arguments);
     });
-
-
 };
 
+/* 
+ * Returns the name of the service
+ */
 Service.prototype.getName = function() {
   return this.name;
 };
-
+/*
+ * Returns the uri of the service
+ */
 Service.prototype.getURI = function() {
   return this.uri;
 };
+/*
+ * Returns the options that were set upon service instantiation
+ */
 Service.prototype.getOptions = function() {
   return this.options;
 };
@@ -541,13 +549,16 @@ Service.prototype.option = function() {
   }
 };
 
+/* 
+ * Provides a helper function for quick templating of RESTful urls
+ * eg/ http://mysite.com/api/user/123
+ */
 Service.prototype.parse = function(content, params) {
   $.each(params, function(key, value) {
     content = content.split("{" + key + "}").join(value);
   });
   return content;
 };
-
 
 window.Service = Service;
 return Service;
