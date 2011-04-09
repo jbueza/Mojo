@@ -86,12 +86,13 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 * Write more unit tests
 * app.configure('plugins', '*') should grab all plugins in a directory (suggestion by Julien)
+  * (move this discussion into github issues)
 
 ## MIT Licence
 
 The Blast Mojo Framework
 
-Copyright (c) 2010 Blast Radius
+Copyright (c) 2011 Blast Radius
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
