@@ -43,7 +43,7 @@ describe("Service", function() {
   });
   
   it("should not have an error object passed into the callback on a successful service call", function() {
-    getTestService.invoke({}, function(err, data) { expect(err).toEqual(null); }, null);
+    getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
   });
   
   it("should have pass the response back into the callback on a successful service call", function() {

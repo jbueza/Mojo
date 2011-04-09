@@ -1,5 +1,4 @@
 //setup
-
 MOJO.define('TestController', {
   events: [],
   methodS: {},
@@ -57,6 +56,19 @@ describe("Application", function() {
     });
   });
   
-
+  describe("When an application invokes setupController()", function() {
+    it("should throw an error no context is passed into the function", function() {
+      expect(true).toBeTruthy();
+    });
+  });
+  
+  describe("When an application disconnects its associated controllers", function() {
+    it("should allow developers to disconnect a specific controller", function() {
+      
+    });
+    it("should allow developers to disconnect all controllers from the application", function() {
+      
+    });
+  });
 
 });
