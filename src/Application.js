@@ -81,16 +81,17 @@ Application.prototype.setupController = function(context, controller, params) {
 };
 
 Application.prototype.disconnectController = function disconnectController(node, controller, callback) {
-  
+  if ( 'undefined' == typeof node || !node ) throw new Error("'node' is a required parameter");
+  if ( 'undefined' == typeof controller || !controller ) throw new Error("'controller' is a required parameter");
+  $(node).unbind().undelegate();
+  delete $(node)[0].mojoControllers;
+  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(this);
 };
 Application.prototype.disconnectControllers = function disconnectControllers(callback) {
-  var self = this;
-  
-  $(self.siteMap).each(function(index, silo) {
+  $(this.siteMap).each(function(index, silo) {
     $(silo.context).unbind().undelegate();
   });
-  
-  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(self);
+  if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(this);
 };
 
 Application.prototype.connectControllers = function connectControllers() {
