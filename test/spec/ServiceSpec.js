@@ -55,8 +55,3 @@ describe("Service", function() {
     expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
   });
 });
-
-
-describe("Kentico Service", function() {
-  
-});
