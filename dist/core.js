@@ -235,7 +235,7 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     
     $(root).delegate(selector, eventName, function(evt) {
  
-      var requestObj = new Request(this.data(), this, evt, self);
+      var requestObj = new Request($(this).data() || {}, this, evt, self);
 
       if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
       self.methods[commandName].call(MOJO.controllers[controllerName], requestObj);

@@ -10,8 +10,6 @@ MOJO.define('ExampleApp.LoginController', {
   methods: {
     Login: function(requestObj) {
       var context = requestObj.getContextElement();
-      
-      console.log(this);
       alert("Logged in from " + this.controllerClass);
     },
     Logout: function(requestObj) {
