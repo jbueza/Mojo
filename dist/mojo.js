@@ -345,7 +345,6 @@ Application.prototype.setupController = function(context, controller, params) {
   
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   controllerObj.initialize(context, controller, params);
-  //$(context).data('controller', controllerObj);
   if('undefined' == typeof context.mojoControllers) context.mojoControllers = [];
   context.mojoControllers.push({controller: controllerObj});
   if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
