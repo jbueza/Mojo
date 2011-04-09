@@ -19,8 +19,7 @@
   <property name="BM_MIN" value="${dist}/mojo_min.js" />
   <property name="APP" value="${dist}/app.js" />
   <property name="APP_MIN" value="${dist}/app_min.js" />
-  
-  
+    
   <target name="all" depends="init, core, mojo_base, doc" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
@@ -38,7 +37,6 @@
       <fileset file="${example_app}/app.js" />
     </concat>
     <echo message="${APP} built." />
-    
     
     <echo message="Building ${APP_MIN}" />
     <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
