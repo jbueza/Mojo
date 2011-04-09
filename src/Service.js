@@ -110,7 +110,6 @@ Service.prototype.parse = function(content, params) {
   return content;
 };
 
-
 window.Service = Service;
 return Service;
 

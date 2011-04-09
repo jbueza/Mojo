@@ -30,22 +30,15 @@ describe("Service", function() {
   });
   
   it("should allow null for passing parameters into the service call", function() {
-    getTestService.invoke(null, function(err, data) { 
-      expect(err).toBeUndefined();
-    }, null);
+    getTestService.invoke(null, function(err, data) { expect(err).toBeUndefined(); }, null);
   });
   it("should allow empty hash object for passing parameters into the service call", function() {
-    getTestService.invoke({}, function(err, data) { 
-      expect(err).toBeUndefined();
-    }, null);
+    getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
   });
 
-  
   it("should allow developers to set the contentType to html", function() {
     var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });
-    htmlService.invoke(null, function(err, data) {
-      expect(data).toBe('<p>Hello World</p>');
-    }, null);
+    htmlService.invoke(null, function(err, data) { expect(data).toBe('<p>Hello World</p>'); }, null);
   });
 
   it("should have templating off by default", function() {

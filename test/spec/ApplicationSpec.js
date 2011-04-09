@@ -21,7 +21,6 @@ describe("Application", function() {
   it("should be able to get a configuration setting", function() { 
     expect(app.configure('appName')).toEqual('MyTestApp');
   });
-  
   it("should allow developers to specify a different selector engine", function() {
     app.configure('selector', jQuery.sub());
     expect(app.configure('selector')).toBeDefined();
@@ -54,7 +53,7 @@ describe("Application", function() {
     a.configure('pluginSrc', '../example/js/lib/plugins/');
     a.configure('plugins', ['jcarousel']);
     a.getPlugins(function() {
-        expect(jQuery.jcarousel).toBeDefined();
+      expect(jQuery.jcarousel).toBeDefined();
     });
   });
   
