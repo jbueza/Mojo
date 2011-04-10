@@ -120,13 +120,12 @@
     }    
   };
 
-  MOJO.create = function(options) {
+  MOJO.create = function(name, options) {
     if (typeof options == 'undefined') {
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
-      if (!options.mojoSrc) options.mojoSrc = '../src';
     }
-
+    
     $.extend(this.options, options);
     return new Application();
   };

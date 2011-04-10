@@ -13,7 +13,7 @@
 <p><a href="https://github.com/jbueza/blastmojo/zipball/v0.1.5">Download Mojo</a></p>
 
 <pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });       // Create a Mojo application instance
+  <code>var app = MOJO.create({ baseSrc: 'js/' });       // Create a Mojo application instance
 
 app
   .map('#login-example', function() {               // Map login-example as an implementation silo
@@ -28,7 +28,7 @@ app
 <h2>Get Started With Advanced Configuration</h2>
 
 <pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });
+  <code>var app = MOJO.create({ baseSrc: 'js/' });
 
 app
   .configure('locale', 'en_US')                   // locale aware applications! (load different languages)

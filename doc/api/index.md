@@ -15,7 +15,7 @@ Lightweight (4kb gzipped), provides you with structure, and is a great framework
 [Download Mojo](https://github.com/jbueza/blastmojo/zipball/v0.1.5)
 
 <pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });       // Create a Mojo application instance
+  <code>var app = MOJO.create({ baseSrc: 'js/' });       // Create a Mojo application instance
 
 app
   .map('#login-example', function() {               // Map login-example as an implementation silo
@@ -31,7 +31,7 @@ app
 ## Get Started With Advanced Configuration
 
 <pre>
-  <code>var app = MOJO.create({ mojoSrc: '../src', baseSrc: 'js/' });
+  <code>var app = MOJO.create({ baseSrc: 'js/' });
 
 app
   .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
