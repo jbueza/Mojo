@@ -36,7 +36,6 @@ describe("Core", function() {
       }).toThrow("HelloWorldController missing factory implementation");
     });
     
-    
   });
   
   describe("When using require to load a controller", function() {

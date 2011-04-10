@@ -127,17 +127,6 @@
     $.extend(this.options, options);
     return new Application();
   };
-
-  MOJO.extend = function() {
-    var F = function() {}; 
-    return function(child, parent) {
-    F.prototype = parent.prototype;	
-      child.prototype = new F();	
-      child.__super__ = parent.prototype;	
-      child.prototype.constructor = child;
-    };
-  };
-  
   
   window.MOJO = MOJO;
    
