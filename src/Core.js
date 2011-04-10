@@ -100,11 +100,17 @@
   };
 
   //no more amd :(
-  MOJO.define = function(id, factory) {    
+  MOJO.define = function(id, factory) { 
+    if ('undefined' == typeof id || !id) throw new Error("'id' is required");
+    if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
     if ('function' == typeof factory) {
       factory = factory.call(this);
     }
     if(typeof id == 'string') {
+      if ( MOJO.controllers.hasOwnProperty(id) ) {
+        throw new Error(id + ' controller already exists');
+        return false;
+      }
       MOJO._namespace( id );
       MOJO._loaded[ id ] = factory;
       MOJO.controllers[ id ] = factory;
