@@ -89,8 +89,7 @@ describe("Application", function() {
     it("should allow developers to disconnect all controllers from the application", function() {
       var newApp = MOJO.create();
       jQuery(document.body).append(jQuery("<div id='disconnect-test'>"));
-      newApp.map("#disconnect-test", [ { controller: "TestController"} ])
-            .start();
+      newApp.map("#disconnect-test", [ { controller: "TestController"} ]).start();
       newApp.disconnectControllers();
       expect(jQuery("#disconnect-test")[0].mojoControllers).toBeUndefined();
     });

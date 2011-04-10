@@ -120,7 +120,7 @@
     }    
   };
 
-  MOJO.create = function(name, options) {
+  MOJO.create = function(options) {
     if (typeof options == 'undefined') {
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
