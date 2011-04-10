@@ -368,14 +368,14 @@ Application.prototype.disconnectController = function disconnectController(node,
   if ( 'undefined' == typeof node || !node ) throw new Error("'node' is a required parameter");
   if ( 'undefined' == typeof controller || !controller ) throw new Error("'controller' is a required parameter");
   $(node).unbind().undelegate();
-  delete $(node)[0].mojoControllers;
+  if ('undefined' != typeof $(node)[0].mojoControllers) delete $(node)[0].mojoControllers;
   return this;
 };
 Application.prototype.disconnectControllers = function disconnectControllers(callback) {
   var self = this;
   $(this.siteMap).each(function(index, silo) {
     $(silo.context).unbind().undelegate();
-    delete $(silo.context)[0].mojoControllers;
+    if ('undefined' != typeof $(silo.context)[0].mojoControllers) delete $(silo.context)[0].mojoControllers;
   });
   if ('undefined' != typeof callback && 'function' == typeof callback) callback.apply(this);
 };
