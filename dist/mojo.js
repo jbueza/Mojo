@@ -125,7 +125,7 @@
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
     }
-    
+    options['appName'] = name;
     $.extend(this.options, options);
     return new Application();
   };

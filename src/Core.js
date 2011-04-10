@@ -93,16 +93,13 @@
     }, 25);
     
   };
-  /* 
-   * @deprecated - Should be used as require() instead
-   */
+  
   MOJO.fetch = function(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
   };
 
-  //no more amd :(
   MOJO.define = function(id, factory) { 
     if ('undefined' == typeof id || !id) throw new Error("'id' is required");
     if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
@@ -120,12 +117,12 @@
     }    
   };
 
-  MOJO.create = function(options) {
+  MOJO.create = function(name, options) {
     if (typeof options == 'undefined') {
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
     }
-    
+    options['appName'] = name;
     $.extend(this.options, options);
     return new Application();
   };
