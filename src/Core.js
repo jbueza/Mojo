@@ -1,4 +1,7 @@
 (function(win, doc) {
+  
+  "use strict";
+  
   var MOJO = function() {};
   MOJO.controllers = {};
   MOJO.applications = {};

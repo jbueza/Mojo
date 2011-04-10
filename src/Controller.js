@@ -1,4 +1,3 @@
-MOJO.define('Controller', function() {  
 /* 
  * Controller Class
  *
@@ -11,6 +10,10 @@ MOJO.define('Controller', function() {
  * @constructor
  *
  */
+MOJO.define('Controller', function() {  
+
+"use strict";
+
 function Controller() {
   this.contextElement = null;
   this.controllerClass = null;

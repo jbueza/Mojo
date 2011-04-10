@@ -5,6 +5,8 @@
 */
 MOJO.define('Service', function() {
 
+"use strict"; 
+
 function Service(name, uri, options) {
   if (typeof options == 'undefined' ) options = {};
   var defaults = { 

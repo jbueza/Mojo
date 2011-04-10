@@ -1,4 +1,7 @@
 (function(win, doc) {
+  
+  "use strict";
+  
   var MOJO = function() {};
   MOJO.controllers = {};
   MOJO.applications = {};
@@ -93,16 +96,13 @@
     }, 25);
     
   };
-  /* 
-   * @deprecated - Should be used as require() instead
-   */
+  
   MOJO.fetch = function(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
   };
 
-  //no more amd :(
   MOJO.define = function(id, factory) { 
     if ('undefined' == typeof id || !id) throw new Error("'id' is required");
     if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
@@ -143,7 +143,9 @@
  * @author Blast Radius
  */
 MOJO.define('Request', function() {
-  
+
+"use strict"; 
+
 function Request(paramsObj, callerObj, eventObj, controllerObj) {
   if ('undefined' == typeof paramsObj || !paramsObj) throw new Error("'paramsObj' is required");
   if ('undefined' == typeof callerObj || !callerObj) throw new Error("'callerObj' is required");
@@ -188,8 +190,7 @@ Request.prototype.getEvent = function() {
 
 window.Request = Request;
 return Request;
-});MOJO.define('Controller', function() {  
-/* 
+});/* 
  * Controller Class
  *
  * An abstract class used in implementing Mojo Controllers. A Controller is an 
@@ -201,6 +202,10 @@ return Request;
  * @constructor
  *
  */
+MOJO.define('Controller', function() {  
+
+"use strict";
+
 function Controller() {
   this.contextElement = null;
   this.controllerClass = null;
@@ -270,7 +275,6 @@ Controller.prototype.param = function(key, value) {
 window.Controller = Controller;
 return Controller;
 });
-MOJO.define('Application', function() {
 /*
  * Application Class
  *
@@ -280,6 +284,10 @@ MOJO.define('Application', function() {
  * 
  * @author    Blast Radius (jbueza)
  */
+MOJO.define('Application', function() {
+
+"use strict";
+
 function Application() {
   if (!this.options) this.options = {};
   

@@ -6,6 +6,8 @@
  */
 MOJO.define('ServiceLocator', function() {
 
+"use strict"; 
+
 var ServiceLocator = {
   services: {},
   addService: function(service) {

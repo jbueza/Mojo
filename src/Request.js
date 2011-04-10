@@ -8,7 +8,9 @@
  * @author Blast Radius
  */
 MOJO.define('Request', function() {
-  
+
+"use strict"; 
+
 function Request(paramsObj, callerObj, eventObj, controllerObj) {
   if ('undefined' == typeof paramsObj || !paramsObj) throw new Error("'paramsObj' is required");
   if ('undefined' == typeof callerObj || !callerObj) throw new Error("'callerObj' is required");

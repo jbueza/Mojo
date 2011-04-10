@@ -1,4 +1,3 @@
-MOJO.define('Application', function() {
 /*
  * Application Class
  *
@@ -8,6 +7,10 @@ MOJO.define('Application', function() {
  * 
  * @author    Blast Radius (jbueza)
  */
+MOJO.define('Application', function() {
+
+"use strict";
+
 function Application() {
   if (!this.options) this.options = {};
   
