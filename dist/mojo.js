@@ -64,8 +64,11 @@
    * @param callback {Function}
    */
   MOJO.require = function(dependencies, callback) {
+    if ('undefined' == typeof dependencies || !dependencies) throw new Error("'dependencies' is required");
+    if ('undefined' == typeof callback || !callback) throw new Error("'callback' is required");
     
     if (!$.isArray(dependencies)) dependencies = [ dependencies ];
+    
     var last = dependencies.length
       , path
       , callbackIndex = 0; 
