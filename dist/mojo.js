@@ -8,13 +8,6 @@
   MOJO.options = {};
   MOJO._loaded = [];
   
-  /* 
-   * @private
-   */
-  MOJO._resolvedNamespace = function(namespace) {
-      return MOJO._namespace._provided['' + namespace];
-  };
-  
   MOJO.resolve = function(name) {
     if (!MOJO._namespace._provided[name]) {
       return name.replace(/\./gi, '/');
