@@ -18,10 +18,8 @@ describe("Core", function() {
   describe("When using define to create a controller", function() {
     
     it("should throw an error when redefining a controller that already exists", function() {
-      expect(function() {
-        MOJO.define('MyNewTestController', MockFactory);
-        MOJO.define('MyNewTestController', MockFactory);
-      }).toThrow("MyNewTestController controller already exists");
+      MOJO.define('MyNewTestController', MockFactory);
+      expect(MOJO.define('MyNewTestController', MockFactory)).toBeFalsy();
     });
     
     it("should throw an error when there is no identifier/name for the controller", function() {

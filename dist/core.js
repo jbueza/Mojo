@@ -104,7 +104,7 @@
     }
     if(typeof id == 'string') {
       if ( MOJO.controllers.hasOwnProperty(id) ) {
-        throw new Error(id + ' controller already exists');
+        //throw new Error(id + ' controller already exists');
         return false;
       }
       MOJO._namespace( id );
