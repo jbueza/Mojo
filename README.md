@@ -8,6 +8,10 @@ jQuery is a great library that encompasses a plethora of helper methods (animati
 
 The Blast Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity.
 
+### The Rundown
+
+<iframe src="http://player.vimeo.com/video/22070574?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=0" width="398" height="249" frameborder="0"></iframe>
+
 ### Building From Source
 
 <pre>
