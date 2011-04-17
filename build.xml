@@ -17,33 +17,11 @@
   
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo_min.js" />
-  
-  <property name="APP" value="${dist}/app.js" />
-  <property name="APP_MIN" value="${dist}/app_min.js" />
-    
+
   <target name="all" depends="init, core, mojo_base, doc" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
     <mkdir dir="${dist}" />
-  </target>
-  
-  <target name="app" description="Should concatenate application controllers and more">
-    <echo message="Building ${APP}" />
-    <concat destfile="${APP}">
-      <fileset file="${BM_MIN}" />      
-      <fileset file="${example_app}/ExampleApp/LoginController.js" />
-      <fileset file="${example_app}/ExampleApp/RegistrationController.js" />
-      <fileset file="${example_app}/ExampleApp/GalleryController.js" />
-      <fileset file="${example_app}/ExampleApp/member/ProfileController.js" />
-      <fileset file="${example_app}/app.js" />
-    </concat>
-    <echo message="${APP} built." />
-    
-    <echo message="Building ${APP_MIN}" />
-    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
-      <arg line="${APP} -o ${APP_MIN} --charset UTF-8 --preserve-semi" />
-    </java>
-    <echo message="${APP_MIN} built." />
   </target>
   
   <target name="core" description="Concatenate Core, Request, Controller, and Application classes">
