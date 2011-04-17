@@ -33,6 +33,10 @@ app
       { controller: "ExampleApp.GalleryController" }
     ];
   })
-
+  .map('button.btn-repeatable-button', function() {
+    return [
+      { controller: "ExampleApp.GalleryController" }
+    ];
+  })
   .start();
 
