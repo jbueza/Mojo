@@ -8,7 +8,6 @@ app
   .configure('environment', 'dev')
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel', 'pubsub'])
-  .configure('selector', jQuery.sub()) //or dojo.query, or MooTools, or Ext
 
   .map('#registration-example', function() {
     return [
@@ -33,10 +32,6 @@ app
       { controller: "ExampleApp.GalleryController" }
     ];
   })
-  .map('button.btn-repeatable-button', function() {
-    return [
-      { controller: "ExampleApp.GalleryController" }
-    ];
-  })
+    
   .start();
 

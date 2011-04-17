@@ -105,7 +105,8 @@
     if(typeof id == 'string') {
       if ( MOJO.controllers.hasOwnProperty(id) ) {
         //throw new Error(id + ' controller already exists');
-        return false;
+        console.log("Multiple definitions found for: ", id);
+        //return false;
       }
       MOJO._namespace( id );
       MOJO._loaded[ id ] = factory;
@@ -225,8 +226,8 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       , selector = observer[1]
       , eventName = observer[2]
       , commandName = observer[3];
-      
-    if (scope == "context") root = $(context);    
+
+    if (scope == "context") root = $(context);
     
     $(root).delegate(selector, eventName, function(evt) {
  
