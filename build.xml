@@ -17,6 +17,7 @@
   
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo_min.js" />
+  
   <property name="APP" value="${dist}/app.js" />
   <property name="APP_MIN" value="${dist}/app_min.js" />
     
@@ -77,28 +78,6 @@
     </java>
     <echo message="${BM_MIN} built." />
   </target>
-  
-  
-  <target name="mojo_enterprise" description="Enterprise version of Mojo (includes bindings/proxies for Kentico and more ENTERPRISE stuff), concatenates source files">
-    <echo message="Building ${BM}" />
-    <concat destfile="${BM}">
-      <fileset file="${CORE}" />
-      <fileset file="${src}/Service.js" />
-      <fileset file="${src}/KenticoService.js" />
-      <fileset file="${src}/ATGService.js" />
-      <fileset file="${src}/ServiceLocator.js" />
-    </concat>
-    <echo message="${BM} built." />
-      
-    <echo message="Building ${BM_MIN}" />
-    <java jar="${compiler}" fork="true" failonerror="true" maxmemory="256m">
-      <arg line="${BM} -o ${BM_MIN} --charset UTF-8 --preserve-semi" />
-    </java>
-    <echo message="${BM_MIN} built." />
-        
-  </target>
-  
-  
   
   <target name="doc">
     <echo>Generating documentation...</echo>
