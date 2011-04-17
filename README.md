@@ -46,6 +46,8 @@ app
   .start()
 </pre>
 
+For more information, view the [Quick Screencast of Blast Mojo Framework](http://vimeo.com/22070574)
+
 ### Technical Features
 
 * Aspect-oriented programming for intercepting functionality (before and after)
