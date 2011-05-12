@@ -102,7 +102,7 @@
     if ('function' == typeof factory) {
       factory = factory.call(this);
     }
-    if(typeof id == 'string') {
+    if('string' == typeof id) {
       if ( MOJO.controllers.hasOwnProperty(id) ) {
         //throw new Error(id + ' controller already exists');
         console.log("Multiple definitions found for: ", id);
@@ -114,12 +114,12 @@
     }    
   };
 
-  MOJO.create = function(name, options) {
-    if (typeof options == 'undefined') {
+  MOJO.create = function(options) {
+    
+    if ('undefined' == typeof options) {
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
     }
-    options['appName'] = name;
     $.extend(this.options, options);
     return new Application();
   };
