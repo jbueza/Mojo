@@ -18,7 +18,7 @@
   <property name="BM" value="${dist}/mojo.js" />
   <property name="BM_MIN" value="${dist}/mojo_min.js" />
 
-  <target name="all" depends="init, core, mojo_base, doc" />
+  <target name="all" depends="init, core, mojo_base" />
 
   <target name="init" description="Creates dist directory or execute any preconditions before compiling Mojo">
     <mkdir dir="${dist}" />
@@ -28,6 +28,7 @@
     <echo message="Building ${CORE}" />
     <concat destfile="${CORE}">
       <fileset file="${src}/Core.js" />
+      <fileset file="${src}/Messaging.js" />
       <fileset file="${src}/Request.js" />
       <fileset file="${src}/Controller.js" />
       <fileset file="${src}/Application.js" />      
