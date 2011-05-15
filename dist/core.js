@@ -320,9 +320,7 @@ function Application() {
 /* 
  * Triggered when application is fully bootstrapped
  */
-Application.prototype.onComplete = function() {
-  MOJO.Messaging.publish("/app/start");
-};
+Application.prototype.onComplete = function() {};
 
 /* 
  * Provides the capability to set/get properties of the application, such as,
@@ -430,6 +428,9 @@ Application.prototype.connectControllers = function connectControllers() {
         $(silos).each(function(i, silo) {
           self.setupController(mapping.context, silo.controller, silo.params);
         });
+        
+        MOJO.Messaging.publish("/app/start");
+      
       });      
     });
   }

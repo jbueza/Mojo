@@ -10,6 +10,7 @@ MOJO.define('ExampleApp.RegistrationController', {
   methods: {
     Register: function(requestObj) {
       var context = requestObj.getContextElement();
+      
       alert("REGISTER from " + this.controllerClass);
     }
   }
