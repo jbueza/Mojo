@@ -26,7 +26,9 @@ function Application() {
 /* 
  * Triggered when application is fully bootstrapped
  */
-Application.prototype.onComplete = function() {};
+Application.prototype.onComplete = function() {
+  MOJO.Messaging.publish("/app/start");
+};
 
 /* 
  * Provides the capability to set/get properties of the application, such as,
@@ -161,6 +163,7 @@ Application.prototype.start = function() {
     self.disconnectControllers(function() {
       if (self.options.plugins.length) { 
         self.getPlugins(function() {
+          MOJO.Messaging.publish("/app/plugins/loaded");
           self.connectControllers();
         });
       } else {
