@@ -104,9 +104,7 @@
     }
     if('string' == typeof id) {
       if ( MOJO.controllers.hasOwnProperty(id) ) {
-        //throw new Error(id + ' controller already exists');
         try { console.log("Multiple definitions found for: ", id); } catch (err) {}
-        //return false;
       }
       MOJO._namespace( id );
       MOJO._loaded[ id ] = factory;

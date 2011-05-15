@@ -7,7 +7,7 @@ app
   .configure('locale', 'en_US')
   .configure('environment', 'dev')
   .configure('pluginSrc', 'js/lib/plugins/')  
-  .configure('plugins', ['jqmodal', 'jcarousel', 'pubsub'])
+  .configure('plugins', ['jqmodal', 'jcarousel'])
 
   .map('#registration-example', function() {
     return [
