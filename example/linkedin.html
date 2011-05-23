@@ -13,13 +13,25 @@
     
     <button class="btn-fetch-profile">Fetch Profile</button>
     
-    <dl>
-      <dt>First name:</dt>
-      <dd>Jaime</dd>
-      
-      <dt>Last name:</dt>
-      <dd>Bueza</dd>
-    </dl>
+    <div class="profile-info"></div>
+    
+    <script id="profileTemplate" type="text/x-jquery-tmpl">
+      <img src="${pictureUrl}" />
+      <dl>
+        <dt>First name:</dt>
+        <dd>${firstName}</dd>
+
+        <dt>Last name:</dt>
+        <dd>${lastName}</dd>
+        
+        <dt>Title:</dt>
+        <dd>${headline}</dd>
+        
+      </dl>        
+    </script>
+    
+    
+
     
     
     

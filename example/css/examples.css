@@ -162,8 +162,12 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
 
 
-
-
+.login-panel img, .login-panel dl {
+  float: left;
+}
+.login-panel img {
+  margin-right: 20px;
+}
 
 
 

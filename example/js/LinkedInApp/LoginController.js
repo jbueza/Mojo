@@ -5,18 +5,31 @@
 MOJO.define('LinkedInApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
-    , ['context', '.btn-logout', 'click', 'Logout']    
+    , ['context', '.btn-logout', 'click', 'Logout'] 
+    , ['context', '.btn-fetch-profile', 'click', 'FetchProfile']
   ],
   methods: {
+    FetchProfile: function(requestObj) {
+      IN.API.Profile("me")
+        .result(function(result) {
+          result = result.values[0];
+
+          $( "#profileTemplate" ).tmpl( result ).appendTo( ".profile-info" );
+
+        });
+    },
     Login: function(requestObj) {
+      
+      var self = this;
       IN.User.authorize(function(response) {
-        alert('Successfully logged into LinkedIn');
-      }, this)
+        console.log("Logged into LinkedIn");
+        self.FetchProfile();
+      }, this);
     },
     Logout: function(requestObj) {
       IN.User.logout(function() {
-        alert('Successfully logged out of LinkedIn');
-      }, this)
+        console.log('Successfully logged out of LinkedIn');
+      }, this);
     }
   },
   after: {
