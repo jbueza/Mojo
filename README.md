@@ -21,7 +21,7 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
 1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
 
-<pre>
+``` js
 var app = MOJO.create('ExampleApp', { baseSrc: 'js/' });
 
 app
@@ -44,7 +44,7 @@ app
   })
 
   .start()
-</pre>
+```
 
 For more information, view the [Quick Screencast of Blast Mojo Framework](http://vimeo.com/22070574)
 
