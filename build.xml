@@ -8,7 +8,7 @@
   <property description="Folder for mojo and min target" name="docgen" value="${PREFIX}/doc/generator/generate.js" />
 
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
-  <property name="compiler" value="${PREFIX}/build/yuicompressor-2.4.2.jar" />
+  <property name="compiler" value="${PREFIX}/build/yuicompressor-2.4.6.jar" />
 
   <!-- Blast Mojo Core -->
   
