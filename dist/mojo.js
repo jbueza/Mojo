@@ -503,6 +503,7 @@ function Service(name, uri, options) {
           }
           return type;
       }()
+    , jsonp: false
     , template: false };
   this.name = name;
   this.uri = uri;
@@ -514,7 +515,7 @@ function Service(name, uri, options) {
 Service.prototype.invoke = function(params, callback, scope) {
   var self = this;
   
-  var options = this.getOptions() || {}
+  var options = self.getOptions() || {}
     , method = options.method
     , uri = self.getURI()
     , responseType = options.responseType || 'JSON';
@@ -527,12 +528,18 @@ Service.prototype.invoke = function(params, callback, scope) {
   
   $.ajaxSetup({
       dataTypeString: responseType
+    , dataType: options.jsonp ? 'jsonp' : ''
     , type: method
     , async: options.async || 'true'
     , cache: options.cache || 'false'
     , contentType: options.contentType || "application/json; charset=utf-8"
   });
 
+
+  //url: ServiceLocator.getService('GetSocial').getURI(), // this is for dummy data
+  //contentType: 'application/json; charset=utf-8',
+  //ataType: 'jsonp'
+  
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
       if ( responseType == 'JSON' && this.contentType.match(/javascript/g)) { 

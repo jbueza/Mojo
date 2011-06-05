@@ -4,6 +4,7 @@ describe("Service", function() {
     , postTestService = new Service("AddUser", "data/user.js")
     , delTestService = new Service("DeleteUser", "data/user.js")
     , updateTestService = new Service("UpdateUser", "data/user.js")
+    , jsonpTestService = new Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
     , brokenService = new Service("Broken", "data/broken.js");
   
   it("should always have a name", function() {
@@ -72,4 +73,21 @@ describe("Service", function() {
   it("should return a properly templated URI", function() {
     expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
   });
+  
+  it("should allow the developer to turn on cross-domain calls (jsonp)", function() {
+    jsonpTestService.option('jsonp', true);
+    expect(jsonpTestService.option('jsonp')).toBeTruthy();
+  });
+  
+  it("should allow the developer to turn on cross-domain calls (jsonp)", function() {
+    jsonpTestService.option('jsonp', true);
+    expect(jsonpTestService.option('jsonp')).toBeTruthy();
+  });
+  
+  //test to see if scope is optional
+  
+  //test to see if the jsonp service returns proper data
+  
+  
+  
 });

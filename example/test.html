@@ -25,7 +25,12 @@
       background: #fefefe;
       padding: 10px;
     }
-    
+    #jsonp-blogs {
+      clear: both;
+      border: 1px solid #000;
+      background: #ccc;
+      margin: 20px;
+    }
   </style>
   <link rel="stylesheet" href="css/skin.css" type="text/css">
 </head>
@@ -95,6 +100,22 @@
       <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
       <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
     </ul>
+  </div>
+  
+  
+  <div id="jsonp-blogs">
+    <h2>News Articles from Microsoft SXP Feeds</h2>
+    <ul class="blogs">
+      
+    </ul>
+    
+    <script id="blogTemplate" type="text/x-jquery-tmpl">
+      <li class="blog">
+        <h3><a href="${Link}" title="${Title}">${Title}</a></h3>
+        <span>${Author}</span>
+      </li>
+    </script>
+    
   </div>
   
   <script src="js/lib/jquery-1.6.1.min.js"></script>

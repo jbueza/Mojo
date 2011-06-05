@@ -1,4 +1,5 @@
-ServiceLocator.addService(new Service('UpdateProfile', 'data/success.json'));
+ServiceLocator.addService(new Service('UpdateProfile',  'data/success.json'));
+ServiceLocator.addService(new Service('GetSXPBlogs',    'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true }));
 
 var app = MOJO.create({ baseSrc: 'js/' });
 
@@ -7,7 +8,7 @@ app
   .configure('locale', 'en_US')
   .configure('environment', 'dev')
   .configure('pluginSrc', 'js/lib/plugins/')  
-  .configure('plugins', ['jqmodal', 'jcarousel'])
+  .configure('plugins', ['jqmodal', 'jcarousel', 'tmpl'])
 
   .map('#registration-example', function() {
     return [
@@ -32,6 +33,8 @@ app
       { controller: "ExampleApp.GalleryController" }
     ];
   })
+
+  .map('#jsonp-blogs', [ { controller: 'ExampleApp.BlogsController'}])
     
   .start();
 
