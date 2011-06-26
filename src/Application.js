@@ -124,23 +124,20 @@ Application.prototype.connectControllers = function connectControllers() {
     });
   });
   
-  if ( self.options.environment == 'dev' ) {
-    MOJO.require($.unique(controllers2load), function() {
-      $(self.siteMap).each(function(index, mapping) {
-      
-        if (self.options.environment == 'dev') try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
-        var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
+  MOJO.require($.unique(controllers2load), function() {
+    $(self.siteMap).each(function(index, mapping) {
+    
+      if (self.options.environment == 'dev') try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+      var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
 
-        $(silos).each(function(i, silo) {
-          self.setupController(mapping.context, silo.controller, silo.params);
-        });
-        
-        MOJO.Messaging.publish("/app/start");
+      $(silos).each(function(i, silo) {
+        self.setupController(mapping.context, silo.controller, silo.params);
+      });
       
-      });      
-    });
-  }
-
+      MOJO.Messaging.publish("/app/start");
+    
+    });      
+  });
 };
 
 Application.prototype.getPlugins = function(callback) {
