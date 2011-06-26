@@ -12,7 +12,7 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 
 <pre>
   $ git@github.com:jbueza/blastmojo.git &amp;&amp; cd blastmojo
-  $ ant
+  $ rake
 </pre>
 
 ## Getting Setup
