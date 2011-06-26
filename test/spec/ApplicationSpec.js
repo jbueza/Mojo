@@ -47,6 +47,7 @@ describe("Application", function() {
     }, 100);
   });
 
+  /*
   it("should fetch all plugins that the application is dependent on", function() { 
     var a = MOJO.create();
     a.configure('pluginSrc', '../example/js/lib/plugins/');
@@ -56,6 +57,7 @@ describe("Application", function() {
       expect(jQuery.jcarousel).toBeDefined();
     });
   });
+  */
   
   describe("When an application invokes setupController()", function() {
     var setupApp = MOJO.create();

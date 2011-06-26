@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake/clean'
+require 'launchy'
 
 BLAST_MOJO_VERSION = "v0.1.6"
 SRC = "src"
@@ -29,11 +30,8 @@ task :build => :clean do
   Dir.mkdir OUTPUT
   
   File.open("#{OUTPUT}/#{OUTPUT_FILE}","w+") { | f |
-    f.puts mojo_classes.sort.map{ | s | IO.read(s) } 
+    f.puts mojo_classes.map{ | s | IO.read(s) } 
   }
-  
-  
-  
   
   cmd = "java -jar #{YUICOMPRESSOR} #{OUTPUT}/#{OUTPUT_FILE} -o #{OUTPUT}/#{OUTPUT_FILE_MINIFIED} --charset UTF-8 --preserve-semi"
   ret = system(cmd)
@@ -42,6 +40,7 @@ end
 
 desc "Runs all Jasmine specs"
 task :specs do
+  Launchy::Browser.run(Dir.pwd + "/test/SpecRunner.html")
   puts "Running all Jasmine specs..."
 end	
 
