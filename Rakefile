@@ -8,9 +8,10 @@ CONFIGURATION = 'Release'
 desc "Compiles solution and runs unit tests"
 task :default => [:clean, :version, :compile, :test, :publish, :package]
 
-#Add the folders that should be cleaned as part of the clean task
-CLEAN.include(OUTPUT)
-
+desk "Outputs the current version of Blast Mojo"
+task :version do
+  puts "v" + BLAST_MOJO_VERSION
+end
 
 desc "Runs all Jasmine specs"
 task :specs do
