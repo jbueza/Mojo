@@ -18,7 +18,7 @@ The Blast Mojo Initiative emerged to help distributed teams build web applicatio
 ## Getting Setup
 
 1. git clone http://github.com/jbueza/blastmojo.git into your localhost 
-1. cd BlastMojoLite and use apache ant to build a compiled source: <code>ant</code>
+1. cd BlastMojoLite and use apache ant to build a compiled source: <code>rake</code>
 1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
 
 ``` js
