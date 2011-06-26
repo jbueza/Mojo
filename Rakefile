@@ -14,18 +14,19 @@ task :default => [:clean, :version, :build, :specs]
 
 desc "Removes the build directory"
 task :clean do
+  puts "Deleting ..."
   rm_rf OUTPUT
 end
 
 desc "Outputs the current version of Blast Mojo"
 task :version do
-  puts BLAST_MOJO_VERSION
+  puts "The current version is #{BLAST_MOJO_VERSION}"
 end
 
 desc "Concatenates and minifies Mojo source"
 task :build => :clean do
   
-  mojo_classes =  [ "#{SRC}/Core.js", "#{SRC}/Messaging.js", "#{SRC}/Request.js", "#{SRC}/Controller.js", "#{SRC}/Application.js", "#{SRC}/Service.js", "#{SRC}/ServiceLocator.js" ]
+  mojo_classes =  [ "LICENSE", "#{SRC}/Core.js", "#{SRC}/Messaging.js", "#{SRC}/Request.js", "#{SRC}/Controller.js", "#{SRC}/Application.js", "#{SRC}/Service.js", "#{SRC}/ServiceLocator.js" ]
 
   Dir.mkdir OUTPUT
   
