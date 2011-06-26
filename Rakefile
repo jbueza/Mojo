@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'rake/clean'
 
-BLAST_MOJO_VERSION = "0.1.6"
+BLAST_MOJO_VERSION = "v0.1.6"
 OUTPUT = "dist"
-CONFIGURATION = 'Release'
+YUICOMPRESSOR = "build/yuicompressor.jar"
 
 desc "Compiles solution and runs unit tests"
 task :default => [:clean, :version, :build, :specs]
@@ -13,7 +13,7 @@ task :clean do
   rm_rf OUTPUT
 end
 
-desk "Outputs the current version of Blast Mojo"
+desc "Outputs the current version of Blast Mojo"
 task :version do
   puts BLAST_MOJO_VERSION
 end
