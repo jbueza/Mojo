@@ -2,122 +2,71 @@
 <html lang="en" class="no-js">
 <head>
   <title>Blast Mojo Test Example</title>
-  <style>
-    html {
-      font: normal 13px Lucida Grande, Tahoma, Arial;
-    }
-    .example {
-      background: #eee;
-      border: 1px solid #ccc;
-      float: left;
-      margin-right: 15px;
-      padding: 15px;
-    }
-    
-    #gallery-example {
-      display: block;
-      float: left
-    }
-    .success {
-      display: none;
-      color: green;
-      border: 1px solid green;
-      background: #fefefe;
-      padding: 10px;
-    }
-    #jsonp-blogs {
-      clear: both;
-      border: 1px solid #000;
-      background: #ccc;
-      margin: 20px;
-    }
-  </style>
+
+  <link href='http://fonts.googleapis.com/css?family=Hammersmith+One&amp;v2' rel='stylesheet' type='text/css'>
+  <link href="css/examples.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/skin.css" type="text/css">
 </head>
 <body>
-  <div id="registration-example" class="example">
-    <h3>Registration Controller</h3>
+  <div id="main">
+    <h1>Blast Mojo Examples</h1>
+    <div id="registration-example" class="example">
+      <h3>Registration Controller</h3>
     
-    <fieldset>
-      <label for="email">Email Address</label>
-      <input id="email" type="email" value="" placeholder="Enter your email address">
-    </fieldset>
-    <fieldset>
-      <label for="password">Password</label>
-      <input id="password" type="password" value="" placeholder="Enter your password">
-    </fieldset>
-    <button type="submit" class="btn-submit-registration">Register</button>
+      <fieldset>
+        <label for="email">Email Address</label>
+        <input id="email" type="email" value="" placeholder="Enter your email address">
+      </fieldset>
+      <fieldset>
+        <label for="password">Password</label>
+        <input id="password" type="password" value="" placeholder="Enter your password">
+      </fieldset>
+      <button type="submit" class="btn-submit-registration">Register</button>
   
-  </div>
+    </div>
     
-  <div id="login-example" class="example">
-    <h3>Login Controller (1)</h3>
-    <button class="btn-login">Login</button>
-    <button class="btn-logout">Logout</button>
-  </div>
-  
-  <div id="profile-example" class="example">
-
-    <h3>Profile Controller</h3>
-    <div class="success"><h3>Successfully saved profile!</h3></div>
-    
-    <fieldset>
-      <label for="currentCity">Current City:</label>
-      <input id="currentCity" type="text" name="currentCity">
-    </fieldset>
-
-    <fieldset>
-      <label for="hometown">Hometown:</label>
-      <input id="hometown" type="text" name="hometown">
-    </fieldset>
-    
-    <fieldset>  
-      <label for="languages">Languages</label>
-      <input id="languages" type="text" name="languages">
-    </fieldset>
-    
-    <fieldset>
-      <label for="aboutMe">About Me:</label>
-      <textarea id="aboutMe" name="aboutMe"></textarea>
-    </fieldset>
-
-    <button class="btn-save-profile">Save Profile</button>
-  </div>
-  
-  <div id="test-example3">
-    <button class="btn-login">Login</button>
-    <button class="btn-logout">Logout</button>
-  </div>
-  
-  <hr>
-  
-  <div id="gallery-example">
-    <h2>My Photo Gallery (jCarousel plugin injection)</h2>
-    <ul id="mycarousel" class="jcarousel-skin-tango"> 
-      <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
-      <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
-      <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
-      <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
-      <li><img src="http://mdm.gnwc.ca/files/imagecache/thumbnail/images/logos/blast_radius.gif" width="75" height="75" alt="" /></li> 
-    </ul>
-  </div>
-  
-  
-  <div id="jsonp-blogs">
-    <h2>News Articles from Microsoft SXP Feeds</h2>
-    <ul class="blogs">
+    <div id="login-example" class="example">
+      <h3>Login Controller</h3>
       
-    </ul>
-    
-    <script id="blogTemplate" type="text/x-jquery-tmpl">
-      <li class="blog">
-        <h3><a href="${Link}" title="${Title}">${Title}</a></h3>
-        <span>${Author}</span>
-      </li>
-    </script>
-    
-  </div>
+      <p>This test controller exhibits</p>
+      
+      <button class="btn-login">Login</button>
+      <button class="btn-logout">Logout</button>
+    </div>
   
+    <div id="profile-example" class="example">
+
+      <h3>Profile Controller</h3>
+      <div class="success"><h3>Successfully saved profile!</h3></div>
+    
+      <fieldset>
+        <label for="currentCity">Current City:</label>
+        <input id="currentCity" type="text" name="currentCity" placeholder="Where do you currently live?">
+      </fieldset>
+
+      <fieldset>
+        <label for="hometown">Hometown:</label>
+        <input id="hometown" type="text" name="hometown" placeholder="Where is your hometown?">
+      </fieldset>
+    
+      <fieldset>  
+        <label for="languages">Languages</label>
+        <input id="languages" type="text" name="languages" placeholder="What languages do you speak?">
+      </fieldset>
+    
+      <fieldset>
+        <label for="aboutMe">About Me:</label>
+        <textarea id="aboutMe" name="aboutMe" placeholder="Enter a small description"></textarea>
+      </fieldset>
+
+      <button class="btn-save-profile">Save Profile</button>
+    </div>
+
+
+  
+
+  
+  </div>
   <script src="js/lib/jquery-1.6.1.min.js"></script>
   <script src="../dist/mojo.js"></script>  
   <script src="js/app.js"></script>

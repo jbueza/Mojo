@@ -146,7 +146,7 @@ body, select, input, textarea {
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 
 /* These selection declarations have to be separate
    No text-shadow: twitter.com/miketaylr/status/12228805301
@@ -161,12 +161,63 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
  */
 
 
+body {
+  font-family: 'Hammersmith One', sans-serif;
+  font-weight: 0;
+  font-size: 1.5em;
+  background: #000;
+  color: #ccc;
+}
 
+#main {
+  width: 960px;
+  margin: 50px auto 0 auto;
+}
+h1 { font-size: 2.5em; border-bottom: 1px solid #ccc;}
+
+h2 {
+  font-size: .9em;
+}
+h3 { font-size: .8em; color: #fff;}
+
+label, button, input, select, textarea {
+  font-size: 12px;
+}
+
+button, input, select, textarea { 
+  padding: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+}
+.example input, .example select, .example textarea {
+  width: 300px;
+}
+label {
+  width: 100px;
+  margin-right: 15px;
+  display: inline-block;
+}
+.example {
+  margin: 50px 0 0 0;
+  padding: 15px;
+  background: #222;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+.example p {
+  font-size: 12px;
+  margin: 15px 0;
+}
 .login-panel img, .login-panel dl {
   float: left;
 }
 .login-panel img {
   margin-right: 20px;
+}
+
+#profile-example .success {
+  display: none;
+  color: green;
 }
 
 
