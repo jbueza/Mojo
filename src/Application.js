@@ -5,7 +5,7 @@
  * with the capability to inject plugins, as well as, handle
  * dependencies. Also maps all controllers to DOM elements.
  * 
- * @author    Blast Radius (jbueza)
+ * @author Jaime Bueza
  */
 MOJO.define('Application', function() {
 

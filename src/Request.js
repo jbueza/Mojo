@@ -5,12 +5,18 @@
  * Encapsulates request-specific parameters, and context-specific 
  * information.
  *
- * @author Blast Radius
+ * @author Jaime Bueza
  */
 MOJO.define('Request', function() {
 
 "use strict"; 
 
+/* 
+ * @param paramsObj {Object} - Hash object that gets passed into the request
+ * @param callerObj {DOM} - When invoked by a user interaction, request objects will have access to the DOM element that was clicked (caller)
+ * @param eventObj {DOM} - Browser event object, typically you can use this to preventDefault() inside a Mojo Controller's method
+ * @param controllerObj {Object} - Reference to the controller that the interaction occurred in
+ */
 function Request(paramsObj, callerObj, eventObj, controllerObj) {
   if ('undefined' == typeof paramsObj || !paramsObj) throw new Error("'paramsObj' is required");
   if ('undefined' == typeof callerObj || !callerObj) throw new Error("'callerObj' is required");
@@ -20,7 +26,7 @@ function Request(paramsObj, callerObj, eventObj, controllerObj) {
   this.paramsObj = paramsObj;
   this.callerObj = callerObj;
   this.eventObj = eventObj;
-  this.controllerObj = controllerObj;
+  this.controllerObj = controllerObj;  
 };
 
 /* 
@@ -40,7 +46,6 @@ Request.prototype.getContextElement = function() {
 /* 
  * Returns the object that invoked the request
  */
-
 Request.prototype.getCaller = function() {
   return this.callerObj;
 };
@@ -48,7 +53,6 @@ Request.prototype.getCaller = function() {
 /* 
  * Returns an event object that was generated from the user interaction
  */
-
 Request.prototype.getEvent = function() {
   return this.eventObj;
 };
