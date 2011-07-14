@@ -20,6 +20,7 @@ function Application() {
     localOptions['pluginSrc'] = 'js/lib/plugins/';
     localOptions['pluginsAsync'] = true;
     localOptions['environment'] = 'dev';
+    localOptions['logging'] = false;
     localOptions['selector'] = jQuery || (function() { throw new Error('Unable to find jQuery'); }) ();
     self.siteMap = [];
 };
@@ -43,7 +44,7 @@ Application.prototype.onComplete = function() {};
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
-    if (this.options.environment == 'dev') try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
+    if (this.options.environment == 'dev' && self.options.logging) try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
     return this;
   } else {
     return this.options[key];
@@ -127,7 +128,7 @@ Application.prototype.connectControllers = function connectControllers() {
   MOJO.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
     
-      if (self.options.environment == 'dev') try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+      if (self.options.environment == 'dev' && self.options.logging) try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
       var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
 
       $(silos).each(function(i, silo) {
