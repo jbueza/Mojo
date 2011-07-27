@@ -6,7 +6,7 @@
  * a Mojo application.
  * 
  * @class       Controller
- * @author      Blast Radius (jbueza)
+ * @author      Jaime Bueza
  * @constructor
  *
  */

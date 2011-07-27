@@ -27,7 +27,11 @@ function Service(name, uri, options) {
   this.options = $.extend({}, defaults, options);
 };
 
-
+/* 
+ * @param params {Object} Hash representation of request parameters to be sent along in this service request
+ * @param callback {Function} Callback to be invoked when the request finishes
+ * @param scope {Object} Execution context for callback binding
+ */
 Service.prototype.invoke = function(params, callback, scope) {
   var self = this;
   
@@ -50,11 +54,6 @@ Service.prototype.invoke = function(params, callback, scope) {
     , cache: options.cache || 'false'
     , contentType: options.contentType || "application/json; charset=utf-8"
   });
-
-
-  //url: ServiceLocator.getService('GetSocial').getURI(), // this is for dummy data
-  //contentType: 'application/json; charset=utf-8',
-  //ataType: 'jsonp'
   
   $.ajax({ url: uri, data: params })
     .success(function(data) { 
@@ -95,7 +94,6 @@ Service.prototype.getURI = function() {
 Service.prototype.getOptions = function() {
   return this.options;
 };
-//test 
 /*
  * Sets or Gets an option of the current Service
  */

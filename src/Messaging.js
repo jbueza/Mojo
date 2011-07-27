@@ -1,3 +1,7 @@
+/* 
+ *
+ * @author Jaime Bueza
+ */
 MOJO.define('MOJO.Messaging', function() {
 "use strict";
 var storage = $({});
