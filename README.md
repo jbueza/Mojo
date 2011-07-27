@@ -84,12 +84,6 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
   * multi-line if statements must have braces.
 * patches should all pass [JSLint](http://jslint.com) 
 
-## TODO
-
-* Write more unit tests
-* app.configure('plugins', '*') should grab all plugins in a directory (suggestion by Julien)
-  * (move this discussion into github issues)
-
 ## MIT Licence
 
 The Blast Mojo Framework
