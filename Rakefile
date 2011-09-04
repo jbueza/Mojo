@@ -41,7 +41,7 @@ end
 
 desc "Runs all Jasmine specs"
 task :specs do
-  Launchy::Browser.run(Dir.pwd + "/test/SpecRunner.html")
+  Launchy.open(Dir.pwd + "/test/SpecRunner.html")
   puts "Running all Jasmine specs..."
 end	
 

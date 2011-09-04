@@ -7,7 +7,7 @@
 MOJO.define('ServiceLocator', function() {
 
 "use strict"; 
-
+var $ = jQuery;
 var ServiceLocator = {
   services: {},
   addService: function(service) {

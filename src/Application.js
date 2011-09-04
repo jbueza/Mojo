@@ -11,6 +11,8 @@ MOJO.define('Application', function() {
 
 "use strict";
 
+var $ = jQuery;
+
 function Application() {
   if (!this.options) this.options = {};
   

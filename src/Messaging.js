@@ -4,8 +4,10 @@
  */
 MOJO.define('MOJO.Messaging', function() {
 "use strict";
-var storage = $({});
-var Messaging = function() {};
+
+var $ = jQuery
+  , storage = $({})
+  , Messaging = function() {};
 
 Messaging.subscribe = function() {
   storage.bind.apply( storage, arguments );

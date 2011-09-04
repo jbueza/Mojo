@@ -2,6 +2,8 @@
   
   "use strict";
   
+  var $ = jQuery;
+
   var MOJO = function() {};
   MOJO.controllers = {};
   MOJO.applications = {};

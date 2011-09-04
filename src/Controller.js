@@ -14,6 +14,8 @@ MOJO.define('Controller', function() {
 
 "use strict";
 
+var $ = jQuery;
+
 function Controller() {
   this.contextElement = null;
   this.controllerClass = null;
