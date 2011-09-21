@@ -43,6 +43,13 @@
     }
     return context;
   };
+
+  mojo.template =function template(template, data, partials) {
+    if ('undefined' == typeof Mustache) {
+      return false;
+    }
+    Mustache.to_html(template, data, partials)
+  };
   /* 
    * Returns an array of DOM nodes
    */
@@ -100,6 +107,13 @@
     $.getScript(path);
     $.ajaxSetup({async: true});
   };
+
+  /* 
+   * Retrieves a plugin
+   * @param path {String} The location of the module on the file system
+   * @param callback {Function} A callback to be executed when the plugin has completed loading
+   * @deprecated 
+   */
   mojo.fetch = function(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
@@ -119,6 +133,10 @@
     }    
   };
 
+  /* 
+   * Creates an mojo application instance. One web site can contain multiple mojo applications.
+   * @param options {Object} A set of default options for particular mojo application
+   */
   mojo.create = function(options) {
     
     if ('undefined' == typeof options) {
@@ -126,7 +144,7 @@
       if (!options.baseSrc) options.baseSrc = 'js/';
     }
     $.extend(this.options, options);
-    return new Application();
+    return new mojo.Application();
   };
   
   window.mojo = mojo;

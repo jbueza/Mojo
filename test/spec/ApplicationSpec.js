@@ -13,6 +13,12 @@ describe("Application", function() {
   app.configure('appName', 'MyTestApp');
   app.configure('pluginSrc', '../example/js/lib/plugins/');
   
+  it("should not be seeding itself into the window context", function() {
+    expect(window.Application).toBeUndefined();
+  });
+  it("should not be a part of the window.MOJO context", function() {
+    expect(window.MOJO).toBeUndefined();
+  });
   it("should be able to set a configuration setting", function() { 
     app.configure('environment', 'dev');
     expect(app.configure('environment')).toEqual('dev');

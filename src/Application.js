@@ -184,7 +184,7 @@ Application.prototype.remap = function() {
   });
 };
 
-  ('undefined' == typeof window) ? process.Application = Application : window.Application = Application;
-  window.Application = Application;
-  return Application;
+window.mojo.Application = Application;
+if (window.MOJO) window.MOJO.Application = Application;
+
 });
