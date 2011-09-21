@@ -46,7 +46,7 @@ Application.prototype.onComplete = function() {};
 Application.prototype.configure = function(key, value) {
   if (arguments.length > 1) {
     this.options[key] = value;
-    if (this.options.environment == 'dev' && self.options.logging) try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
+    if (this.options.environment == 'dev' && ('undefined' != typeof this.options.logging && this.options.logging)) try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
     return this;
   } else {
     return this.options[key];
