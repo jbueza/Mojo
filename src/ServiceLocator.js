@@ -24,7 +24,8 @@ var ServiceLocator = {
     this.services = {}; 
   }
 };
-  window.ServiceLocator = ServiceLocator;
-  return ServiceLocator;
+
+
+window.ServiceLocator = ServiceLocator;
 
 });

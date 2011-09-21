@@ -53,8 +53,8 @@ MOJO.define('Service', function() {
       dataTypeString: responseType,
       dataType: options.jsonp ? 'jsonp' : responseType,
       type: method,
-      async: options.async || 'true',
-      cache: options.cache || 'false',
+      async: options.async || true,
+      cache: options.cache || false,
       contentType: options.contentType || "application/json; charset=utf-8"
     });
 

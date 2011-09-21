@@ -83,5 +83,4 @@ Controller.prototype.param = function(key, value) {
   }
 };
 window.Controller = Controller;
-return Controller;
 });

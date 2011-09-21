@@ -58,5 +58,4 @@ Request.prototype.getEvent = function() {
 };
 
 window.Request = Request;
-return Request;
 });
