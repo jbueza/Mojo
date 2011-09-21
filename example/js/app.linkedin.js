@@ -1,6 +1,6 @@
-ServiceLocator.addService(new Service('GetUserProfile', 'data/success.json'));
+mojo.ServiceLocator.addService(new mojo.Service('GetUserProfile', 'data/success.json'));
 
-var app = MOJO.create({ baseSrc: 'js/' });
+var app = mojo.create({ baseSrc: 'js/' });
 
 app
   .configure('appName', 'LinkedInApp')

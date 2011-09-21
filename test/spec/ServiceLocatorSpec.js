@@ -5,9 +5,13 @@ describe("Service Locator", function() {
      ServiceLocator.removeServices();
      ServiceLocator.addService(service);
   });
+
+  it("should ensure that the Mojo framework isn't stealing ServiceLocator", function() {
+    expect(window.ServiceLocator).toBeUndefined();
+  })
   
   it("should always exist in the window context", function() {
-    expect(window.ServiceLocator).toBeDefined();
+    expect(window.mojo.ServiceLocator).toBeDefined();
   });
   
   it("should have the capability to add new service", function() {
@@ -23,6 +27,10 @@ describe("Service Locator", function() {
     expect(ServiceLocator.getService('GetUsers')).toBeUndefined();
   });
   
+  it("shoudl have the capability to return all services", function() {
+    expect(ServiceLocator.getServices()).toBeDefined();
+  });
+
   it("should have the capability to remove all services", function() {
     ServiceLocator.addService(new mojo.Service("GetCats", "data/user/{userId}", { template: true}));
     ServiceLocator.addService(new mojo.Service("GetDogs", "data/user/{userId}", { template: true}));
@@ -30,5 +38,7 @@ describe("Service Locator", function() {
     ServiceLocator.removeServices();
     expect(ServiceLocator.services).toEqual({});
   });
+
+
   
 });

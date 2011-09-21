@@ -91,7 +91,15 @@
     }, 25);
     
   };
-  
+  /* 
+   * Synchronously load a module
+   */
+  mojo.requireSync = function requireSync(name) {
+    var path = mojo.options.baseSrc + mojo.resolve(name) + ".js";
+    $.ajaxSetup({async: false});
+    $.getScript(path);
+    $.ajaxSetup({async: true});
+  };
   mojo.fetch = function(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);

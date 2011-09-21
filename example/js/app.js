@@ -1,7 +1,10 @@
-ServiceLocator.addService(new Service('UpdateProfile',  'data/success.json'));
-ServiceLocator.addService(new Service('GetSXPBlogs',    'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true }));
+mojo.ServiceLocator.addService(new mojo.Service('UpdateProfile',  'data/success.json'));
+mojo.ServiceLocator.addService(new mojo.Service('GetSXPBlogs',    'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true }));
 
-var app = MOJO.create({ baseSrc: 'js/' });
+
+
+var app = mojo.create({ baseSrc: 'js/' });
+mojo.requireSync('ExampleApp.service.Locator');
 
 app
   .configure('appName', 'ExampleApp')

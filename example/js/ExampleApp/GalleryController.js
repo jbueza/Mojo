@@ -5,7 +5,7 @@
  * @class   Gallery Controller
  * @author  Jaime Bueza
  */
-MOJO.define('ExampleApp.GalleryController', {
+mojo.define('ExampleApp.GalleryController', {
   events: [
   
   ],
