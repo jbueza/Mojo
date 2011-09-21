@@ -14,14 +14,14 @@
       <h2>News Articles from Microsoft SXP Feeds</h2>
       <p>This example shows how you can use the Service Locator's JSONP capability to fetch remote feeds and render them
         using the tmpl plugin.</p>
-      <ul class="blogs"></ul>
-    
-      <script id="blogTemplate" type="text/x-jquery-tmpl">
+      <ul class="blogs" modelSource="ms.blogs">
+        {{#Items}}
         <li class="blog">
-          <h3><a href="${Link}" title="${Title}">${Title}</a></h3>
-          <span>${Author}</span>
+          <h3><a href="{{Link}}" title="{{Title}}">{{Title}}</a></h3>
+          <span>{{Author}}</span>
         </li>
-      </script>
+        {{/Items}}
+      </ul>
     
     </div>
 

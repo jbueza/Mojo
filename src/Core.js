@@ -48,8 +48,8 @@
     if ('undefined' == typeof Mustache) return false;
     if ('undefined' == typeof template || !template) throw new Error("'template' is required");
     if ('undefined' == typeof data || !data) throw new Error("'data' is required");
-
-    Mustache.to_html(template, data, partials)
+  
+    return Mustache.to_html(template, data, partials);
   };
   /* 
    * Returns an array of DOM nodes

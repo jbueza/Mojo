@@ -15,7 +15,6 @@ MOJO.define('LinkedInApp.LoginController', {
           result = result.values[0];
 
           $( "#profileTemplate" ).tmpl( result ).appendTo( ".profile-info" );
-
         });
     },
     Login: function(requestObj) {

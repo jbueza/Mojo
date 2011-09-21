@@ -3,11 +3,8 @@ mojo.define('ExampleApp.BlogsController', {
   methods: {},
   after: {
     Start: function() {
-      var context = this.getContextElement();
       window.renderBlogs = function(data) {
-
-        $('#blogTemplate').tmpl(data.Items).appendTo("ul.blogs", context);
-        
+        mojo.Model.set('ms.blogs', data);
       }
       mojo.ServiceLocator.getService('GetSXPBlogs').invoke({
           MediaType: 0

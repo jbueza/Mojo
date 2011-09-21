@@ -4,27 +4,28 @@ mojo.define("mojo.Model", function() {
 
 var $ = jQuery, Model = function() {};
     
-Model.set = function set(key, value) {
+Model.set = function(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
-  var models = MOJO.query('*[modelSource="' + + '"]');
+  var models = mojo.query('*[modelSource="' + key + '"]');
   if (models.length) {
-  	models.each(function(index, model) {
-  		console.log(model);
-  	});
+
+      var content = mojo.template($(models).html(), value);
+  		$(models).html(content);
+
   } else {
-  	MOJO._namespace(key);
+  	mojo._namespace(key);
   	window[key] = value;
   }
   
 };
 
-Model.get = function get(key) {
-  return MOJO.ModelRegistry[key];
+Model.get = function(key) {
+  return mojo.ModelRegistry[key];
 };
 
-Model.remove = function remove(key) {
-  delete MOJO.ModelRegistry[key];
+Model.remove = function(key) {
+  delete mojo.ModelRegistry[key];
 };
   
   window.mojo.Model = Model;

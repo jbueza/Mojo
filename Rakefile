@@ -11,12 +11,17 @@ OUTPUT_FILE_MINIFIED = "mojo.js"
 YUICOMPRESSOR = "build/yuicompressor.jar"
 
 desc "Compiles solution and runs unit tests"
-task :default => [:clean, :version, :build, :specs]
+task :default => [:clean, :version, :build, :docs, :specs]
 
 desc "Removes the build directory"
 task :clean do
   puts "Deleting ..."
   rm_rf OUTPUT
+end
+
+desc "Generate documentation from markdown files"
+task :docs do
+  system("node doc/generator/generate.js")
 end
 
 desc "Outputs the current version of Blast Mojo"
