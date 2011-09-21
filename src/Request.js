@@ -7,7 +7,7 @@
  *
  * @author Jaime Bueza
  */
-MOJO.define('Request', function() {
+mojo.define('mojo.Request', function() {
 
 "use strict"; 
 var $ = jQuery;
@@ -57,5 +57,5 @@ Request.prototype.getEvent = function() {
   return this.eventObj;
 };
 
-window.Request = Request;
+window.mojo.Request = Request;
 });

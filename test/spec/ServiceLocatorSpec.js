@@ -1,6 +1,6 @@
 describe("Service Locator", function() {
-  var service = new Service("GetUsers", "data/user/{userId}", { template: true});
-  
+  var service = new mojo.Service("GetUsers", "data/user/{userId}", { template: true});
+  var ServiceLocator = mojo.ServiceLocator;
   beforeEach(function() {
      ServiceLocator.removeServices();
      ServiceLocator.addService(service);
@@ -24,9 +24,9 @@ describe("Service Locator", function() {
   });
   
   it("should have the capability to remove all services", function() {
-    ServiceLocator.addService(new Service("GetCats", "data/user/{userId}", { template: true}));
-    ServiceLocator.addService(new Service("GetDogs", "data/user/{userId}", { template: true}));
-    ServiceLocator.addService(new Service("GetFrogs", "data/user/{userId}", { template: true}));
+    ServiceLocator.addService(new mojo.Service("GetCats", "data/user/{userId}", { template: true}));
+    ServiceLocator.addService(new mojo.Service("GetDogs", "data/user/{userId}", { template: true}));
+    ServiceLocator.addService(new mojo.Service("GetFrogs", "data/user/{userId}", { template: true}));
     ServiceLocator.removeServices();
     expect(ServiceLocator.services).toEqual({});
   });

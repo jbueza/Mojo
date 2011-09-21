@@ -1,11 +1,11 @@
 describe("Service", function() {
-  var testService = new Service("GetUsers", "data/user/{userId}", { template: true})
-    , getTestService = new Service("GetUsers", "data/user.js")
-    , postTestService = new Service("AddUser", "data/user.js")
-    , delTestService = new Service("DeleteUser", "data/user.js")
-    , updateTestService = new Service("UpdateUser", "data/user.js")
-    , jsonpTestService = new Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
-    , brokenService = new Service("Broken", "data/broken.js");
+  var testService = new mojo.Service("GetUsers", "data/user/{userId}", { template: true})
+    , getTestService = new mojo.Service("GetUsers", "data/user.js")
+    , postTestService = new mojo.Service("AddUser", "data/user.js")
+    , delTestService = new mojo.Service("DeleteUser", "data/user.js")
+    , updateTestService = new mojo.Service("UpdateUser", "data/user.js")
+    , jsonpTestService = new mojo.Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
+    , brokenService = new mojo.Service("Broken", "data/broken.js");
   
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
@@ -39,7 +39,7 @@ describe("Service", function() {
   });
 
   it("should allow developers to set the contentType to html", function() {
-    var htmlService = new Service("Partial", "data/markup.html", { contentType: "text/html" });
+    var htmlService = new mojo.Service("Partial", "data/markup.html", { contentType: "text/html" });
     htmlService.invoke(null, function(err, data) { expect(data).toBe('<p>Hello World</p>'); }, null);
   });
   
@@ -56,7 +56,7 @@ describe("Service", function() {
   });
   
   it("should have templating off by default", function() {
-    var testDefaultService = new Service("GetWhat", "/api/test");
+    var testDefaultService = new mojo.Service("GetWhat", "/api/test");
     expect(testDefaultService.option('template')).toBeFalsy();
   });
 

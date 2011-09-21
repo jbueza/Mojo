@@ -1,4 +1,4 @@
-var app = MOJO.create({ baseSrc: 'js/' });
+var app = mojo.create({ baseSrc: 'js/' });
 
 app
   .configure('pluginSrc', 'js/lib/plugins/')  

@@ -4,7 +4,7 @@ describe("Controller", function() {
     , params = { user: 'jbueza'};
     
   beforeEach(function() {
-    controller = new Controller();
+    controller = new mojo.Controller();
     controller.initialize(element, 'TestController', params);
   });
 

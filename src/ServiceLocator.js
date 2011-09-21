@@ -4,7 +4,7 @@
                   http://java.sun.com/blueprints/corej2eepatterns/Patterns/ServiceLocator.html
  * @class         ServiceLocator
  */
-MOJO.define('ServiceLocator', function() {
+mojo.define('ServiceLocator', function() {
 
 "use strict"; 
 var $ = jQuery;
@@ -26,6 +26,6 @@ var ServiceLocator = {
 };
 
 
-window.ServiceLocator = ServiceLocator;
-
+window.mojo.ServiceLocator = ServiceLocator;
+if (window.MOJO) window.MOJO.ServiceLocator = ServiceLocator;
 });

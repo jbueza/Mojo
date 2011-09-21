@@ -1,32 +1,25 @@
 /* 
- *
  * @author Jaime Bueza
  */
-MOJO.define('MOJO.Messaging', function() {
+mojo.define('mojo.Messaging', function() {
 "use strict";
 
 var $ = jQuery
-  , storage = $({})
+  , messageStore = $({})
   , Messaging = function() {};
 
 Messaging.subscribe = function() {
-  storage.bind.apply( storage, arguments );
+  messageStore.bind.apply( messageStore, arguments );
 };
 
 Messaging.unsubscribe = function() {
-  storage.unbind.apply( storage, arguments );
+  messageStore.unbind.apply( messageStore, arguments );
 };
 
 Messaging.publish = function() {
-  storage.trigger.apply( storage, arguments );
+  messageStore.trigger.apply( messageStore, arguments );
 };
 
-
-('undefined' == typeof window) ? process.MOJO.Messaging = Messaging : window.MOJO.Messaging = Messaging;
-window.MOJO.Messaging = Messaging;
-return Messaging;
-
-  
-  
-  
+window.mojo.Messaging = Messaging;  
+if (window.MOJO) window.MOJO.Messaging = Messaging;
 });

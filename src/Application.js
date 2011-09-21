@@ -7,7 +7,7 @@
  * 
  * @author Jaime Bueza
  */
-MOJO.define('Application', function() {
+mojo.define('mojo.Application', function() {
 
 "use strict";
 
@@ -77,11 +77,11 @@ Application.prototype.setupController = function setupController(context, contro
   
   var sizzleContext = $(context);
 
-  var controllerObj = MOJO.controllers[controller];
-  var abstractController = new Controller()
+  var controllerObj = mojo.controllers[controller];
+  var abstractController = new mojo.Controller()
     , controllerObj = $.extend(controllerObj, controllerObj.methods)
     , controllerObj = $.extend(controllerObj, abstractController);
-  MOJO.controllers[controller] = controllerObj;
+  mojo.controllers[controller] = controllerObj;
   
   if ( typeof controllerObj == 'undefined') throw new Error("Undefined Controller @ ", controller);
   controllerObj.initialize(context, controller, params);
@@ -119,15 +119,15 @@ Application.prototype.connectControllers = function connectControllers() {
     }
     
     $(silos).each(function(i, silo) {
-      if (!MOJO.controllers.hasOwnProperty(silo.controller)) { 
+      if (!mojo.controllers.hasOwnProperty(silo.controller)) { 
         controllers2load.push(silo.controller);
       } else {
-        MOJO._loaded[silo.controller] = silo.controller;
+        mojo._loaded[silo.controller] = silo.controller;
       }
     });
   });
   
-  MOJO.require($.unique(controllers2load), function() {
+  mojo.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
     
       if (self.options.environment == 'dev' && self.options.logging) try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
@@ -137,7 +137,7 @@ Application.prototype.connectControllers = function connectControllers() {
         self.setupController(mapping.context, silo.controller, silo.params);
       });
       
-      MOJO.Messaging.publish("/app/start");
+      mojo.Messaging.publish("/app/start");
     
     });      
   });
@@ -148,7 +148,7 @@ Application.prototype.getPlugins = function(callback) {
    
    if (!self.options.pluginsAsync) $.ajaxSetup({async: false});
    $(self.options.plugins).each(function(index, plugin) {
-     MOJO.fetch(path + plugin + ".js");
+     mojo.fetch(path + plugin + ".js");
    });
    if (!self.options.pluginsAsync) $.ajaxSetup({async: true});
    if ('undefined' != typeof callback && 'function' == typeof callback) callback.call(self);
@@ -164,7 +164,7 @@ Application.prototype.start = function() {
     self.disconnectControllers(function() {
       if (self.options.plugins.length) { 
         self.getPlugins(function() {
-          MOJO.Messaging.publish("/app/plugins/loaded");
+          mojo.Messaging.publish("/app/plugins/loaded");
           self.connectControllers();
         });
       } else {

@@ -1,5 +1,5 @@
 //setup
-MOJO.define('TestController', {
+mojo.define('TestController', {
   events: [],
   methodS: {},
   after: {
@@ -9,7 +9,7 @@ MOJO.define('TestController', {
 });
 
 describe("Application", function() {
-  var app = MOJO.create();
+  var app = mojo.create();
   app.configure('appName', 'MyTestApp');
   app.configure('pluginSrc', '../example/js/lib/plugins/');
   
@@ -26,14 +26,14 @@ describe("Application", function() {
   });
   it("should find elements through a new selector engine", function() {
     app.configure('selector', jQuery.sub());
-    expect(MOJO.query("div").length).toBeGreaterThan(0);
+    expect(mojo.query("div").length).toBeGreaterThan(0);
   });
   it("should have an onComplete event", function() {
     expect(app.onComplete).toBeDefined();
   });
   
   it("should only initialize controllers when start() is invoked", function() {
-    var a = MOJO.create();
+    var a = mojo.create();
     a.map('#an-element', [ { controller: 'TestController' }]);
     expect($("#an-element")[0].mojoControllers).toBeUndefined();
   });
@@ -49,7 +49,7 @@ describe("Application", function() {
 
   /*
   it("should fetch all plugins that the application is dependent on", function() { 
-    var a = MOJO.create();
+    var a = mojo.create();
     a.configure('pluginSrc', '../example/js/lib/plugins/');
     a.configure('plugins', ['jcarousel']);
     a.configure('pluginsAsync', false);
@@ -60,7 +60,7 @@ describe("Application", function() {
   */
   
   describe("When an application invokes setupController()", function() {
-    var setupApp = MOJO.create();
+    var setupApp = mojo.create();
     it("should throw an error when 'context' parameter is missing()", function() {
       expect(function() {
         setupApp.setupController(null, 'TestController', function() {});
@@ -89,7 +89,7 @@ describe("Application", function() {
     });
     
     it("should allow developers to disconnect all controllers from the application", function() {
-      var newApp = MOJO.create();
+      var newApp = mojo.create();
       jQuery(document.body).append(jQuery("<div id='disconnect-test'>"));
       newApp.map("#disconnect-test", [ { controller: "TestController"} ]).start();
       newApp.disconnectControllers();

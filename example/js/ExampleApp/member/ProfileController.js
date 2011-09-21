@@ -1,4 +1,4 @@
-MOJO.define('ExampleApp.member.ProfileController', {
+mojo.define('ExampleApp.member.ProfileController', {
   events: [
     [ 'context', '.btn-save-profile', 'click', 'Save' ]
   ],

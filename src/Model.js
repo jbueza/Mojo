@@ -1,13 +1,21 @@
-MOJO.define("MOJO.Model", function() {
+mojo.define("mojo.Model", function() {
+
 "use strict";
 
-var $ = jQuery
-    , Model = function() {};
+var $ = jQuery, Model = function() {};
     
 Model.set = function set(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
-  
+  var models = MOJO.query('*[modelSource="' + + '"]');
+  if (models.length) {
+  	models.each(function(index, model) {
+  		console.log(model);
+  	});
+  } else {
+  	MOJO._namespace(key);
+  	window[key] = value;
+  }
   
 };
 
@@ -18,11 +26,7 @@ Model.get = function get(key) {
 Model.remove = function remove(key) {
   delete MOJO.ModelRegistry[key];
 };
-
-
-  ('undefined' == typeof window) ? process.MOJO.Model = Model : window.MOJO.Model = Model;
   
-  window.MOJO.__ModelRegistry = {};
-  window.MOJO.Model = Model;
-  return Model;
+  window.mojo.Model = Model;
+  if (window.MOJO) window.MOJO.Model = window.mojo.Model;
 });

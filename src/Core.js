@@ -4,14 +4,14 @@
   
   var $ = jQuery;
 
-  var MOJO = function() {};
-  MOJO.controllers = {};
-  MOJO.applications = {};
-  MOJO.options = {};
-  MOJO._loaded = [];
+  var mojo = function() {};
+  mojo.controllers = {};
+  mojo.applications = {};
+  mojo.options = {};
+  mojo._loaded = [];
   
-  MOJO.resolve = function(name) {
-    if (!MOJO._namespace._provided[name]) {
+  mojo.resolve = function(name) {
+    if (!mojo._namespace._provided[name]) {
       return name.replace(/\./gi, '/');
     }
     
@@ -20,15 +20,15 @@
   /*
    * @private
    */
-  MOJO._namespace = function(namespace) {
+  mojo._namespace = function(namespace) {
     var list = ('' + namespace).split(/\./)
       , listLength = list.length
       , obj = []
       , context = window || {};
 
-    if (!MOJO._namespace._provided) MOJO._namespace._provided = {};
+    if (!mojo._namespace._provided) mojo._namespace._provided = {};
     
-    if (MOJO._namespace._provided[namespace] == namespace) throw new Error (namespace + " has already been defined.");
+    if (mojo._namespace._provided[namespace] == namespace) throw new Error (namespace + " has already been defined.");
 
 
     for (var i = 0; i < listLength; i += 1) {
@@ -37,7 +37,7 @@
       if (!context[ name ]) {
         obj[i] = name;
         context[name] = function() {};
-        MOJO._namespace._provided[obj.join('.')] = context[ name ];
+        mojo._namespace._provided[obj.join('.')] = context[ name ];
       }
       context = context[ name ];
     }
@@ -46,22 +46,22 @@
   /* 
    * Returns an array of DOM nodes
    */
-  MOJO.query = function() {
-    return jQuery.apply(this, arguments);
+  mojo.query = function() {
+    return $.apply(this, arguments);
   };
   /* 
    * Returns the first element in a node list
    */
-  MOJO.queryFirst = function() {
-    return MOJO.query.apply(this, arguments)[0];
+  mojo.queryFirst = function() {
+    return mojo.query.apply(this, arguments)[0];
   };
-  
+
   /* 
    * Fetch an array of dependencies, then fire a callback when done
    * @param dependencies {Array}
    * @param callback {Function}
    */
-  MOJO.require = function(dependencies, callback) {
+  mojo.require = function(dependencies, callback) {
     if ('undefined' == typeof dependencies || !dependencies) throw new Error("'dependencies' is required");
     if ('undefined' == typeof callback || !callback) throw new Error("'callback' is required");
     
@@ -71,11 +71,11 @@
       , path
       , callbackIndex = 0; 
       
-    var allocated = MOJO.controllers;
+    var allocated = mojo.controllers;
     for ( var i = 0; i < last; i++ ) {
       var dep = dependencies[i];
-      path = MOJO.options.baseSrc + MOJO.resolve(dep) + ".js";
-      MOJO._loaded.push(dep);
+      path = mojo.options.baseSrc + mojo.resolve(dep) + ".js";
+      mojo._loaded.push(dep);
       $.getScript(path, function() {
         //these are all loaded asynchronously
         callbackIndex++;  //callback counter so we can invoke a resolution event
@@ -92,26 +92,26 @@
     
   };
   
-  MOJO.fetch = function(path, callback) {
+  mojo.fetch = function(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
   };
 
-  MOJO.define = function(id, factory) { 
+  mojo.define = function(id, factory) { 
     if ('undefined' == typeof id || !id) throw new Error("'id' is required");
     if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
     if ('function' == typeof factory) {
       factory = factory.call(this);
     }
     if('string' == typeof id) {
-      MOJO._namespace( id );
-      MOJO._loaded[ id ] = factory;
-      MOJO.controllers[ id ] = factory;
+      mojo._namespace( id );
+      mojo._loaded[ id ] = factory;
+      mojo.controllers[ id ] = factory;
     }    
   };
 
-  MOJO.create = function(options) {
+  mojo.create = function(options) {
     
     if ('undefined' == typeof options) {
       options = {};
@@ -121,6 +121,6 @@
     return new Application();
   };
   
-  window.MOJO = MOJO;
+  window.mojo = mojo;
    
 })(window, document);

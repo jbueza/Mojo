@@ -10,7 +10,7 @@
  * @constructor
  *
  */
-MOJO.define('Controller', function() {  
+mojo.define('mojo.Controller', function() {  
 
 "use strict";
 
@@ -47,10 +47,10 @@ Controller.prototype.initialize = function(context, controllerName, params) {
     
     $(root).delegate(selector, eventName, function(evt) {
  
-      var requestObj = new Request($(this).data() || {}, this, evt, self);
+      var requestObj = new mojo.Request($(this).data() || {}, this, evt, self);
 
       if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
-      self.methods[commandName].call(MOJO.controllers[controllerName], requestObj);
+      self.methods[commandName].call(mojo.controllers[controllerName], requestObj);
       if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
     });
   });
@@ -82,5 +82,6 @@ Controller.prototype.param = function(key, value) {
     return this.params[key];
   }
 };
-window.Controller = Controller;
+window.mojo.Controller = Controller;
+if (window.MOJO) window.MOJO.Controller = Controller;
 });

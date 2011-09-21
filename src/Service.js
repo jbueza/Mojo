@@ -3,7 +3,7 @@
 * @author Jaime Bueza
 * Represents a service call
 */
-MOJO.define('Service', function() {
+mojo.define('mojo.Service', function() {
   var $ = jQuery;
   
   function Service(name, uri, options) {
@@ -121,5 +121,6 @@ MOJO.define('Service', function() {
     return content;
   };
 
-  window.Service = Service;
+  window.mojo.Service = Service;
+  if (window.MOJO) window.MOJO.Service = Service;
 });

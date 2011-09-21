@@ -1,4 +1,4 @@
-MOJO.define('ExampleApp.BlogsController', {
+mojo.define('ExampleApp.BlogsController', {
   events: [],
   methods: {},
   after: {
@@ -9,7 +9,7 @@ MOJO.define('ExampleApp.BlogsController', {
         $('#blogTemplate').tmpl(data.Items).appendTo("ul.blogs", context);
         
       }
-      ServiceLocator.getService('GetSXPBlogs').invoke({
+      mojo.ServiceLocator.getService('GetSXPBlogs').invoke({
           MediaType: 0
         , SubMediaType: 0
         , pageSize: 3
