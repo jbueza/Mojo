@@ -105,9 +105,6 @@
       factory = factory.call(this);
     }
     if('string' == typeof id) {
-      if ( MOJO.controllers.hasOwnProperty(id) ) {
-        try { console.log("Multiple definitions found for: ", id); } catch (err) {}
-      }
       MOJO._namespace( id );
       MOJO._loaded[ id ] = factory;
       MOJO.controllers[ id ] = factory;

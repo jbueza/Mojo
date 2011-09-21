@@ -34,7 +34,8 @@ MOJO.define('Service', function() {
   /// <param name="scope" type="Object">Execution context of the callback, can be any object</param>
   Service.prototype.invoke = function (params, callback, scope) {
 
-    var self = this, $ = jQuery;
+    var self = this;
+    
     var options = self.getOptions() || {},
             method = options.method,
             uri = self.getURI(),
