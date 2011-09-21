@@ -43,8 +43,10 @@ MOJO.define('Service', function() {
 
     if (options.template) {
       uri = self.parse(uri, params);
-      if (method == 'get') params = null; //blank out params now since they're already in the template
+      //blank out params now since they're already in the template
       //but only if it's an http GET
+      if (method == 'get') params = null; 
+      
     }
 
     $.ajaxSetup({
