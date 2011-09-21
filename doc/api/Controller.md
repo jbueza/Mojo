@@ -24,7 +24,7 @@ This is a basic example of how to create a Controller (implementation silo).
  * @class   Login Controller
  * @author  Jaime Bueza
  */
-MOJO.define('ExampleApp.LoginController', {
+mojo.define('ExampleApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
     , ['context', '.btn-logout', 'click', 'Logout']
@@ -49,7 +49,7 @@ Leverage Aspect-Oriented Programming (provide advice to aspects before or after)
  * @class   Login Controller
  * @author  Jaime Bueza
  */
-MOJO.define('ExampleApp.LoginController', {
+mojo.define('ExampleApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
     , ['context', '.btn-logout', 'click', 'Logout']

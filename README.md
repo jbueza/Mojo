@@ -23,7 +23,7 @@ code, and structural integrity.
 1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
 
 ``` js
-var app = MOJO.create('ExampleApp', { baseSrc: 'js/' });
+var app = mojo.create({ baseSrc: 'js/' });
 
 app
   .configure('appSrc', 'js/')

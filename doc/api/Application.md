@@ -1,7 +1,7 @@
 # Application
 
-<pre><code>//MOJO.create() returns you an application instance.
-var app = MOJO.create();</code></pre>
+<pre><code>//mojo.create() returns you an application instance.
+var app = mojo.create();</code></pre>
 
 ## API
 
@@ -51,7 +51,7 @@ N/A (Future)
 
 ### getPlugins(onComplete)
 
-Provides the ability to fetch all application-specific plugins prior to starting the application. This method piggybacks off of MOJO.require() to fetch the plugins.
+Provides the ability to fetch all application-specific plugins prior to starting the application. This method piggybacks off of mojo.require() to fetch the plugins.
 
 ### start()
 

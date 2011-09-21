@@ -31,7 +31,7 @@ Returns the event object during the request.
 ## Basic Usage
 
 <pre>
-  <code>MOJO.define('ExampleApp.LoginController', {
+  <code>mojo.define('ExampleApp.LoginController', {
     events: [
         ['context', '.btn-login', 'click', 'Login']
     ],

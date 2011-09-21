@@ -30,18 +30,18 @@ invoke services at different endpoints without changing service URLs in several 
 
 ### 1. Setup your service registry for your application
 
-<pre><code>
-ServiceLocator.addService(new Service('GetUsers',     '/users'));
-ServiceLocator.addService(new Service('AddFollower',  '/user/follow'));
-ServiceLocator.addService(new Service('UpdateUser', '/user/update'));
-ServiceLocator.addService(new Service('GetUser',   '/users/${id}', { template: true }));
-</code></pre>
+```
+mojo.ServiceLocator.addService(new mojo.Service('GetUsers',     '/users'));
+mojo.ServiceLocator.addService(new mojo.Service('AddFollower',  '/user/follow'));
+mojo.ServiceLocator.addService(new mojo.Service('UpdateUser', '/user/update'));
+mojo.ServiceLocator.addService(new mojo.Service('GetUser',   '/users/${id}', { template: true }));
+```
 
 ### 2. Invoke your services through a click
 
 <pre><code>//Super basic example of using the Service Locator
 $("#btn-follow-user").click(function(event) {
-  ServiceLocator.getService('AddFollower').invoke({ userId: $(this).data('userId') }, function(err, data) {
+  mojo.ServiceLocator.getService('AddFollower').invoke({ userId: $(this).data('userId') }, function(err, data) {
     //success!
   });
 });
