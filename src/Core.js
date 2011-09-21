@@ -45,7 +45,7 @@
   };
 
   mojo.template =function(template, data, partials) {
-    if ('undefined' == typeof Mustache) throw new Error("'Mustache.js' templating library is required");
+    if ('undefined' == typeof Mustache) return false;
     if ('undefined' == typeof template || !template) throw new Error("'template' is required");
     if ('undefined' == typeof data || !data) throw new Error("'data' is required");
 

@@ -41,11 +41,16 @@ describe("Core", function() {
     });
   });
   describe("When using the template functionality", function() {
-    it("should throw an error if you invoke mojo.template() without Mustache.js", function() {
-      expect(function() {
-        mojo.template();
-      }).toThrow("'Mustache.js' templating library is required");
+    it("should ensure that Mustache.js is loaded", function() {
+      expect(window.Mustache).toBeDefined();
     });
+    it("should return false if Mustache.js is not loaded", function() {
+      if ('undefined' == typeof window.Mustache) {
+        expect(mojo.template()).toBeFalsy();
+      } else {
+        expect(window.Mustache).toBeDefined();
+      }
+    })
     it("should throw an error if the 'template' is null", function() {
       expect(function() {
         mojo.template(null, {}, {});
