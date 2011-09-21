@@ -44,10 +44,11 @@
     return context;
   };
 
-  mojo.template =function template(template, data, partials) {
-    if ('undefined' == typeof Mustache) {
-      return false;
-    }
+  mojo.template =function(template, data, partials) {
+    if ('undefined' == typeof Mustache) throw new Error("'Mustache.js' templating library is required");
+    if ('undefined' == typeof template || !template) throw new Error("'template' is required");
+    if ('undefined' == typeof data || !data) throw new Error("'data' is required");
+
     Mustache.to_html(template, data, partials)
   };
   /* 
@@ -101,7 +102,7 @@
   /* 
    * Synchronously load a module
    */
-  mojo.requireSync = function requireSync(name) {
+  mojo.requireSync = function(name) {
     var path = mojo.options.baseSrc + mojo.resolve(name) + ".js";
     $.ajaxSetup({async: false});
     $.getScript(path);

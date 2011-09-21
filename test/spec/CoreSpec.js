@@ -35,9 +35,16 @@ describe("Core", function() {
     });
   });
 
+  describe("When using requireSync", function() {
+    it("should load a module synchronously", function() {
+      
+    });
+  });
   describe("When using the template functionality", function() {
-    it("should return false if you invoke mojo.template() without Mustache.js", function() {
-      expect(mojo.template({}, {}, {})).toBeFalsy();
+    it("should throw an error if you invoke mojo.template() without Mustache.js", function() {
+      expect(function() {
+        mojo.template();
+      }).toThrow("'Mustache.js' templating library is required");
     });
     it("should throw an error if the 'template' is null", function() {
       expect(function() {

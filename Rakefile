@@ -2,8 +2,9 @@ require 'rubygems'
 require 'rake/clean'
 require 'launchy'
 
-BLAST_MOJO_VERSION = "v0.1.6"
+BLAST_MOJO_VERSION = "v0.2.0"
 SRC = "src"
+SUPPORT = "support"
 OUTPUT = "dist"
 OUTPUT_FILE = "mojo.js.uncompressed.js"
 OUTPUT_FILE_MINIFIED = "mojo.js"
@@ -26,7 +27,7 @@ end
 desc "Concatenates and minifies Mojo source"
 task :build => :clean do
   
-  mojo_classes =  [ "LICENSE", "#{SRC}/Core.js", "#{SRC}/Messaging.js", "#{SRC}/Model.js", "#{SRC}/Request.js", "#{SRC}/Controller.js", "#{SRC}/Application.js", "#{SRC}/Service.js", "#{SRC}/ServiceLocator.js" ]
+  mojo_classes =  [ "LICENSE", "#{SUPPORT}/mustache.js", "#{SRC}/Core.js", "#{SRC}/Messaging.js", "#{SRC}/Model.js", "#{SRC}/Request.js", "#{SRC}/Controller.js", "#{SRC}/Application.js", "#{SRC}/Service.js", "#{SRC}/ServiceLocator.js" ]
 
   Dir.mkdir OUTPUT
   
