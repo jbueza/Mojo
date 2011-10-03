@@ -49,9 +49,18 @@ Controller.prototype.initialize = function(context, controllerName, params) {
  
       var requestObj = new mojo.Request($(this).data() || {}, this, evt, self);
 
-      if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') self.before[commandName].call(self, requestObj);
+      if (typeof self.before != 'undefined' && typeof self.before[commandName] != 'undefined') {
+        self.before[commandName].call(self, requestObj);
+      }
+      
+      if (!self.methods[commandName] || 'undefined' == typeof self.methods[commandName]) {
+        throw new Error("Command does not exist within Controller");
+      }
       self.methods[commandName].call(mojo.controllers[controllerName], requestObj);
-      if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') self.after[commandName].call(self, requestObj);
+      
+      if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') {
+        self.after[commandName].call(self, requestObj);
+      }
     });
   });
   
