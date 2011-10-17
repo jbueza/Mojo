@@ -9,10 +9,14 @@ Model.set = function(key, value) {
   //if it's not an HTML element, then we can just store it in DOM
   var models = mojo.query('*[modelSource="' + key + '"]');
   if (models.length) {
-
-      var content = mojo.template($(models).html(), value);
-  		$(models).html(content);
-
+      
+      $(models).each(function(index, model) {
+        
+        model.mojoTemplate = $(model).html();
+        $(model).html("");
+        var content = mojo.template(model.mojoTemplate, value);
+        $(models).html(content);
+      });
   } else {
   	mojo._namespace(key);
   	window[key] = value;
