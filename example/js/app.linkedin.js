@@ -5,6 +5,7 @@ var app = mojo.create({ baseSrc: 'js/' });
 app
   .configure('appName', 'LinkedInApp')
   .configure('environment', 'dev')
+  .configure('logging', true)
   .configure('pluginSrc', 'js/lib/plugins/')
   .configure('plugins', ['tmpl'])  
 

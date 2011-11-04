@@ -10,6 +10,7 @@ app
   .configure('appName', 'ExampleApp')
   .configure('locale', 'en_US')
   .configure('environment', 'dev')
+  .configure('logging', true)
   .configure('pluginSrc', 'js/lib/plugins/')  
   .configure('plugins', ['jqmodal', 'jcarousel', 'tmpl'])
 

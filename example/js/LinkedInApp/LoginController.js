@@ -2,7 +2,7 @@
  * @class   LinkedIn Login Controller
  * @author  Jaime Bueza
  */
-MOJO.define('LinkedInApp.LoginController', {
+mojo.define('LinkedInApp.LoginController', {
   events: [
       ['context', '.btn-login', 'click', 'Login']
     , ['context', '.btn-logout', 'click', 'Logout'] 
@@ -10,15 +10,12 @@ MOJO.define('LinkedInApp.LoginController', {
   ],
   methods: {
     FetchProfile: function(requestObj) {
-      IN.API.Profile("me")
-        .result(function(result) {
+      IN.API.Profile("me").result(function(result) {
           result = result.values[0];
-
-          $( "#profileTemplate" ).tmpl( result ).appendTo( ".profile-info" );
-        });
+          mojo.Model.set('user.profile', result);
+      });
     },
     Login: function(requestObj) {
-      
       var self = this;
       IN.User.authorize(function(response) {
         console.log("Logged into LinkedIn");
@@ -35,10 +32,10 @@ MOJO.define('LinkedInApp.LoginController', {
     Start: function() {
       //Initialization
       IN.Event.onOnce(IN, 'auth', function() {
-        MOJO.Messaging.publish("/linkedin/user/login");
+        mojo.Messaging.publish("/linkedin/user/login");
       }, this, {});
       IN.Event.onOnce(IN, 'logout', function() {
-        MOJO.Messaging.publish("/linkedin/user/logout");
+        mojo.Messaging.publish("/linkedin/user/logout");
       }, this, {});
       
       

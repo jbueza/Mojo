@@ -14,33 +14,25 @@
     
     <button class="btn-fetch-profile">Fetch Profile</button>
     
-    <div class="profile-info"></div>
-    
-    <script id="profileTemplate" type="text/x-jquery-tmpl">
-      <img src="${pictureUrl}" />
+    <div class="profile-info" modelSource="user.profile">
+
       <dl>
         <dt>First name:</dt>
-        <dd>${firstName}</dd>
+        <dd>{{firstName}}</dd>
 
         <dt>Last name:</dt>
-        <dd>${lastName}</dd>
+        <dd>{{lastName}}</dd>
         
         <dt>Title:</dt>
-        <dd>${headline}</dd>
+        <dd>{{headline}}</dd>
         
       </dl>        
-    </script>
-    
-    
-
-    
-    
-    
-  </div>
-  <div class="user-profile">
-
-  </div>
+      
+      
+    </div>
   
+    
+  </div>
   
   <script type="text/javascript" src="http://platform.linkedin.com/in.js"> 
     api_key: yVfq78DuQ342t1JrZGhWSKdmFPMAOm_6-Yzsti0QatFLNJHlqcqyvvHml4H696xF
