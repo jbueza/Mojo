@@ -3,7 +3,8 @@ mojo.define("mojo.Model", function() {
 "use strict";
 
 var $ = jQuery, Model = function() {};
-    
+  
+
 Model.set = function(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
@@ -21,7 +22,6 @@ Model.set = function(key, value) {
   	mojo._namespace(key);
   	window[key] = value;
   }
-  
 };
 
 Model.get = function(key) {
@@ -33,5 +33,6 @@ Model.remove = function(key) {
 };
   
   window.mojo.Model = Model;
+  window.mojo.ModelRegistry = {};
   if (window.MOJO) window.MOJO.Model = window.mojo.Model;
 });

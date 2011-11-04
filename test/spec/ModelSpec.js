@@ -11,5 +11,12 @@ describe("mojo.Model", function() {
     expect(window.mojo.Model).toBeDefined();
   });
   
+  it("should always have a set method", function() {
+    expect(window.mojo.Model.set).toBeDefined();
+  });
+
+  it("should always have a get method", function() {
+    expect(window.mojo.Model.get).toBeDefined();
+  });
 
 });
