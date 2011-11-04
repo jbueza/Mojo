@@ -44,6 +44,10 @@ Application.prototype.onComplete = function() {};
  * @returns application instance { Object }
  */
 Application.prototype.configure = function(key, value) {
+  
+  if ( !arguments.length ) throw new Error("passing no parameters into configure() is invalid");
+  if ( arguments.length > 2 ) throw new Error("passing too many parameters into configure() is invalid");
+  
   if (arguments.length > 1) {
     this.options[key] = value;
     if (this.options.environment == 'dev' && ('undefined' != typeof this.options.logging && this.options.logging)) try { console.info("Configure: ", key, " -> ", value); } catch(err) {}
@@ -61,6 +65,19 @@ Application.prototype.configure = function(key, value) {
  * 
  */
 Application.prototype.map = function Map(selector, callback) {
+  
+  if ( 'undefined' == typeof selector || !selector ) throw new Error("'selector' is a required parameter");
+  if ( 'undefined' == typeof callback || !callback ) throw new Error("'callback' is a required parameter");
+  if ( 'string' != typeof selector ) throw new Error("'selector' needs to be a String");
+  if ( $.isArray(callback) && callback.length === 0 ) throw new Error("'callback' is an array and is required to have controllers") 
+  
+  if ( $.isArray(callback) ) {
+    $(callback).each(function(index, controller) {
+      if (!controller.hasOwnProperty('controller')) throw new Error("'callback' must contain only Mojo Controller objects");
+    });
+    
+  }
+  
   var self = this;
   var elements = $(selector);
   elements.each(function(index, item) {

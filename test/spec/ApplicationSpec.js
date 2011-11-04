@@ -44,6 +44,7 @@ describe("Application", function() {
     expect($("#an-element")[0].mojoControllers).toBeUndefined();
   });
   
+
   it("should be able to bind a dom element with a particular selector", function() { 
     app.map('#an-element', [ { controller: "TestController"} ]);
     app.start();
@@ -65,20 +66,66 @@ describe("Application", function() {
   });
   */
   
-  describe("When an application invokes setupController()", function() {
-    var setupApp = mojo.create();
-    it("should throw an error when 'context' parameter is missing()", function() {
+  
+  
+  describe("Error Cases", function() {
+    it("should throw an error when map() is called without a selector parameter", function() {
       expect(function() {
-        setupApp.setupController(null, 'TestController', function() {});
-      }).toThrow("'context' is a required parameter");
+        var a = mojo.create();
+        a.map(null, [{ controller: 'TestController' }]);
+      }).toThrow("'selector' is a required parameter");
+    });
+
+    it("should throw an error when map() is called without a callback parameter", function() {
+      expect(function() {
+        var a = mojo.create();
+        a.map(".test", null);
+      }).toThrow("'callback' is a required parameter");
+    });
+    it("should throw an error when map() is called with a non-String selector argument", function() {
+      expect(function() {
+        var a = mojo.create();
+        a.map({}, [{ controller: "TestController" }]);
+      }).toThrow("'selector' needs to be a String");
+    });
+    it("should throw an error when map() is called with an empty array as its callback argument", function() {
+      expect(function() {
+        var a = mojo.create();
+        a.map(".test", []);
+      }).toThrow("'callback' is an array and is required to have controllers");
     });
     
-    it("should throw an error when 'controller' parameter is missing()", function() {
+    it("should throw an error when configure() is called without arguments", function() {
       expect(function() {
-        setupApp.setupController(jQuery("<div>"), null, function() {});
-      }).toThrow("'controller' is a required parameter");
+        var testAppConfigureNoParams = mojo.create();
+        testAppConfigureNoParams.configure();
+      }).toThrow("passing no parameters into configure() is invalid");
+    });
+    it("should throw an error when configure() is called with too many arguments", function() {
+      expect(function() {
+        var testAppConfigureTooManyParams = mojo.create();
+        testAppConfigureTooManyParams.configure({}, {}, {});
+      }).toThrow("passing too many parameters into configure() is invalid");
+    });
+
+    
+    describe("When an application invokes setupController()", function() {
+      var setupApp = mojo.create();
+      it("should throw an error when 'context' parameter is missing()", function() {
+        expect(function() {
+          setupApp.setupController(null, 'TestController', function() {});
+        }).toThrow("'context' is a required parameter");
+      });
+
+      it("should throw an error when 'controller' parameter is missing()", function() {
+        expect(function() {
+          setupApp.setupController(jQuery("<div>"), null, function() {});
+        }).toThrow("'controller' is a required parameter");
+      });
     });
   });
+  
+
   
   describe("When an application disconnects its associated controllers when invoking disconnectControllers()", function() {
     
