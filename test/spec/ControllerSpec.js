@@ -20,13 +20,25 @@ describe("Controller", function() {
     expect(controller.controllerClass).toEqual('TestController');
   });
   
-  it("should return a context element when callling getContextElement()", function() { 
+  it("should return the context element getContextElement()", function() { 
     expect(controller.getContextElement()).toBeDefined();
   });
   
   describe("events", function() {
     it("should have an 'onInit' event", function() { 
       expect(controller.onInit).toBeDefined();
+    });
+    it("should have an 'onComplete' event", function() {
+      expect(controller.onComplete).toBeDefined();
+    });
+    it("should have an 'onParamChange' event", function() {
+      expect(controller.onParamChange).toBeDefined();
+    });
+    it("should have an 'onBind' event", function() {
+      expect(controller.onBind).toBeDefined();
+    });
+    it("should have an 'onIntercept' event", function() {
+      expect(controller.onIntercept).toBeDefined();
     });
   });
   

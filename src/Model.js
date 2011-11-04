@@ -9,6 +9,7 @@ Model.set = function(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
   var models = mojo.query('*[modelSource="' + key + '"]');
+  mojo._namespace(key);
   if (models.length) {
     var contentOfModel;
     $(models).each(function(index, model) {
@@ -21,11 +22,11 @@ Model.set = function(key, value) {
       $(models).html(content);
       contentOfModel = $(models).html();
     });
-    
+
     return contentOfModel;
     
   } else {
-  	mojo._namespace(key);
+  	
   	window[key] = value;
   	return window[key];
   }
