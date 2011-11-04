@@ -10,17 +10,24 @@ Model.set = function(key, value) {
   //if it's not an HTML element, then we can just store it in DOM
   var models = mojo.query('*[modelSource="' + key + '"]');
   if (models.length) {
+    var contentOfModel;
+    $(models).each(function(index, model) {
+
+      model.mojoTemplate = $(model).html();
+      $(model).html("");
+      var content = mojo.template(model.mojoTemplate, value);
       
-      $(models).each(function(index, model) {
-        
-        model.mojoTemplate = $(model).html();
-        $(model).html("");
-        var content = mojo.template(model.mojoTemplate, value);
-        $(models).html(content);
-      });
+      
+      $(models).html(content);
+      contentOfModel = $(models).html();
+    });
+    
+    return contentOfModel;
+    
   } else {
   	mojo._namespace(key);
   	window[key] = value;
+  	return window[key];
   }
 };
 
