@@ -7,6 +7,10 @@ describe("Controller", function() {
     controller = new mojo.Controller();
     controller.initialize(element, 'TestController', params);
   });
+  
+  it("should exist in mojo.Controller", function() {
+    expect(window.mojo.Controller).toBeDefined();
+  });
 
   it("should create a Mojo Controller", function() { 
     expect(controller.controllerClass).toEqual('TestController');
