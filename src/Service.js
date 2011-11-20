@@ -30,13 +30,15 @@ mojo.define('mojo.Service', function() {
   };
 
   Service.prototype.invoke = function (params, callback, scope) {
-
+    
     var self = this;
     
     var options = self.getOptions() || {},
-            method = options.method,
-            uri = self.getURI(),
-            responseType = options.responseType || 'JSON';
+                  method = options.method,
+                  uri = self.getURI(),
+                  responseType = options.responseType || 'JSON';
+
+    if ('undefined' == typeof callback || !callback) throw new Error("'callback' is a required parameter");
 
     if (options.template) {
       uri = self.parse(uri, params);
