@@ -21,6 +21,7 @@ mojo.define('mojo.Service', function() {
               return type;
             } (),
       jsonp: false,
+      wcf: false,
       template: false
     };
     this.name = name;
@@ -28,10 +29,6 @@ mojo.define('mojo.Service', function() {
     this.options = $.extend({}, defaults, options);
   };
 
-  /// <summary>Service.prototype.invoke</summary>
-  /// <param name="params" type="Object">The parameters being sent in the request</param>
-  /// <param name="callback" type="Function">The callback that gets executed once the server sends a response</param>
-  /// <param name="scope" type="Object">Execution context of the callback, can be any object</param>
   Service.prototype.invoke = function (params, callback, scope) {
 
     var self = this;
@@ -59,7 +56,7 @@ mojo.define('mojo.Service', function() {
     });
 
     var data;
-    if (method == 'post' && options.complex) {
+    if (method == 'post' && options.wcf) {
       data = JSON.stringify(params);
     } else if (method == 'post') {
       data = JSON.encode(params);
@@ -86,24 +83,19 @@ mojo.define('mojo.Service', function() {
       if ('undefined' != typeof callback) callback.call(scope, "Unable to execute XHR", arguments);
     });
   };
-
-  /// <summary>Retrieves the name of the target service</summary>
+  
   Service.prototype.getName = function () {
     return this.name;
   };
-  /// <summary>Retrives the URI of the target service</summary>
-  /// <returns type="String" />
+
   Service.prototype.getURI = function () {
     return this.uri;
   };
 
-  /// <summary>Retrieves the options that were set for a particular service</summary>
-  /// <returns type="Object" />
   Service.prototype.getOptions = function () {
     return this.options;
   };
-  /// <summary>Provides the ability to set or get options in a particular web service</summary>
-  /// <param name="key" type="String">Name of the </param>
+
   Service.prototype.option = function () {
     if (arguments.length > 1) {
       this.options[arguments[0]] = arguments[1];
@@ -113,7 +105,6 @@ mojo.define('mojo.Service', function() {
     }
   };
 
-  /// <summary>Provides a helper method for parsing RESTful URLs</summary>
   Service.prototype.parse = function (content, params) {
     $.each(params, function (key, value) {
       content = content.split("{" + key + "}").join(value);
