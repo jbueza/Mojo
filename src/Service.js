@@ -58,10 +58,8 @@ mojo.define('mojo.Service', function() {
     });
 
     var data;
-    if (method == 'post' && options.wcf) {
+    if (method == 'post' && options.complex) {
       data = JSON.stringify(params);
-    } else if (method == 'post') {
-      data = JSON.encode(params);
     } else {
       data = params;
     }
