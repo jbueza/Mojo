@@ -54,13 +54,17 @@
    * Returns an array of DOM nodes
    */
   mojo.query = function() {
+    if (!arguments.length) { return false; }
     return $.apply(this, arguments);
   };
   /* 
    * Returns the first element in a node list
    */
   mojo.queryFirst = function() {
-    return mojo.query.apply(this, arguments)[0];
+    if (!arguments.length) { return false; }
+    var result = mojo.query.apply(this, arguments);
+    if (!result.length) { return false; }
+    return result[0];
   };
 
   /* 

@@ -12,6 +12,9 @@ describe("mojo.Core", function() {
     it("should return an array of DOM elements", function() {
       expect(mojo.query('div').length).toBeGreaterThan(0);
     });
+    it("should return false when not passing any parameters", function() {
+      expect(mojo.query()).toBeFalsy();
+    });
   });
   describe("mojo.queryFirst", function() {
     it("should return an element", function() {
@@ -19,6 +22,12 @@ describe("mojo.Core", function() {
     });
     it("should return an element stripped of jQuery wrapper", function() {
       expect(mojo.queryFirst("div").id).toEqual("an-element");
+    });
+    it("should return null when unable to find an element", function() {
+      expect(mojo.queryFirst("#a-missing-element")).toBeFalsy();
+    });
+    it("should return false when calling queryFirst with no parameters", function() {
+      expect(mojo.queryFirst()).toBeFalsy();
     });
   });
   
