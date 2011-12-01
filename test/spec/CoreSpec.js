@@ -1,5 +1,5 @@
 
-describe("Core", function() {
+describe("mojo.Core", function() {
   var MockFactory = {
     events: [],
     methods: {},

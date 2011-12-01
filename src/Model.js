@@ -41,14 +41,16 @@ Model.set = function(key, value) {
 
 Model.get = function(key) {
   if (!key) { return false; }
-  if ('string' != typeof(key)) { return false; }
-  
+  if ('string' != typeof key) { return false; }
+  if ('undefined' == typeof mojo.ModelRegistry[key]) { return false; }
+  if (arguments.lenght > 1) { return false; }
   return mojo.ModelRegistry[key];
 };
 
 Model.remove = function(key) {
   if (!key) { return false; }
   if ('string' != typeof(key)) { return false; }
+  if ('undefined' == typeof mojo.ModelRegistry[key]) { return false; }
   delete mojo.ModelRegistry[key];
 };
   

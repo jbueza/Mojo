@@ -1,4 +1,4 @@
-describe("Service", function() {
+describe("mojo.Service", function() {
   var testService = new mojo.Service("GetUsers", "data/user/{userId}", { template: true})
     , getTestService = new mojo.Service("GetUsers", "data/user.js")
     , postTestService = new mojo.Service("AddUser", "data/user.js")

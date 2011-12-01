@@ -1,4 +1,4 @@
-describe("Service Locator", function() {
+describe("mojo.ServiceLocator", function() {
   var service = new mojo.Service("GetUsers", "data/user/{userId}", { template: true});
   var ServiceLocator = mojo.ServiceLocator;
   beforeEach(function() {

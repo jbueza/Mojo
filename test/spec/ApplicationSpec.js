@@ -1,14 +1,13 @@
-//setup
-mojo.define('TestController', {
-  events: [],
-  methodS: {},
-  after: {
-    Start: function() {
+describe("mojo.Application", function() {
+  mojo.define('TestController', {
+    events: [],
+    methodS: {},
+    after: {
+      Start: function() {
+      }
     }
-  }
-});
-
-describe("Application", function() {
+  });
+  
   var app = mojo.create();
   app.configure('appName', 'MyTestApp');
   app.configure('pluginSrc', '../example/js/lib/plugins/');
