@@ -6,20 +6,20 @@
   <link rel="stylesheet" type="text/css" href="../doc/site/site.css">
   <link rel="stylesheet" type="text/css" href="lib/mojo/tweaks.css">
   
-  <script type="text/javascript" src="lib/jasmine-1.0.1/jasmine.js"></script>
-  <script type="text/javascript" src="lib/jasmine-1.0.1/jasmine-html.js"></script>
+  <script  src="lib/jasmine-1.0.1/jasmine.js"></script>
+  <script  src="lib/jasmine-1.0.1/jasmine-html.js"></script>
 
   <!-- include source files here... -->
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
   <script src="../dist/mojo.js"></script>
   <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/CoreSpec.js"></script>
-  <script type="text/javascript" src="spec/ApplicationSpec.js"></script>
-  <script type="text/javascript" src="spec/ControllerSpec.js"></script>
-  <script type="text/javascript" src="spec/ServiceSpec.js"></script>
-  <script type="text/javascript" src="spec/ServiceLocatorSpec.js"></script>
-  <script type="text/javascript" src="spec/RequestSpec.js"></script>
-  <script type="text/javascript" src="spec/ModelSpec.js"></script>
+  <script src="spec/CoreSpec.js"></script>
+  <script src="spec/ApplicationSpec.js"></script>
+  <script src="spec/ControllerSpec.js"></script>
+  <script src="spec/ServiceSpec.js"></script>
+  <script src="spec/ServiceLocatorSpec.js"></script>
+  <script src="spec/RequestSpec.js"></script>
+  <script src="spec/ModelSpec.js"></script>
 </head>
 <body>
   
@@ -34,7 +34,7 @@
   <div modelSource="test.model" class="mojoTemplate">
     {{name}}
   </div>
-<script type="text/javascript">
+<script >
   jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
   jasmine.getEnv().execute();
   $(".jasmine_reporter").addClass("show-skipped").addClass("show-passed");

@@ -4,22 +4,29 @@ mojo.define("mojo.Model", function() {
 
 var $ = jQuery, Model = function() {};
   
-
 Model.set = function(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
-  var models = mojo.query('*[modelSource="' + key + '"]');
+  var models = mojo.query('*[modelSource="' + key + '"]'),
+      contentOfModel;
+  
+  //makes an assumption that there is only one model 
   mojo._namespace(key);
+  
   if (models.length) {
-    var contentOfModel;
+    
     $(models).each(function(index, model) {
 
-      model.mojoTemplate = $(model).html();
+      if (!model.hasOwnProperty("mojoTemplate") || !model.mojoTemplate) {
+        model.mojoTemplate = $(model).html();
+      } 
+      
       $(model).html("");
+      
       var content = mojo.template(model.mojoTemplate, value);
       
-      
       $(models).html(content);
+      
       contentOfModel = $(models).html();
     });
 
@@ -33,10 +40,15 @@ Model.set = function(key, value) {
 };
 
 Model.get = function(key) {
+  if (!key) { return false; }
+  if ('string' != typeof(key)) { return false; }
+  
   return mojo.ModelRegistry[key];
 };
 
 Model.remove = function(key) {
+  if (!key) { return false; }
+  if ('string' != typeof(key)) { return false; }
   delete mojo.ModelRegistry[key];
 };
   
