@@ -7,11 +7,18 @@ describe("mojo.Core", function() {
       Start: function() {}
     }
   };
-
-  describe("When using query to retrieve HTML elements", function() {
-    
+  
+  describe("mojo.query", function() {
     it("should return an array of DOM elements", function() {
       expect(mojo.query('div').length).toBeGreaterThan(0);
+    });
+  });
+  describe("mojo.queryFirst", function() {
+    it("should return an element", function() {
+      expect(mojo.queryFirst("div")).toBeDefined();
+    });
+    it("should return an element stripped of jQuery wrapper", function() {
+      expect(mojo.queryFirst("div").id).toEqual("an-element");
     });
   });
   

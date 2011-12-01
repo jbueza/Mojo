@@ -2,13 +2,9 @@
 <html>
 <head>
   <title>Jasmine Test Runner</title>
-  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.0.1/jasmine.css">
-  <link rel="stylesheet" type="text/css" href="../doc/site/site.css">
-  <link rel="stylesheet" type="text/css" href="lib/mojo/tweaks.css">
-  
-  <script  src="lib/jasmine-1.0.1/jasmine.js"></script>
-  <script  src="lib/jasmine-1.0.1/jasmine-html.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="lib/jasmine/jasmine.css">
+  <script  src="lib/jasmine/jasmine.js"></script>
+  <script  src="lib/jasmine/jasmine-html.js"></script>
   <!-- include source files here... -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
   <script src="../dist/mojo.js"></script>
@@ -24,16 +20,12 @@
 <body>
   
   <div id="an-element"></div>
-  
-  
   <div></div>
   <div></div>
   <div></div>
   <div></div>
   <div></div>
-  <div modelSource="test.model" class="mojoTemplate">
-    {{name}}
-  </div>
+  <div modelSource="test.model" class="mojoTemplate" style="display: none">{{name}}</div>
 <script >
   jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
   jasmine.getEnv().execute();
