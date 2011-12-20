@@ -84,12 +84,13 @@ describe("mojo.Core", function() {
     });
   });
 
-  describe("When using requireSync", function() {
+  describe("mojo.requireSync", function() {
     it("should load a module synchronously", function() {
       
     });
   });
-  describe("When using the template functionality", function() {
+  
+  describe("mojo.template", function() {
     it("should ensure that Mustache.js is loaded", function() {
       expect(window.Mustache).toBeDefined();
     });
@@ -110,19 +111,22 @@ describe("mojo.Core", function() {
         mojo.template(null, {}, {});
       }).toThrow("'template' is required");
     });
-
-
-
   });
   
-  describe("When using require to load a controller", function() {
-    
+  describe("mojo.create", function() {
+    it("should return false if incorrect arguments are passed", function() {
+      expect(function() {
+        mojo.create({}, {});
+      }).toThrow("Incorrect arguments");
+    })
+  });
+  
+  describe("mojo.require", function() {
     it("should throw an error if no dependencies are specified", function() {
       expect(function() {
         mojo.require(null, function() {});
       }).toThrow("'dependencies' is required");
-    });
-    
+    });    
     it("should throw an error if no callback is passed", function() {
       expect(function() {
         mojo.require('TestController', null);

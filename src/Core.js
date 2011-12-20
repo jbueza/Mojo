@@ -10,7 +10,7 @@
   mojo.options = {};
   mojo._loaded = [];
   
-  mojo.resolve = function(name) {
+  mojo.resolve = function resolve(name) {
     if (!mojo._namespace._provided[name]) {
       return name.replace(/\./gi, '/');
     }
@@ -20,7 +20,7 @@
   /*
    * @private
    */
-  mojo._namespace = function(namespace) {
+  mojo._namespace = function namespace(namespace) {
     var list = ('' + namespace).split(/\./)
       , listLength = list.length
       , obj = []
@@ -44,7 +44,7 @@
     return context;
   };
 
-  mojo.template =function(template, data, partials) {
+  mojo.template = function template(template, data, partials) {
     if ('undefined' == typeof Mustache) return false;
     if ('undefined' == typeof template || !template) throw new Error("'template' is required");
     if ('undefined' == typeof data || !data) throw new Error("'data' is required");
@@ -53,14 +53,14 @@
   /* 
    * Returns an array of DOM nodes
    */
-  mojo.query = function() {
+  mojo.query = function query() {
     if (!arguments.length) { return false; }
     return $.apply(this, arguments);
   };
   /* 
    * Returns the first element in a node list
    */
-  mojo.queryFirst = function() {
+  mojo.queryFirst = function queryFirst() {
     if (!arguments.length) { return false; }
     var result = mojo.query.apply(this, arguments);
     if (!result.length) { return false; }
@@ -72,7 +72,7 @@
    * @param dependencies {Array}
    * @param callback {Function}
    */
-  mojo.require = function(dependencies, callback) {
+  mojo.require = function require(dependencies, callback) {
     if ('undefined' == typeof dependencies || !dependencies) throw new Error("'dependencies' is required");
     if ('undefined' == typeof callback || !callback) throw new Error("'callback' is required");
     
@@ -105,7 +105,7 @@
   /* 
    * Synchronously load a module
    */
-  mojo.requireSync = function(name) {
+  mojo.requireSync = function requireSync(name) {
     var path = mojo.options.baseSrc + mojo.resolve(name) + ".js";
     $.ajaxSetup({async: false});
     $.getScript(path);
@@ -114,7 +114,7 @@
   /* 
    * Get Controller Reference
    */
-  mojo.getController = function(controllerName) {
+  mojo.getController = function getController(controllerName) {
     if ('undefined' == typeof mojo.controllers[controllerName]) return false;
     if ('string' != typeof controllerName) return false;
     return mojo.controllers[controllerName];
@@ -126,12 +126,16 @@
    * @param callback {Function} A callback to be executed when the plugin has completed loading
    * @deprecated 
    */
-  mojo.fetch = function(path, callback) {
+  mojo.fetch = function fetch(path, callback) {
     $.getScript(path, function() {
       if (callback) callback.apply(this, arguments);
     });
   };
-
+  /* 
+   * Defines a controller into mojo.controller namespace
+   * @param id {String} The unique location of a Controller
+   * @param factory {Function | Object} A body of a Controller
+   */
   mojo.define = function(id, factory) { 
     if ('undefined' == typeof id || !id) throw new Error("'id' is required");
     if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
@@ -140,8 +144,7 @@
     }
     
     if ('string' != typeof id) return false;
-    if ('object' != typeof factory) return false;
-    
+  
     if('string' == typeof id) {
       mojo._namespace( id );
       mojo._loaded[ id ] = factory;
@@ -153,8 +156,8 @@
    * Creates an mojo application instance. One web site can contain multiple mojo applications.
    * @param options {Object} A set of default options for particular mojo application
    */
-  mojo.create = function(options) {
-    
+  mojo.create = function create(options) {
+    if (arguments.length > 1) throw new Error("Incorrect arguments");
     if ('undefined' == typeof options) {
       options = {};
       if (!options.baseSrc) options.baseSrc = 'js/';
