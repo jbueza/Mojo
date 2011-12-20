@@ -19,7 +19,7 @@ code, and structural integrity.
 ## Getting Setup
 
 1. git clone http://github.com/jbueza/blastmojo.git into your localhost 
-1. cd BlastMojoLite and use apache ant to build a compiled source: <code>rake</code>
+1. cd blastmojo and use apache ant to build a compiled source: <code>ant</code>
 1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
 
 ``` js
@@ -32,17 +32,9 @@ app
   .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
   .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
 
-  .map('#registration-example', function() {
-    return [
-      { controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }}
-    ];
-  })
+  .map('#registration-example', [{ controller: "ExampleApp.RegistrationController", params: { user: 123, firstName: "Johnson" }} ])
 
-  .map('#login-example', function() {
-    return [
-      { controller: "ExampleApp.LoginController" }
-    ];
-  })
+  .map('#login-example', [{ controller: "ExampleApp.LoginController" }])
 
   .start()
 ```
