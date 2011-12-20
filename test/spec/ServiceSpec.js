@@ -5,8 +5,12 @@ describe("mojo.Service", function() {
     , delTestService = new mojo.Service("DeleteUser", "data/user.js")
     , updateTestService = new mojo.Service("UpdateUser", "data/user.js")
     , jsonpTestService = new mojo.Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
-    , brokenService = new mojo.Service("Broken", "data/broken.js");
+    , brokenService = new mojo.Service("Broken", "data/broken.js")
+    , testPostAsGetService = new mojo.Service("getAsPostService", "data/user.js", { method: "post"});
   
+  
+  console.log("----")
+  console.log(testPostAsGetService);
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
   });

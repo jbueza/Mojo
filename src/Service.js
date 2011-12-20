@@ -80,7 +80,7 @@ mojo.define('mojo.Service', function() {
         }
       }
     }).error(function () {
-      if ('undefined' != typeof callback) callback.call(scope, "Unable to execute XHR", arguments);
+      if ('undefined' != typeof callback) callback.call(scope || this, "Unable to execute XHR", arguments);
     });
   };
   
