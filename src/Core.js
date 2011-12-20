@@ -111,6 +111,14 @@
     $.getScript(path);
     $.ajaxSetup({async: true});
   };
+  /* 
+   * Get Controller Reference
+   */
+  mojo.getController = function(controllerName) {
+    if ('undefined' == typeof mojo.controllers[controllerName]) return false;
+    if ('string' != typeof controllerName) return false;
+    return mojo.controllers[controllerName];
+  };
 
   /* 
    * Retrieves a plugin

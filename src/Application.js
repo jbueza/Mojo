@@ -147,7 +147,9 @@ Application.prototype.connectControllers = function connectControllers() {
   mojo.require($.unique(controllers2load), function() {
     $(self.siteMap).each(function(index, mapping) {
     
-      if (self.options.environment == 'dev' && self.options.logging) try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+      if (self.options.environment == 'dev' && self.options.logging) {
+        try { console.log("Mapping [" + index + "]: ", mapping.context); } catch (err) {}
+      } 
       var silos = ('function' == typeof mapping.init ) ? mapping.init.call(this) : mapping.init;
 
       $(silos).each(function(i, silo) {

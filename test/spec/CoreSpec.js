@@ -1,6 +1,6 @@
 
 describe("mojo.Core", function() {
-  var MockFactory = {
+  var MockController = {
     events: [],
     methods: {},
     after: {
@@ -34,8 +34,8 @@ describe("mojo.Core", function() {
   describe("When using define to create a controller", function() {
     
     it("should throw an error when redefining a controller that already exists", function() {
-      mojo.define('MyNewTestController', MockFactory);
-      expect(mojo.define('MyNewTestController', MockFactory)).toBeFalsy();
+      mojo.define('MyNewTestController', MockController);
+      expect(mojo.define('MyNewTestController', MockController)).toBeFalsy();
     });
     
     it("should throw an error when there is no identifier/name for the controller", function() {

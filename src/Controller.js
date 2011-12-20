@@ -59,7 +59,11 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       if (!self.methods[commandName] || 'undefined' == typeof self.methods[commandName]) {
         throw new Error("Command does not exist within Controller");
       }
-      self.methods[commandName].call(mojo.controllers[controllerName], requestObj);
+      try {
+        self.methods[commandName].call(mojo.controllers[controllerName], requestObj);
+      } catch(err) {
+        throw err;
+      }
       
       if (typeof self.after != 'undefined' && typeof self.after[commandName] != 'undefined') {
         self.after[commandName].call(self, requestObj);
@@ -67,6 +71,10 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       }
     });
   });
+
+  if (typeof self.methods['Initialize'] != 'undefined') {
+    self.methods['Initialize'].call(this, context);
+  }
   
   self.onInit();
 };

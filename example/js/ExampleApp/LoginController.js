@@ -8,6 +8,9 @@ mojo.define('ExampleApp.LoginController', {
     , ['context', '.btn-logout', 'click', 'Logout']    
   ],
   methods: {
+    Initialize: function() {
+      console.log("Hello");
+    },
     Login: function(requestObj) {
       var context = requestObj.getContextElement();
       alert("Logged in from " + this.controllerClass);
