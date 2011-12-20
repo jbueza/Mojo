@@ -3,23 +3,23 @@
 * @author Jaime Bueza
 * Represents a service call
 */
-mojo.define('mojo.Service', function() {
+mojo.define('mojo.Service', function Service() {
   var $ = jQuery;
   
   function Service(name, uri, options) {
     if (typeof options == 'undefined') options = {};
 
     var defaults = {
-      method: options.method ||
-            function () {
-              var type = "get";
-              if (name.match(/^get/i)) {
-                type = "get";
-              } else if (name.match(/^add|del|update/i)) {
-                type = "post";
-              }
-              return type;
-            } (),
+      method: options.method || function () {
+        var type = "get";
+        if (name.match(/^get/i)) {
+          type = "get";
+        } else if (name.match(/^add|del|update/i)) {
+          type = "post";
+        }
+        return type;
+        
+        } (),
       jsonp: false,
       wcf: false,
       template: false
@@ -116,6 +116,9 @@ mojo.define('mojo.Service', function() {
    * @deprecated
    */
   Service.prototype.parse = function (content, params) {
+    if (arguments.length != 2) return false;
+    if ('string' != typeof content) return false;
+    if ('object' != typeof params) return false;
     $.each(params, function (key, value) {
       content = content.split("{" + key + "}").join(value);
     });

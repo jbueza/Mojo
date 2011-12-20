@@ -63,18 +63,34 @@ describe("mojo.Service", function() {
     expect(testDefaultService.option('template')).toBeFalsy();
   });
 
-  it("should allow the developer to turn off templating", function() {
-    testService.option('template', false);
-    expect(testService.option('template')).toBeFalsy();
-  });
 
-  it("should allow the developer to turn on templating", function() {
-    testService.option('template', true);
-    expect(testService.option('template')).toBeTruthy();
-  });
-
-  it("should return a properly templated URI", function() {
-    expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
+  
+  describe("mojo.Service.parse", function() {
+    //if (arguments.length != 2) return false;
+    //if ('string' != typeof content) return false;
+    ///f ('object' != typeof params) return false;
+    
+    it("should allow the developer to turn off templating", function() {
+      testService.option('template', false);
+      expect(testService.option('template')).toBeFalsy();
+    });
+    it("should allow the developer to turn on templating", function() {
+      testService.option('template', true);
+      expect(testService.option('template')).toBeTruthy();
+    });
+    it("should return a properly templated URI", function() {
+      expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
+    });
+    it("should return false if passing incorrect arguments", function() {
+      expect(testService.parse("/meow", {}, true)).toBeFalsy();
+    });
+    it("should return false if 'content' is not a string", function() {
+      expect(testService.parse({}, {})).toBeFalsy();
+    });
+    it("should return false if 'params' is not an object", function() {
+      expect(testService.parse("/meow", true)).toBeFalsy();
+    });
+  
   });
   
   it("should allow the developer to turn on cross-domain calls (jsonp)", function() {
