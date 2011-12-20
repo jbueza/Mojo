@@ -93,11 +93,6 @@ describe("mojo.Service", function() {
   
   it("should not allow developers to pass no parameters", function() {
      expect(jsonpTestService.option()).toBeFalsy();
-  });
-  //test to see if scope is optional
-  
-  //test to see if the jsonp service returns proper data
-  
-  
+  });  
   
 });

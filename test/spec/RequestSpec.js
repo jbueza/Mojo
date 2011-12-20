@@ -5,7 +5,7 @@ describe("Request", function() {
   it("should throw an error when instantiating a request without a caller object", function() {
     expect(function() { new mojo.Request({}, null, {}, {})}).toThrow("'callerObj' is required");
   });
-  it("should throw an error when instantiating a request without a event object", function() {
+  it("should throw an error when instantiating a request without an event object", function() {
     expect(function() { new mojo.Request({}, {}, null, {})}).toThrow("'eventObj' is required");
   });
   it("should throw an error when instantiating a request without a controller object", function() {
