@@ -1,0 +1,48 @@
+<project name="Blast Mojo" default="all" basedir=".">
+  <property name="PREFIX" value="." />
+  <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
+  <property description="Folder for mojo source" name="src" value="${PREFIX}/src" />
+  <property description="Folder for support libraries" name="support" value="${PREFIX}/support" />
+
+  <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
+  <property name="COMPILER" value="build/yuicompressor.jar" />
+
+  <!-- Blast Mojo Lite core -->
+  <property name="MOJO" value="${dist}/mojo.uncompressed.js" />
+  <property name="MOJO_MIN" value="${dist}/mojo.js" />
+
+  <target name="all" depends="init, compile, minify" />
+
+  <target name="init" description="Creates dist directory or execute any preconditions before compiling Joose and Mojo">
+    <mkdir dir="${dist}" />
+  </target>
+
+  <target name="compile" description="Compile all files in JavaScript">
+    <echo message="Gathering all Controllers within mojo core" />
+    <concat destfile="${MOJO}">
+      <fileset file="${support}/mustache.js" />
+      <fileset file="${src}/Core.js" />
+      <fileset file="${src}/Messaging.js" />
+      <fileset file="${src}/Model.js" />
+      <fileset file="${src}/Request.js" />
+      <fileset file="${src}/Controller.js" />
+      <fileset file="${src}/Application.js" />
+      <fileset file="${src}/Service.js" />
+      <fileset file="${src}/ServiceLocator.js" />
+    </concat>
+    <echo message="${MOJO} built." />
+  </target>
+  
+  <target name="minify" depends="compile" description="Remove all comments and whitespace, no compression, great in combination with gzip">
+    <echo message="Minifying ${MOJO}" />
+    <java jar="${COMPILER}" fork="true" failonerror="true" maxmemory="256m">
+      <arg line="${MOJO} -o ${MOJO_MIN} --charset UTF-8 --preserve-semi" />
+    </java>
+    <echo message="${MOJO_MIN} built." />
+  </target>
+  
+  <target name="clean">
+    <delete dir="${dist}" />
+  </target>
+  
+</project>
