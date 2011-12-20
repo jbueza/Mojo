@@ -43,7 +43,7 @@ Application.prototype.onComplete = function() {};
  *
  * @returns application instance { Object }
  */
-Application.prototype.configure = function(key, value) {
+Application.prototype.configure = function configure(key, value) {
   
   if ( !arguments.length ) throw new Error("passing no parameters into configure() is invalid");
   if ( arguments.length > 2 ) throw new Error("passing too many parameters into configure() is invalid");
@@ -64,7 +64,7 @@ Application.prototype.configure = function(key, value) {
  * @param callback { Function }
  * 
  */
-Application.prototype.map = function Map(selector, callback) {
+Application.prototype.map = function map(selector, callback) {
   
   if ( 'undefined' == typeof selector || !selector ) throw new Error("'selector' is a required parameter");
   if ( 'undefined' == typeof callback || !callback ) throw new Error("'callback' is a required parameter");
@@ -184,7 +184,7 @@ Application.prototype.getPlugins = function(callback) {
  * Starts the application instance by fetching all plugins, fetching all controllers,
  * mapping the controllers to dom nodes, as well as, emits onComplete
  */
-Application.prototype.start = function() {
+Application.prototype.start = function start() {
   var self = this;
   $(document).ready(function() {
     self.disconnectControllers(function() {
@@ -202,7 +202,7 @@ Application.prototype.start = function() {
   
 };
 
-Application.prototype.remap = function() {
+Application.prototype.remap = function remap() {
   var self = this;
   self.disconnectControllers(function() {
     self.connectControllers();

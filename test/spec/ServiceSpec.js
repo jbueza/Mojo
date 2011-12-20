@@ -6,7 +6,9 @@ describe("mojo.Service", function() {
     , updateTestService = new mojo.Service("UpdateUser", "data/user.js")
     , jsonpTestService = new mojo.Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
     , brokenService = new mojo.Service("Broken", "data/broken.js")
-    , testPostAsGetService = new mojo.Service("getUsersButAsPostService", "data/user.js", { method: "post"});
+    , testPostAsGetService = new mojo.Service("getUsersButAsPostService", "data/user.js", { method: "post"})
+    , addTestHtmlService = new mojo.Service("addTestHtmlService", "data/markup.html", { method: "post"})
+    ;
   
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
@@ -94,5 +96,7 @@ describe("mojo.Service", function() {
   it("should not allow developers to pass no parameters", function() {
      expect(jsonpTestService.option()).toBeFalsy();
   });  
-  
+  it("should return HTML if invoking an HTML service", function() {
+    console.log(addTestHtmlService);
+  });
 });
