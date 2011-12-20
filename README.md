@@ -18,9 +18,9 @@ code, and structural integrity.
 
 ## Getting Setup
 
-1. git clone http://github.com/jbueza/blastmojo.git into your localhost 
-1. cd blastmojo and use apache ant to build a compiled source: <code>ant</code>
-1. Navigate to http://localhost/blastmojo/example/index.html for boilerplate code
+1. git clone http://github.com/jbueza/blastmojo.git && cd blastmojo
+2. use apache ant to build a compiled source: <code>ant</code>
+3. navigate to the <code>/example</code> to view the example code
 
 ``` js
 var app = mojo.create({ baseSrc: 'js/' });
