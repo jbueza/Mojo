@@ -138,6 +138,10 @@
     if ('function' == typeof factory) {
       factory = factory.call(this);
     }
+    
+    if ('string' != typeof id) return false;
+    if ('object' != typeof factory) return false;
+    
     if('string' == typeof id) {
       mojo._namespace( id );
       mojo._loaded[ id ] = factory;

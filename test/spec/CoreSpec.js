@@ -59,8 +59,13 @@ describe("mojo.Core", function() {
     });
   });
   
-  describe("When using define to create a controller", function() {
-    
+  describe("mojo.define", function() {
+    it("should return false when passing a non-string value as its first parameter", function() {
+      expect(mojo.define(true, {})).toBeFalsy();
+    });
+    it("should return false when passing a non object / function as a factory", function() {
+      expect(mojo.define('CatController', true)).toBeFalsy();
+    });
     it("should throw an error when redefining a controller that already exists", function() {
       mojo.define('MyNewTestController', MockController);
       expect(mojo.define('MyNewTestController', MockController)).toBeFalsy();
