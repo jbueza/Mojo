@@ -6,11 +6,8 @@ describe("mojo.Service", function() {
     , updateTestService = new mojo.Service("UpdateUser", "data/user.js")
     , jsonpTestService = new mojo.Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
     , brokenService = new mojo.Service("Broken", "data/broken.js")
-    , testPostAsGetService = new mojo.Service("getAsPostService", "data/user.js", { method: "post"});
+    , testPostAsGetService = new mojo.Service("getUsersButAsPostService", "data/user.js", { method: "post"});
   
-  
-  console.log("----")
-  console.log(testPostAsGetService);
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
   });
@@ -87,7 +84,16 @@ describe("mojo.Service", function() {
     jsonpTestService.option('jsonp', true);
     expect(jsonpTestService.option('jsonp')).toBeTruthy();
   });
+  it("should not allow developers to pass more than 2 arguments", function() {
+     expect(jsonpTestService.option('jsonp', true, true)).toBeFalsy();
+  });
+  it("should not allow developers to pass a non-string value as the first parameter", function() {
+     expect(jsonpTestService.option(true)).toBeFalsy();
+  });
   
+  it("should not allow developers to pass no parameters", function() {
+     expect(jsonpTestService.option()).toBeFalsy();
+  });
   //test to see if scope is optional
   
   //test to see if the jsonp service returns proper data

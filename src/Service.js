@@ -95,16 +95,26 @@ mojo.define('mojo.Service', function() {
   Service.prototype.getOptions = function () {
     return this.options;
   };
-
+  /*
+   * Sets or Gets an option from a particular Service
+   */
   Service.prototype.option = function () {
-    if (arguments.length > 1) {
+    if (!arguments.length) return false;
+    if (arguments.length > 2) return false;
+    if ('string' != typeof arguments[0]) return false;
+    
+    if (arguments.length == 2) {
       this.options[arguments[0]] = arguments[1];
       return this;
-    } else {
+    } else if (arguments.length == 1) {
       return this.options[arguments[0]];
     }
   };
 
+  /*
+   * Returns an HTML fragment from {} templating
+   * @deprecated
+   */
   Service.prototype.parse = function (content, params) {
     $.each(params, function (key, value) {
       content = content.split("{" + key + "}").join(value);
