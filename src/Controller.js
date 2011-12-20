@@ -15,6 +15,7 @@ mojo.define('mojo.Controller', function() {
 "use strict";
 
 var $ = jQuery;
+var noop = function() {};
 
 function Controller() {
   this.contextElement = null;
@@ -71,11 +72,6 @@ Controller.prototype.initialize = function(context, controllerName, params) {
       }
     });
   });
-
-  if (typeof self.methods['Initialize'] != 'undefined') {
-    self.methods['Initialize'].call(this, context);
-  }
-  
   self.onInit();
 };
 

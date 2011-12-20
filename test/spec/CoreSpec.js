@@ -31,6 +31,34 @@ describe("mojo.Core", function() {
     });
   });
   
+  describe("mojo.getController", function() {
+    it("should exist", function() {
+      expect(mojo['getController']).toBeDefined();
+    });
+    it("should be a function", function() {
+      expect(typeof mojo['getController']).toBe('function');
+    });
+    it("should return false if a controller doesn't exist", function() {
+      expect(mojo.getController('TheFakeController')).toBeFalsy();
+    });
+    it("should return false if passing a number", function() {
+      expect(mojo.getController(1)).toBeFalsy();
+    });
+    it("should return false if passing a boolean", function() {
+      expect(mojo.getController(true)).toBeFalsy();
+    });
+    it("should return false if passing an object", function() {
+      expect(mojo.getController({})).toBeFalsy();
+    });
+    it("should return false if passing an array", function() {
+      expect(mojo.getController([])).toBeFalsy();
+    });
+    it("should return the controller instance if it exists", function() {
+      mojo.define('TestGetController', { events: [], methods: {}});
+      expect(mojo.getController('TestGetController')).toBeDefined();
+    });
+  });
+  
   describe("When using define to create a controller", function() {
     
     it("should throw an error when redefining a controller that already exists", function() {

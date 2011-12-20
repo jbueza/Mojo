@@ -1,7 +1,10 @@
 describe("mojo.Application", function() {
   mojo.define('TestController', {
     events: [],
-    methodS: {},
+    methods: {
+      Initialize: function() {
+      }
+    },
     after: {
       Start: function() {
       }

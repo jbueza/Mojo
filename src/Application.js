@@ -104,7 +104,14 @@ Application.prototype.setupController = function setupController(context, contro
   controllerObj.initialize(context, controller, params);
   if('undefined' == typeof context.mojoControllers) context.mojoControllers = [];
   context.mojoControllers.push({controller: controllerObj});
-  if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') controllerObj.after['Start'].call(controllerObj, null);
+  if (typeof controllerObj.after != 'undefined' && controllerObj.after['Start'] != 'undefined') { 
+    controllerObj.after['Start'].call(controllerObj, null);
+  }
+
+  if ('undefined' != typeof controllerObj.methods['Initialize']) {
+    controllerObj.methods['Initialize'].call(controllerObj);
+  }
+  
 };
 
 Application.prototype.disconnectController = function disconnectController(node, controller) {
