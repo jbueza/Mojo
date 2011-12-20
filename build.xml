@@ -8,7 +8,7 @@
   <property name="COMPILER" value="build/yuicompressor.jar" />
 
   <!-- Blast Mojo Lite core -->
-  <property name="MOJO" value="${dist}/mojo.uncompressed.js" />
+  <property name="MOJO" value="${dist}/mojo.js.uncompressed.js" />
   <property name="MOJO_MIN" value="${dist}/mojo.js" />
 
   <target name="all" depends="init, compile, minify" />
