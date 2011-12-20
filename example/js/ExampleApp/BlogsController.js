@@ -11,6 +11,8 @@ mojo.define('ExampleApp.BlogsController', {
         , SubMediaType: 0
         , pageSize: 3
         , jsonp: "renderBlogs" 
+      }, function(err, data) {
+        console.log("Complete!")
       });
     }
   }
