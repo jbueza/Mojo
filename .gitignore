@@ -8,3 +8,4 @@ Thumbs.db
 *.patch
 .sass-cache/*
 *.idea
+*.suo
