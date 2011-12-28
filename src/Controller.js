@@ -23,11 +23,11 @@ function Controller() {
   this.events;
 };
 
-Controller.prototype.onInit = function() {};
-Controller.prototype.onParamChange = function() {};
-Controller.prototype.onComplete = function() {};
-Controller.prototype.onBind = function() {};
-Controller.prototype.onIntercept = function() {};
+Controller.prototype.onInit = function () {};
+Controller.prototype.onParamChange = function () {};
+Controller.prototype.onComplete = function () {};
+Controller.prototype.onBind = function () {};
+Controller.prototype.onIntercept = function () {};
 
 Controller.prototype.params = {};
 

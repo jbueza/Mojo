@@ -5,7 +5,7 @@
 */
 mojo.define('mojo.Service', function Service() {
   var $ = jQuery;
-  
+
   function Service(name, uri, options) {
     if (typeof options == 'undefined') options = {};
 
@@ -18,8 +18,8 @@ mojo.define('mojo.Service', function Service() {
           type = "post";
         }
         return type;
-        
-        } (),
+
+      } (),
       jsonp: false,
       wcf: false,
       template: false
@@ -30,9 +30,9 @@ mojo.define('mojo.Service', function Service() {
   };
 
   Service.prototype.invoke = function (params, callback, scope) {
-    
+
     var self = this;
-    
+
     var options = self.getOptions() || {},
                   method = options.method,
                   uri = self.getURI(),
@@ -44,8 +44,8 @@ mojo.define('mojo.Service', function Service() {
       uri = self.parse(uri, params);
       //blank out params now since they're already in the template
       //but only if it's an http GET
-      if (method == 'get') params = null; 
-      
+      if (method == 'get') params = null;
+
     }
 
     $.ajaxSetup({
@@ -63,7 +63,7 @@ mojo.define('mojo.Service', function Service() {
     } else {
       data = params;
     }
-   
+
     $.ajax({
       url: uri,
       data: data
@@ -83,7 +83,7 @@ mojo.define('mojo.Service', function Service() {
       if ('undefined' != typeof callback) callback.call(scope || this, "Unable to execute XHR", arguments);
     });
   };
-  
+
   Service.prototype.getName = function () {
     return this.name;
   };
@@ -96,13 +96,13 @@ mojo.define('mojo.Service', function Service() {
     return this.options;
   };
   /*
-   * Sets or Gets an option from a particular Service
-   */
+  * Sets or Gets an option from a particular Service
+  */
   Service.prototype.option = function () {
     if (!arguments.length) return false;
     if (arguments.length > 2) return false;
     if ('string' != typeof arguments[0]) return false;
-    
+
     if (arguments.length == 2) {
       this.options[arguments[0]] = arguments[1];
       return this;
@@ -112,9 +112,9 @@ mojo.define('mojo.Service', function Service() {
   };
 
   /*
-   * Returns an HTML fragment from {} templating
-   * @deprecated
-   */
+  * Returns an HTML fragment from {} templating
+  * @deprecated
+  */
   Service.prototype.parse = function (content, params) {
     if (arguments.length != 2) return false;
     if ('string' != typeof content) return false;
