@@ -21,8 +21,9 @@ mojo.define('mojo.Service', function Service() {
 
       } (),
       jsonp: false,
-      wcf: false,
-      template: false
+      wrapped: false,
+      template: false,
+      contentType: "application/json; charset=utf-8"
     };
     this.name = name;
     this.uri = uri;
@@ -42,10 +43,7 @@ mojo.define('mojo.Service', function Service() {
 
     if (options.template) {
       uri = self.parse(uri, params);
-      //blank out params now since they're already in the template
-      //but only if it's an http GET
       if (method == 'get') params = null;
-
     }
 
     $.ajaxSetup({
@@ -58,7 +56,7 @@ mojo.define('mojo.Service', function Service() {
     });
 
     var data;
-    if (method == 'post' && options.complex) {
+    if (method == 'post' && options.contentType.match(/application\/json/gi)) {
       data = JSON.stringify(params);
     } else {
       data = params;
@@ -71,6 +69,9 @@ mojo.define('mojo.Service', function Service() {
       if (responseType == 'JSON' && this.contentType.match(/javascript/g)) {
         data = $.parseJSON(data);
       }
+
+      if (options.wrapped) data = self.unwrap(data);
+
       if ('undefined' != typeof callback) {
         if (typeof callback == 'function') {
           callback.call(scope, null, data);
@@ -95,6 +96,27 @@ mojo.define('mojo.Service', function Service() {
   Service.prototype.getOptions = function () {
     return this.options;
   };
+
+  Service.prototype.unwrap = function (data) {
+    var self = this;
+    var unwrapped = {};
+    for (var prop in data) {
+      if (typeof prop === 'string' && prop.substr(prop.length - 6, prop.length) == 'Result') {
+        data = self.convert(data[prop]);
+        break;
+      }
+    }
+    return data;
+  };
+
+  Service.prototype.convert = function (o) {
+    var newResult = {};
+    for (var rootProp in o) {
+      newResult[rootProp] = o[rootProp];
+    }
+    return newResult;
+  };
+
   /*
   * Sets or Gets an option from a particular Service
   */

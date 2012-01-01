@@ -20,6 +20,7 @@
   <target name="compile" description="Compile all files in JavaScript">
     <echo message="Gathering all Controllers within mojo core" />
     <concat destfile="${MOJO}">
+      <fileset file="LICENSE" />
       <fileset file="${support}/mustache.js" />
       <fileset file="${src}/Core.js" />
       <fileset file="${src}/Messaging.js" />
