@@ -17,7 +17,7 @@ Model.set = function(key, value) {
     
     $(models).each(function(index, model) {
 
-      if (!model.hasOwnProperty("mojoTemplate") || !model.mojoTemplate) {
+      if (!model.mojoTemplate) {
         model.mojoTemplate = $(model).html();
       } 
       
