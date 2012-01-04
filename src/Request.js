@@ -7,10 +7,9 @@
  *
  * @author Jaime Bueza
  */
-mojo.define('mojo.Request', function() {
+mojo.define('mojo.Request', function Request($) {
 
 "use strict"; 
-var $ = jQuery;
 /* 
  * @param paramsObj {Object} - Hash object that gets passed into the request
  * @param callerObj {DOM} - When invoked by a user interaction, request objects will have access to the DOM element that was clicked (caller)

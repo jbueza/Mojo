@@ -13,7 +13,7 @@ code, and structural integrity.
 
 <pre>
   $ git@github.com:jbueza/blastmojo.git &amp;&amp; cd blastmojo
-  $ rake
+  $ ant
 </pre>
 
 ## Getting Setup
@@ -81,7 +81,7 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
 
 The Blast Mojo Framework
 
-Copyright (c) 2011 Blast Radius
+Copyright (c) 2012 Blast Radius
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

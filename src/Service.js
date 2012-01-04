@@ -3,9 +3,8 @@
 * @author Jaime Bueza
 * Represents a service call
 */
-mojo.define('mojo.Service', function Service() {
-  var $ = jQuery;
-
+mojo.define('mojo.Service', function Service($) {
+  
   function Service(name, uri, options) {
     if (typeof options == 'undefined') options = {};
 
