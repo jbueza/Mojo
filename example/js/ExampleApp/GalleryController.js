@@ -5,17 +5,13 @@
  * @class   Gallery Controller
  * @author  Jaime Bueza
  */
-mojo.define('ExampleApp.GalleryController', {
-  events: [
-  
-  ],
-  methods: {
-
-  },
-  after: {
-    Start: function() {
-      //initialize!
-      $("#mycarousel", this.getContextElement()).jcarousel();
+mojo.define('ExampleApp.GalleryController', function($) {
+  var Controller = {
+    methods: {
+      Initialize: function() {
+        $("#mycarousel", this.getContextElement()).jcarousel();
+      }
     }
-  }
+  };
+  return Controller;
 });

@@ -140,7 +140,7 @@
     if ('undefined' == typeof id || !id) throw new Error("'id' is required");
     if ('undefined' == typeof factory || !factory) throw new Error(id + " missing factory implementation");
     if ('function' == typeof factory) {
-      factory = factory.call(this);
+      factory = factory.call(this, jQuery);
     }
     
     if ('string' != typeof id) return false;
