@@ -1,24 +1,22 @@
-# Blast Mojo - Lightweight Structural JavaScript Framework
+# Mojo - Lightweight Structural JavaScript Framework
 
-![Blast Mojo Architecture](http://mojo.bueza.com/BlastMojo-NewArchitecture.png "Blast Mojo Architecture")
-
-Blast Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
+Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
 
 jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Having globally distributed software development teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 
-The Blast Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound
+The Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound
 code, and structural integrity.
 
 ### Building From Source
 
 <pre>
-  $ git@github.com:jbueza/blastmojo.git &amp;&amp; cd blastmojo
+  $ git clone git@github.com:AgileBusinessCloud/Mojo.git &amp;&amp; cd Mojo
   $ ant
 </pre>
 
 ## Getting Setup
 
-1. git clone http://github.com/jbueza/blastmojo.git && cd blastmojo
+1. git clone http://github.com/AgileBusinessCloud/Mojo.git && cd Mojo
 2. use apache ant to build a compiled source: <code>ant</code>
 3. navigate to the <code>/example</code> to view the example code
 
@@ -39,7 +37,7 @@ app
   .start()
 ```
 
-For more information, view the [Quick Screencast of Blast Mojo Framework](http://vimeo.com/22070574)
+For more information, view the [Quick Screencast of Mojo Framework](http://vimeo.com/22070574)
 
 ### Technical Features
 
@@ -50,9 +48,9 @@ For more information, view the [Quick Screencast of Blast Mojo Framework](http:/
 * Controllers are mapped to DOM elements to give components functionality
 * Controllers are used as a way of creating implementation silos (Login Controller, Registration Controller, Chat Controller, Profile Controller, etc)
 
-## Why use Blast Mojo?
+## Why use Mojo?
 
-* Blast Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
+* Mojo offers a foundation that other libraries and developers can take advantage of. It was built to provide a consistent architectural structure for development of small to massive projects allowing for code reuse and flexibility
 
 * Enforces organization and clean separation of code to ease readability and maintainability
 
@@ -66,9 +64,7 @@ For more information, view the [Quick Screencast of Blast Mojo Framework](http:/
 
 ## Contributing
 
-Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo)
-
-* Discuss large changes on mailing list before coding
+* Discuss large changes on Issues View before coding
 * Javascript code style
   * has two space indention
   * maximum 80 column width
@@ -77,26 +73,12 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
   * multi-line if statements must have braces.
 * patches should all pass [JSLint](http://jslint.com) 
 
-## MIT Licence
+## Apache 2.0 License
 
-The Blast Mojo Framework
+Copyright 2012 Agile Business Cloud Solutions Ltd.
 
-Copyright (c) 2012 Blast Radius
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+http://www.apache.org/licenses/LICENSE-2.0
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

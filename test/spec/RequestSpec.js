@@ -1,6 +1,6 @@
 describe("Request", function() {
   var MockController = { getContextElement: jQuery("#an-element") }; 
-  jQuery(document.body).append("<a id='test-anchor' href='http://blastmojo.com'>Blast Mojo</a>");
+  jQuery(document.body).append("<a id='test-anchor' href='http://www.agilebusinesscloud.com'>Agile Business Cloud</a>");
   var testRequest = new mojo.Request({ user: "Jaime" }, jQuery("#test-anchor"), {}, MockController);
   it("should throw an error when instantiating a request without a caller object", function() {
     expect(function() { new mojo.Request({}, null, {}, {})}).toThrow("'callerObj' is required");

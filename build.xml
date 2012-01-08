@@ -1,4 +1,4 @@
-<project name="Blast Mojo" default="all" basedir=".">
+<project name="Mojo" default="all" basedir=".">
   <property name="PREFIX" value="." />
   <property description="Folder for mojo and min target" name="dist" value="${PREFIX}/dist" />
   <property description="Folder for mojo source" name="src" value="${PREFIX}/src" />
@@ -7,7 +7,7 @@
   <!-- all JS gets piped through YUI Compressor instead of Google Closure -->
   <property name="COMPILER" value="build/yuicompressor.jar" />
 
-  <!-- Blast Mojo Lite core -->
+  <!-- Mojo Lite core -->
   <property name="MOJO" value="${dist}/mojo.js.uncompressed.js" />
   <property name="MOJO_MIN" value="${dist}/mojo.js" />
 

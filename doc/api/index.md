@@ -1,13 +1,13 @@
-# Blast Mojo - Lightweight Structural JavaScript Framework
+# Mojo - Lightweight Structural JavaScript Framework
 
-Blast Mojo is a patterns-based JavaScript framework that provides a consistent event- driven architecture for complex client-side web applications, built on existing best-of- breed JS libraries. Its objectives are to provide a structured way of developing Rich Internet Applications, abstract complexities by separation of concerns, and maximize re-use of existing code, in order to maintain knowledge and improve on speed and quality of deliverables.
+Mojo is a patterns-based JavaScript framework that provides a consistent event- driven architecture for complex client-side web applications, built on existing best-of- breed JS libraries. Its objectives are to provide a structured way of developing Rich Internet Applications, abstract complexities by separation of concerns, and maximize re-use of existing code, in order to maintain knowledge and improve on speed and quality of deliverables.
 
 Lightweight (4kb gzipped), provides you with structure, and is a great framework for building event-driven mobile web or desktop web applications for your distributed teams. The only dependency is jQuery (Sizzle) for its fast selector engine.
 
 
 ## Architecture
 
-![Blast Mojo Architecture](BlastMojo-NewArchitecture.png "Blast Mojo Architecture")
+![Mojo Architecture](BlastMojo-NewArchitecture.png "Mojo Architecture")
 
 
 ## Get Started
@@ -56,47 +56,31 @@ app
 
 ## Classes
 
-* [Application](Application.html "Blast Mojo: Application Class")
-* [Controller](Controller.html "Blast Mojo: Controller Class")
-* [Core](Core.html "Blast Mojo: Core Class")
-* [Request](Request.html "Blast Mojo: Request Class")
-* [Service](Service.html "Blast Mojo: Service Class")
+* [Application](Application.html "Mojo: Application Class")
+* [Controller](Controller.html "Mojo: Controller Class")
+* [Core](Core.html "Mojo: Core Class")
+* [Request](Request.html "Mojo: Request Class")
+* [Service](Service.html "Mojo: Service Class")
 
 ## Guides
 
-* [Blast Mojo Architecture Overview](#)
+* [Mojo Architecture Overview](#)
 * [Writing Your First Controller](#)
 * [Using Dependency Injection With jQuery Plugins](#)
 
-## MIT License
-<pre>/*!
-   * The Blast Mojo Framework
-   *
-   * Copyright (c) 2011 Blast Radius
-   * 
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in
-   * all copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-   * THE SOFTWARE.
-   */
-</pre>
+## Apache 2.0 License
+
+Copyright 2012 Agile Business Cloud Solutions Ltd.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 ## Contributions
 
-Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/blast-mojo) or provide a github pull request to [jbueza](https://github.com/jbueza/blastmojo).
+Post patches to the [Mojo Mailing List](http://groups.google.com/group/blast-mojo) or provide a github pull request to [jbueza](https://github.com/jbueza/blastmojo).
 
 * Discuss large changes on mailing list before coding
 * Javascript code style
@@ -107,6 +91,9 @@ Post patches to the [Blast Mojo Mailing List](http://groups.google.com/group/bla
   * multi-line <code>if</code> statements must have braces.
   * patches should all pass [JSLint](http://jslint.com)
 
-## Contributors
+## History
 
 * Brought to you by the [Blast Radius](http://www.blastradius.com) Front-End Engineering Team
+* Brought to you by [Jaime Bueza](http://jaime.bueza.com)
+* Brought to you by [Agile Business Cloud](http://www.agilebusinesscloud.com)
+* Brought to you by [RESAAS](http://www.resaas.com) Front-End Engineering Team

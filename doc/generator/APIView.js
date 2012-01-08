@@ -35,7 +35,7 @@ APIView.prototype.save = function() {
   var intro = [
       '<!DOCTYPE html><html>'
     , '<head>'
-    , '<title>Blast Mojo: Structural JavaScript Framework: ', publicName, '</title>'
+    , '<title>Mojo: Structural JavaScript Microframework: ', publicName, '</title>'
     , "<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>"
     , '<link href="site.css" rel="stylesheet" type="text/css">'
     , '<link href="sunburst.css" rel="stylesheet" type="text/css">'
