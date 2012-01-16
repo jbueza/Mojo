@@ -63,7 +63,10 @@ mojo.define('mojo.Service', function Service($) {
 
     $.ajax({
       url: uri,
-      data: data
+      data: data,
+      headers: {
+        "RequestId": mojo.guid()
+      }
     }).success(function (data) {
       if (responseType == 'JSON' && this.contentType.match(/javascript/g)) {
         data = $.parseJSON(data);

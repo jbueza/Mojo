@@ -83,6 +83,15 @@ describe("mojo.Core", function() {
       }).toThrow("HelloWorldController missing factory implementation");
     });
   });
+  
+  describe("mojo.guid", function() {
+    it("should return a valid guid length", function() {
+      expect(mojo.guid().length).toBe(36);
+    });
+    it("should never return empty", function() {
+      expect(mojo.guid()).toBeDefined();
+    });
+  });
 
   describe("mojo.requireSync", function() {
     it("should load a module synchronously", function() {
@@ -100,7 +109,7 @@ describe("mojo.Core", function() {
       } else {
         expect(window.Mustache).toBeDefined();
       }
-    })
+    });
     it("should throw an error if the 'template' is null", function() {
       expect(function() {
         mojo.template(null, {}, {});
@@ -118,7 +127,7 @@ describe("mojo.Core", function() {
       expect(function() {
         mojo.create({}, {});
       }).toThrow("Incorrect arguments");
-    })
+    });
   });
   
   describe("mojo.require", function() {
