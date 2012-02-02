@@ -18,7 +18,7 @@ Model.set = function(key, value) {
     $(models).each(function(index, model) {
 
       if (!model.mojoTemplate) {
-        model.mojoTemplate = $(model).html();
+        model.mojoTemplate = $(model).html().replace('%7B%7B', '{{').replace('%7D%7D', '}}');
       } 
       
       $(model).html("");
