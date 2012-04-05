@@ -7,7 +7,7 @@ describe("mojo.Service", function() {
     , jsonpTestService = new mojo.Service('GetSXPBlogs', 'http://sxpdata.cloudapp.net/feeds/g3c', { jsonp: true })
     , brokenService = new mojo.Service("Broken", "data/broken.js")
     , testPostAsGetService = new mojo.Service("getUsersButAsPostService", "data/user.js", { method: "post"})
-    , getTestHtmlService = new mojo.Service("getTestHtmlService", "data/markup.html", { contentType: "text/html"})
+    , timeout = 100
     ;
   
   it("should always have a name", function() {
@@ -34,34 +34,66 @@ describe("mojo.Service", function() {
     expect(updateTestService.getOptions().method).toBe('post');
   });
   describe("mojo.Service.invoke", function() {
-    it("should allow null for passing parameters into the service call", function() {
-      getTestService.invoke(null, function(err, data) { expect(err).toBeUndefined(); }, null);
-    });
-    it("should allow empty hash object for passing parameters into the service call", function() {
-      getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
-    });
-
-    it("should allow developers to set the contentType to html", function() {
-      var htmlService = new mojo.Service("Partial", "data/markup.html", { contentType: "text/html" });
-      htmlService.invoke(null, function(err, data) { expect(data).toBe('<p>Hello World</p>'); }, null);
-    });
-
-    it("should not have an error object passed into the callback on a successful service call", function() {
-      getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
-    });
-
-    it("should have pass the response back into the callback on a successful service call", function() {
-      getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
-    });
-    it("should fail gracefully if JSON isn't correctly structured", function() {
-      getTestService.invoke({}, function(err, data) { expect(data).toBe("parseerror"); });
+    // 
+    // it("should allow null for passing parameters into the service call", function() {
+    //   getTestService.invoke(null, function(err, data) { expect(err).toBeUndefined(); }, null);
+    // });
+    // it("should allow empty hash object for passing parameters into the service call", function() {
+    //   getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
+    // });
+    // 
+    // it("should not have an error object passed into the callback on a successful service call", function() {
+    //   getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
+    // });
+    // 
+    // it("should have pass the response back into the callback on a successful service call", function() {
+    //   getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
+    // });
+    // it("should fail gracefully if JSON isn't correctly structured", function() {
+    //   getTestService.invoke({}, function(err, data) { expect(data).toBe("parseerror"); });
+    // });
+    // 
+    // it("should have pass the textStatus as a 3rd parameter", function() {
+    //   getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBeDefined(); });
+    // });
+    // 
+    // it("should have pass the textStatus as 'success'", function() {
+    //   getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBe("success"); });
+    // });
+    
+    it("should have pass the XHR object as 4th parameter and be successful", function() {
+      runs(function() {
+        var self = this;
+        getTestService.invoke({}, function(err, data, textStatus, xhr) { self.value = textStatus; });
+      });
+      waits(timeout);
+      runs(function() { expect(this.value).toBe("success"); });
     });
     
-    it("should have pass the textStatus as a 3rd parameter", function() {
-      getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBeDefined(); });
+    it("should have pass the XHR object as 4th parameter", function() {
+      runs(function() {
+        var self = this;
+        getTestService.invoke({}, function(err, data, textStatus, xhr) { self.value = xhr; });
+      });
+      waits(timeout);
+      runs(function() { expect(this.value).toBeDefined(); });
     });
-    it("should have pass the textStatus as 'success'", function() {
-      getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBe("success"); });
+    
+    it("should have pass the XHR object as 4th parameter and have the headers", function() {
+      runs(function() {
+        var self = this;
+        getTestService.invoke({}, function(err, data, textStatus, xhr) { self.value = xhr.getAllResponseHeaders(); });
+      });
+      waits(timeout);
+      runs(function() { expect(this.value).toBeDefined(); });
+    });
+    it("should have pass the XHR object as 4th parameter and have the correct Content-Type", function() {
+      runs(function() {
+        var self = this;
+        getTestService.invoke({}, function(err, data, textStatus, xhr) { self.value = xhr.getAllResponseHeaders(); });
+      });
+      waits(timeout);
+      runs(function() { this.expect(this.value.match(/javascript/g).length).toBe(1); });
     });
 
     it("should have an error object get passed into the callback on an erroneous service call", function() {

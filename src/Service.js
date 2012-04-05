@@ -53,7 +53,7 @@ mojo.define('mojo.Service', function Service($) {
       cache: options.cache || false,
       contentType: options.contentType || "application/json; charset=utf-8"
     });
-
+    
     var data;
     if (method == 'post' && options.contentType.match(/application\/json/gi)) {
       data = JSON.stringify(params);
@@ -71,13 +71,11 @@ mojo.define('mojo.Service', function Service($) {
       if (responseType == 'JSON' && this.contentType.match(/javascript/g)) {
         data = $.parseJSON(data);
       }
-
+      
       if (options.wrapped) data = self.unwrap(data);
 
       if ('undefined' != typeof callback) {
-        
         var args = [ null, data, arguments[1], arguments[2] ];
-        //console.log(args);
         if (typeof callback == 'function') {
           callback.apply(scope, args);
         } else {
