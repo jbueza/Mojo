@@ -75,15 +75,21 @@ mojo.define('mojo.Service', function Service($) {
       if (options.wrapped) data = self.unwrap(data);
 
       if ('undefined' != typeof callback) {
+        
+        var args = [ null ];
+        args = args.concat(arguments);
+        
         if (typeof callback == 'function') {
-          callback.call(scope, null, data);
+          callback.apply(scope, args);
         } else {
           //string
-          scope[callback](null, data);
+          scope[callback].apply(scope, args);
         }
       }
     }).error(function () {
-      if ('undefined' != typeof callback) callback.call(scope || this, "Unable to execute XHR", arguments);
+      if ('undefined' != typeof callback) {
+        callback.apply(scope || this, arguments);
+      }
     });
   };
 
