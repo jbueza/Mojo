@@ -76,9 +76,8 @@ mojo.define('mojo.Service', function Service($) {
 
       if ('undefined' != typeof callback) {
         
-        var args = [ null ];
-        args = args.concat(arguments);
-        
+        var args = [ null, data, arguments[1], arguments[2] ];
+        //console.log(args);
         if (typeof callback == 'function') {
           callback.apply(scope, args);
         } else {

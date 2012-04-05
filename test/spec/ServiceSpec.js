@@ -53,6 +53,16 @@ describe("mojo.Service", function() {
     it("should have pass the response back into the callback on a successful service call", function() {
       getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
     });
+    it("should fail gracefully if JSON isn't correctly structured", function() {
+      getTestService.invoke({}, function(err, data) { expect(data).toBe("parseerror"); });
+    });
+    
+    it("should have pass the textStatus as a 3rd parameter", function() {
+      getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBeDefined(); });
+    });
+    it("should have pass the textStatus as 'success'", function() {
+      getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBe("success"); });
+    });
 
     it("should have an error object get passed into the callback on an erroneous service call", function() {
       brokenService.invoke({}, function(err, data) { expect(err).toBeDefined(); }, null);
