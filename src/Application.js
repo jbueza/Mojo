@@ -210,7 +210,5 @@ Application.prototype.remap = function remap() {
   });
 };
 
-window.mojo.Application = Application;
-if (window.MOJO) window.MOJO.Application = Application;
-
+  mojo.Application = Application;
 });
