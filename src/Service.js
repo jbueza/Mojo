@@ -90,18 +90,32 @@ mojo.define('mojo.Service', function Service($) {
     });
   };
 
+  /* 
+   *  Returns the current service's name
+   */
   Service.prototype.getName = function () {
     return this.name;
   };
 
+ /* 
+  * Returns the current service's URI
+  */
   Service.prototype.getURI = function () {
     return this.uri;
   };
-
+  
+  /*
+   * Returns the optional parameters of the current service
+   */ 
   Service.prototype.getOptions = function () {
     return this.options;
   };
 
+  /* 
+   * Unwraps the ____Result from a WebServiceResult 
+   * and returns the object that the ___Result wraps.
+   * @param data A web service result from typical WCF service
+   */
   Service.prototype.unwrap = function (data) {
     var self = this;
     var unwrapped = {};
