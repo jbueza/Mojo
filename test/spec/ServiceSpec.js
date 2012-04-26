@@ -10,6 +10,14 @@ describe("mojo.Service", function() {
     , timeout = 100
     ;
   
+  it("should exist in the window object", function() {
+    expect(window.mojo.Service).toBeDefined();
+  });
+  
+  it("should not exist in the process object (NodeJS)", function() {    
+    expect(process).toBeUndefined();
+  });
+  
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
   });
@@ -101,6 +109,9 @@ describe("mojo.Service", function() {
     });
   });    
   describe("mojo.Service.parse", function() {
+    it("should return false if incorrect arguments", function() {
+      expect(testService.parse()).toBeFalsy();
+    })
     it("should return a properly templated URI", function() {
       expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
     });
