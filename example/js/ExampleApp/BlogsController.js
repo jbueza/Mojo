@@ -14,7 +14,7 @@ mojo.define('ExampleApp.BlogsController', function($) {
         mojo.ServiceLocator.getService('GetSXPBlogs').invoke({
             MediaType: 0
           , SubMediaType: 0
-          , pageSize: 3
+          , pageSize: 10
           , jsonp: "renderBlogs" 
         }, function(err, data) {
           console.log("Loading Complete!");
