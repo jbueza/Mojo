@@ -99,6 +99,7 @@ Controller.prototype.param = function(key, value) {
     return this.params[key];
   }
 };
-window.mojo.Controller = Controller;
-if (window.MOJO) window.MOJO.Controller = Controller;
+  
+  mojo.Controller = Controller;
+  
 });
