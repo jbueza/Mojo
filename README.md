@@ -1,4 +1,4 @@
-# Mojo - Lightweight Structural JavaScript Framework
+# Mojo - JavaScript Microframework
 
 Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
 
@@ -42,10 +42,10 @@ For more information, view the [Quick Screencast of Mojo Framework](http://vimeo
 ### Technical Features
 
 * Aspect-oriented programming for intercepting functionality (before and after)
-* Dependency injection on any plugin (pull jQuery plugins into your application when you need them)
-* Publish/Subscribe (by pulling in the pubsub plugin into your application sandbox)
+* Dependency injection on any plugin or Controller
+* Publish/Subscribe (mojo.Messaging.publish/subscribe)
 * Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
-* Controllers are mapped to DOM elements to give components functionality
+* Controllers are mapped to DOM elements to give components functionality -- allowing you to easily feature-gate
 * Controllers are used as a way of creating implementation silos (Login Controller, Registration Controller, Chat Controller, Profile Controller, etc)
 
 ## Why use Mojo?
