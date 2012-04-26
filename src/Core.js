@@ -67,6 +67,10 @@
     return result[0];
   };
   
+  /* 
+   * Returns a GUID
+   *
+   */
   mojo.guid = function guid() {
     var s = [], itoh = '0123456789ABCDEF';
 
