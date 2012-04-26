@@ -43,6 +43,7 @@ mojo.define('mojo.ServiceLocator', function ServiceLocator($) {
      * Returns all services in the Service Locator
      */
     getServices: function() {
+      if (typeof this.services === undefined) return false;
       return this.services;
     }
   };

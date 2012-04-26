@@ -38,6 +38,12 @@ describe("mojo.ServiceLocator", function() {
     ServiceLocator.removeServices();
     expect(ServiceLocator.services).toEqual({});
   });
+  
+  it("should return false if someone duckpunches the services property", function() {
+    var x = ServiceLocator;
+    x.services = undefined;
+    expect(x.getServices()).toBeFalsy();
+  });
 
 
   
