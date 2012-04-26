@@ -52,9 +52,9 @@ Model.remove = function(key) {
   if ('string' != typeof(key)) { return false; }
   if ('undefined' == typeof mojo.ModelRegistry[key]) { return false; }
   delete mojo.ModelRegistry[key];
+  return true;
 };
   
-  window.mojo.Model = Model;
-  window.mojo.ModelRegistry = {};
-  if (window.MOJO) window.MOJO.Model = window.mojo.Model;
+  mojo.Model = Model;
+  mojo.ModelRegistry = {};
 });
