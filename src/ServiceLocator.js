@@ -15,6 +15,7 @@ mojo.define('mojo.ServiceLocator', function ServiceLocator($) {
      * @param service {Service Object} An instance of a mojo Service class
      */
     addService: function(service) {
+      if (!service) return false;
       this.services[service.name] = service;
       return this;
     },
