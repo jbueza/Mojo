@@ -140,7 +140,8 @@ mojo.define('mojo.Service', function Service($) {
 
   /*
   * Returns an HTML fragment from {} templating
-  * @deprecated
+  * @param context {String} Accepts any length string with mustaches ({myKey})
+  * @param params {Object} A JSON object that is ran against the content string that has mustaches
   */
   Service.prototype.parse = function (content, params) {
     if (arguments.length != 2) return false;
