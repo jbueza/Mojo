@@ -14,10 +14,10 @@ describe("mojo.Service", function() {
     expect(window.mojo.Service).toBeDefined();
   });
   
-  it("should not exist in the process object (NodeJS)", function() {    
+  it("should not exist in the process object (NodeJS)", function() {
     expect(process).toBeUndefined();
   });
-  
+    
   it("should always have a name", function() {
     expect(getTestService.getName()).toBe("GetUsers");
   });
