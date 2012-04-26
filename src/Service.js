@@ -152,5 +152,5 @@ mojo.define('mojo.Service', function Service($) {
     return content;
   };
 
-  if (window) window.mojo.Service = Service;
+  mojo.Service = Service;
 });

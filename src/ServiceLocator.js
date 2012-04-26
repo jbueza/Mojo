@@ -47,6 +47,5 @@ mojo.define('mojo.ServiceLocator', function ServiceLocator($) {
     }
   };
 
-  window.mojo.ServiceLocator = ServiceLocator;
-  if (window.MOJO) window.MOJO.ServiceLocator = ServiceLocator;
+  mojo.ServiceLocator = ServiceLocator;
 });
