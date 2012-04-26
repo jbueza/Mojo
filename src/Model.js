@@ -7,24 +7,20 @@ var $ = jQuery, Model = function() {};
 Model.set = function(key, value) {
   //find in the DOM, if it's an element, pass it into the templating engine
   //if it's not an HTML element, then we can just store it in DOM
-  var models = mojo.query('*[modelSource="' + key + '"]'),
-      contentOfModel;
+  var models = mojo.query('*[modelSource="' + key + '"]')
+    , contentOfModel;
   
   //makes an assumption that there is only one model 
   mojo._namespace(key);
   
   if (models.length) {
-    
     $(models).each(function(index, model) {
 
       if (!model.mojoTemplate) {
         model.mojoTemplate = $(model).html().replace('%7B%7B', '{{').replace('%7D%7D', '}}');
       } 
-      
       $(model).html("");
-      
       var content = mojo.template(model.mojoTemplate, value);
-      
       $(models).html(content);
       
       contentOfModel = $(models).html();
