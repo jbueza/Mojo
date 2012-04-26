@@ -15,7 +15,7 @@ describe("mojo.Service", function() {
   });
   
   it("should not exist in the process object (NodeJS)", function() {
-    expect(process).toBeUndefined();
+    expect(window ? window.process : process).toBeUndefined(); //fragile??
   });
     
   it("should always have a name", function() {
