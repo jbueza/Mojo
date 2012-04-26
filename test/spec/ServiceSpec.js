@@ -113,7 +113,13 @@ describe("mojo.Service", function() {
   describe("mojo.Service.parse", function() {
     it("should return false if incorrect arguments", function() {
       expect(testService.parse()).toBeFalsy();
-    })
+    });
+    it("should return false if the content param is not a string", function() {
+      expect(testService.parse(false, { meow: "cat" })).toBeFalsy();
+    });
+    it("should return false if the params (map) param is not an object", function() {
+      expect(testService.parse("Hello there {name}", false)).toBeFalsy();
+    });
     it("should return a properly templated URI", function() {
       expect(testService.parse("/api/user/{user}", { user: 'jbueza'})).toBe("/api/user/jbueza");
     });
