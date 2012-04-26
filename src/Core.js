@@ -186,6 +186,6 @@
     return new mojo.Application();
   };
   
-  window.mojo = mojo;
+  if (window) window.mojo = mojo;
    
 })(window, document);
