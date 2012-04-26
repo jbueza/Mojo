@@ -17,7 +17,7 @@ mojo.define('ExampleApp.BlogsController', function($) {
           , pageSize: 3
           , jsonp: "renderBlogs" 
         }, function(err, data) {
-          console.log("Complete!");
+          console.log("Loading Complete!");
         });
       }
       
