@@ -127,7 +127,10 @@ mojo.define('mojo.Service', function Service($) {
     }
     return data;
   };
-
+  /*
+   *  Works in conjunction with the unwrap method
+   * @param o {Object} 
+   */
   Service.prototype.convert = function (o) {
     var newResult = {};
     for (var rootProp in o) {
