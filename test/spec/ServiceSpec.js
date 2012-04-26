@@ -44,33 +44,7 @@ describe("mojo.Service", function() {
     expect(updateTestService.getOptions().method).toBe('post');
   });
   describe("mojo.Service.invoke", function() {
-    // 
-    // it("should allow null for passing parameters into the service call", function() {
-    //   getTestService.invoke(null, function(err, data) { expect(err).toBeUndefined(); }, null);
-    // });
-    // it("should allow empty hash object for passing parameters into the service call", function() {
-    //   getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
-    // });
-    // 
-    // it("should not have an error object passed into the callback on a successful service call", function() {
-    //   getTestService.invoke({}, function(err, data) { expect(err).toBeUndefined(); }, null);
-    // });
-    // 
-    // it("should have pass the response back into the callback on a successful service call", function() {
-    //   getTestService.invoke({}, function(err, data) { expect(data.success).toBeTruthy(); }, null);
-    // });
-    // it("should fail gracefully if JSON isn't correctly structured", function() {
-    //   getTestService.invoke({}, function(err, data) { expect(data).toBe("parseerror"); });
-    // });
-    // 
-    // it("should have pass the textStatus as a 3rd parameter", function() {
-    //   getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBeDefined(); });
-    // });
-    // 
-    // it("should have pass the textStatus as 'success'", function() {
-    //   getTestService.invoke({}, function(err, data, textStatus) { expect(textStatus).toBe("success"); });
-    // });
-    
+        
     it("should have pass the XHR object as 4th parameter and be successful", function() {
       runs(function() {
         var self = this;
