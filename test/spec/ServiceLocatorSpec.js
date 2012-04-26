@@ -40,9 +40,9 @@ describe("mojo.ServiceLocator", function() {
   });
   
   it("should return false if someone duckpunches the services property", function() {
-    var x = ServiceLocator;
-    x.services = undefined;
-    expect(x.getServices()).toBeFalsy();
+    var LocalServiceLocator = ServiceLocator;
+    LocalServiceLocator.services = undefined;
+    expect(LocalServiceLocator.getServices()).toBeFalsy();
   });
 
 
