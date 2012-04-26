@@ -56,5 +56,6 @@ Request.prototype.getEvent = function() {
   return this.eventObj;
 };
 
-window.mojo.Request = Request;
+  mojo.Request = Request;
+  
 });
