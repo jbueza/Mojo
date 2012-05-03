@@ -85,6 +85,9 @@ describe("mojo.Core", function() {
   });
   
   describe("mojo.guid", function() {
+    it("should exist", function() {
+      expect(mojo.guid).toBeDefined();
+    });
     it("should return a valid guid length", function() {
       expect(mojo.guid().length).toBe(36);
     });
