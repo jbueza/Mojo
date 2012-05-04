@@ -20,6 +20,8 @@ code, and structural integrity.
 2. use apache ant to build a compiled source: <code>ant</code>
 3. navigate to the <code>/example</code> to view the example code
 
+### app.js: Maps elements to Controllers
+
 ``` js
 var app = mojo.create({ baseSrc: 'js/' });
 
@@ -35,6 +37,21 @@ app
   .map('#login-example', [{ controller: "ExampleApp.LoginController" }])
 
   .start()
+```
+
+### mysite/User/RegistrationController.js
+
+``` js
+mojo.define("mysite.User.RegistrationController", function($) {
+  var Controller = {
+    methods: {
+      
+    },
+    events: []
+  };
+  
+  return Controller;
+});
 ```
 
 For more information, view the [Quick Screencast of Mojo Framework](http://vimeo.com/22070574)
