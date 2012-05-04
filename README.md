@@ -75,6 +75,7 @@ For more information, view the [Quick Screencast of Mojo Framework](http://vimeo
 
 ## Apache 2.0 License
 
+Copyright 2012 Jaime Bueza
 Copyright 2012 Agile Business Cloud Solutions Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
