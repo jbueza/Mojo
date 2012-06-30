@@ -23,6 +23,7 @@
       <fileset file="LICENSE" />
       <fileset file="${support}/mustache.js" />
       <fileset file="${src}/Core.js" />
+      <fileset file="${src}/Helper.js" />
       <fileset file="${src}/Messaging.js" />
       <fileset file="${src}/Model.js" />
       <fileset file="${src}/Request.js" />
