@@ -9,3 +9,5 @@ Thumbs.db
 .sass-cache/*
 *.idea
 *.suo
+
+node_modules
