@@ -19,7 +19,7 @@ module.exports = function(grunt) {
               , 'src/Service.js'
               , 'src/ServiceLocator.js'
               ],
-        dest: 'dist/mojo.js'
+        dest: 'dist/mojo.js.uncompressed.js'
       }
     },
     // Lists of files to be linted with JSHint, used by the "lint" task.
@@ -27,8 +27,8 @@ module.exports = function(grunt) {
     // Lists of files to be minified with UglifyJS, used by the "min" task.
     min: {
       dist: {
-        src: ['dist/mojo.js'],
-        dest: 'dist/mojo.min.js'
+        src: ['dist/mojo.js.uncompressed.js'],
+        dest: 'dist/mojo.js'
       }
     },
     // Lists of files or URLs to be unit tested with QUnit, used by the "qunit" task.
