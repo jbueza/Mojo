@@ -2,11 +2,12 @@
     "name": "Mojo"
   , "version": "1.0.0"
   , "description": "JavaScript Microframework"
-  , "keywords": []
+  , "keywords": ["js", "frontend", "microframework"]
   , "author": "Jaime Bueza <jbueza@gmail.com>"
   , "dependencies": {
-    "grunt":">= 0.3"
+      "grunt":"latest"
+    , "vows": "latest"
+    , "mocha": "latest"
   }
-  , "main": "index"
-  , "engines": { "node": "0.6.x" }
+  , "engines": { "node": "0.8.x" }
 }
