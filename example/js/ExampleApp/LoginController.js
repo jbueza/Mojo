@@ -10,7 +10,6 @@ mojo.define('ExampleApp.LoginController', function($) {
     ],
     methods: {
       Initialize: function() {
-        console.log("Hello");
       },
       Login: function(requestObj) {
         var context = requestObj.getContextElement();
