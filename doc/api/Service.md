@@ -46,3 +46,14 @@ $("#btn-follow-user").click(function(event) {
   });
 });
 </code></pre>
+
+
+## Messaging
+
+```javascript
+mojo.Messaging.subscribe("mojo.Service.AddFollower", function(event, message) {
+  console.log("we are now able to see messages being passed when the service is invoked");
+  // this can make it easier for headless testing as you can just subscribe to the topics
+  // instead of crafting callbacks to pass into the Service.
+})
+```
