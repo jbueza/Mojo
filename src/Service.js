@@ -85,10 +85,12 @@ mojo.define('mojo.Service', function Service($) {
           //string
           scope[callback].apply(scope, args);
         }
+        mojo.Messaging.publish("mojo.Service." + self.getName(), { response: data, service: self });
       }
     }).error(function () {
       if ('undefined' != typeof callback) {
         callback.apply(scope || this, arguments);
+        mojo.Messaging.publish("mojo.Service." + self.getName(), { response: data, service: self });
       }
     });
   };
