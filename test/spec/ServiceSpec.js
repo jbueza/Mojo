@@ -85,9 +85,13 @@ describe("mojo.Service", function() {
     });
     
     it("should publish a message when invoking the service", function() {
-      var passed = false;
+      var result = {
+        response: null,
+        service: null
+      };
       mojo.Messaging.subscribe("mojo.Service.getMyAwesomeNess", function(event, message) {
-        passed = true;
+        result.response = message.response;
+        result.service = message.service;
       });
       var messagePassedService = new mojo.Service("getMyAwesomeNess", "data/user.js");
       runs(function() {
@@ -96,7 +100,8 @@ describe("mojo.Service", function() {
       });
       waits(timeout);
       runs(function() { 
-        expect(passed).toBeTruthy() 
+        expect(result.service).toBeDefined();
+        expect(result.response).toBeDefined();
     
       });
     });
