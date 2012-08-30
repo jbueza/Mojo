@@ -3,13 +3,19 @@ mojo.define('ExampleApp.member.ProfileController', {
     [ 'context', '.btn-save-profile', 'click', 'Save' ]
   ],
   methods: {
+    Initialize: function() {
+      
+      mojo.Messaging.subscribe("mojo.Service.getUpdateProfile", function(event, message) {
+        console.log(message);
+      });
+    },
     Save: function(requestObj) {  
       var params = {};
       $("input[type=text], textarea").each(function(i, input) {
         input = $(input);
         params[input.attr('name')] = input.val();
       });
-      ServiceLocator.getService('UpdateProfile').invoke(params, function(err, data) {
+      mojo.ServiceLocator.getService('getUpdateProfile').invoke(params, function(err, data) {
         console.log("Success!");
         $(".success", this.getContextElement()).show('fast');
       }, this);

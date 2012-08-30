@@ -76,6 +76,9 @@ mojo.define('mojo.Service', function Service($) {
 
       if ('undefined' != typeof callback) {
         var args = [ null, data, arguments[1], arguments[2] ];
+
+        mojo.Messaging.publish("mojo.Service." + self.getName(), { response: data, service: self });
+        
         if (typeof callback == 'function') {
           callback.apply(scope, args);
         } else {
@@ -85,6 +88,7 @@ mojo.define('mojo.Service', function Service($) {
       }
     }).error(function () {
       if ('undefined' != typeof callback) {
+        mojo.Messaging.publish("mojo.Service." + self.getName(), { response: data, service: self });
         callback.apply(scope || this, arguments);
       }
     });

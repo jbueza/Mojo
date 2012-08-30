@@ -83,6 +83,28 @@ describe("mojo.Service", function() {
     it("should have an error object get passed into the callback on an erroneous service call", function() {
       brokenService.invoke({}, function(err, data) { expect(err).toBeDefined(); }, null);
     });
+    
+    it("should publish a message when invoking the service", function() {
+      var result = {
+        response: null,
+        service: null
+      };
+      mojo.Messaging.subscribe("mojo.Service.getMyAwesomeNess", function(event, message) {
+        result.response = message.response;
+        result.service = message.service;
+      });
+      var messagePassedService = new mojo.Service("getMyAwesomeNess", "data/user.js");
+      runs(function() {
+        var self = this;
+        messagePassedService.invoke({}, function(err, data, textStatus, xhr) { self.called = true });
+      });
+      waits(timeout);
+      runs(function() { 
+        expect(result.service).toBeDefined();
+        expect(result.response).toBeDefined();
+    
+      });
+    });
   });    
   describe("mojo.Service.parse", function() {
     it("should return false if incorrect arguments", function() {
