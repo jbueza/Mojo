@@ -1,7 +1,9 @@
 # Application
 
-<pre><code>//mojo.create() returns you an application instance.
-var app = mojo.create();</code></pre>
+```javascript
+//mojo.create() returns you an application instance.
+var app = mojo.create();
+```
 
 ## API
 
@@ -18,12 +20,14 @@ Provides the ability to set configurations for your Mojo application. At the mom
 
 #### Usage
 
-<pre><code>app
+```javascript
+app
   .configure('appSrc', 'js/')
   .configure('locale', 'en_US')                   // locale aware applications! (load different languages)
   .configure('environment', 'prod')               // dev or prod for debugging mode!
   .configure('pluginSrc', 'js/lib/plugins/')      // setup plugins location directory
-  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!</code></pre>
+  .configure('plugins', ['jqmodal', 'jcarousel']) // automagically fetch my jQuery plugins!
+```
 
 ### map(selector, callback) 
 
@@ -44,14 +48,6 @@ Provides the ability to unbind all controllers from all contexts, as well as, pr
 ### connectControllers()
 
 Provides the ability to map all DOM elements to Controllers based on your bootstrap JavaScript file (typically called app.js). Developers can call this if they (for some reason) want to remap controllers--This isn't recommended as you can use event delegation instead through your Event Map.
-
-### on(eventName, callback) 
-
-N/A (Future)
-
-### getPlugins(onComplete)
-
-Provides the ability to fetch all application-specific plugins prior to starting the application. This method piggybacks off of mojo.require() to fetch the plugins.
 
 ### start()
 
