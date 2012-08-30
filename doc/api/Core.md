@@ -2,7 +2,6 @@
 
 Provides helper methods for managing your Mojo applications (namespacing, requiring, and creation).
 
-
 ## Properties
 
 ### controllers
@@ -15,7 +14,7 @@ List of Mojo Controllers available to applications.
 
 Fetches a resource. Currently piggybacks off of jQuery's require() and blocks.
 
-### define(className, implementation)
+### define(controllerName, implementation)
 
 Namespaces, provides, and creates a Mojo controller.
 
