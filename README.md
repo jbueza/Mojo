@@ -4,8 +4,7 @@ Mojo is a lightweight structural JavaScript framework that has the ability to sc
 
 jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Having globally distributed software development teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
 
-The Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound
-code, and structural integrity.
+The Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity.
 
 ### Building From Source
 
@@ -22,7 +21,7 @@ code, and structural integrity.
 
 ### app.js: Maps elements to Controllers
 
-``` js
+``` javascript
 var app = mojo.create({ baseSrc: 'js/' });
 
 app
@@ -41,7 +40,11 @@ app
 
 ### mysite/User/RegistrationController.js
 
-``` js
+```javascript
+
+/*
+ * Registration Controller
+ */
 mojo.define("mysite.User.RegistrationController", function($) {
   var Controller = {
     methods: {
