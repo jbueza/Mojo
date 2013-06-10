@@ -47,20 +47,6 @@ describe("mojo.Application", function() {
       app.disconnectControllers();
     }, 100);
   });
-
-  /*
-  it("should fetch all plugins that the application is dependent on", function() { 
-    var a = mojo.create();
-    a.configure('pluginSrc', '../example/js/lib/plugins/');
-    a.configure('plugins', ['jcarousel']);
-    a.configure('pluginsAsync', false);
-    a.getPlugins(function() {
-      expect(jQuery.jcarousel).toBeDefined();
-    });
-  });
-  */
-  
-  
   
   describe("Error Cases", function() {
     it("should throw an error when map() is called without a selector parameter", function() {

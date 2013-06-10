@@ -12,7 +12,7 @@ app
   .configure('environment', 'dev')
   .configure('logging', true)
   .configure('pluginSrc', 'js/lib/plugins/')  
-  .configure('plugins', ['jqmodal', 'jcarousel', 'tmpl'])
+  .configure('plugins', ['jqmodal', 'tmpl'])
 
   .map('#registration-example', function() {
     return [
@@ -29,12 +29,6 @@ app
   .map('#profile-example', function() {
     return [
       { controller: "ExampleApp.member.ProfileController", params: { 'currentCity': 'Vancouver', 'hometown': 'Winnipeg' }}
-    ];
-  })
-
-  .map('#gallery-example', function() {
-    return [
-      { controller: "ExampleApp.GalleryController" }
     ];
   })
 
