@@ -28,14 +28,6 @@ describe("mojo.Application", function() {
   it("should be able to get a configuration setting", function() { 
     expect(app.configure('appName')).toEqual('MyTestApp');
   });
-  it("should allow developers to specify a different selector engine", function() {
-    app.configure('selector', jQuery.sub());
-    expect(app.configure('selector')).toBeDefined();
-  });
-  it("should find elements through a new selector engine", function() {
-    app.configure('selector', jQuery.sub());
-    expect(mojo.query("div").length).toBeGreaterThan(0);
-  });
   it("should have an onComplete event", function() {
     expect(app.onComplete).toBeDefined();
   });
