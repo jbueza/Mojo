@@ -17,7 +17,7 @@ The Mojo Initiative emerged to help distributed teams build web applications wit
 
 ## Getting Setup
 
-1. git clone http://github.com/AgileBusinessCloud/Mojo.git && cd Mojo
+1. git clone http://github.com/jbueza/Mojo.git && cd Mojo
 2. use apache ant to build a compiled source: <code>ant</code>
 3. navigate to the <code>/example</code> to view the example code
 
@@ -63,12 +63,10 @@ For more information, view the [Quick Screencast of Mojo Framework](http://vimeo
 
 ### Technical Features
 
-* Aspect-oriented programming for intercepting functionality (before and after)
-* Dependency injection on any plugin or Controller
-* Publish/Subscribe (mojo.Messaging.publish/subscribe)
-* Use any other jQuery plugin (jqModal for dialogs, jcarousel for carousels, bbq for History, etc)
-* Controllers are mapped to DOM elements to give components functionality -- allowing you to easily feature-gate
-* Controllers are used as a way of creating implementation silos (Login Controller, Registration Controller, Chat Controller, Profile Controller, etc)
+* AOP
+* Light Dependency Management
+* PubSub
+* Controllers (Implementation Silos)
 
 ## Why use Mojo?
 
