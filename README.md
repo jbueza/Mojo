@@ -2,11 +2,7 @@
 
 # Mojo - JavaScript Microframework
 
-Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
-
-jQuery is a great library that encompasses a plethora of helper methods (animation, DOM manipulation, network IO) but it doesn't reinforce the concepts of writing code with structural integrity or implementation silos. Having globally distributed software development teams, we found that using jQuery alone can quickly turn a project into a pile of spaghetti with developers hopping on and off the project.
-
-The Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity.
+Microframework on top of jQuery.
 
 ### Building From Source
 
