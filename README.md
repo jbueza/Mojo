@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jbueza/Mojo.png?branch=v1.2)](https://travis-ci.org/jbueza/Mojo)
+
 # Mojo - JavaScript Microframework
 
 Mojo is a lightweight structural JavaScript framework that has the ability to scale up and down based on how big your project is.  In trying to keep the same structural essence of its predecessor, we're refactoring its core features into jQuery plugins.
