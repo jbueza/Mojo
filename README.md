@@ -6,6 +6,8 @@ jQuery is a great library that encompasses a plethora of helper methods (animati
 
 The Mojo Initiative emerged to help distributed teams build web applications with a set of consistent APIs, implementation silos, loosely bound code, and structural integrity.
 
+[![Build Status](https://travis-ci.org/jbueza/Mojo.png?branch=master)](https://travis-ci.org/jbueza/Mojo)
+
 ### Building From Source
 
 <pre>
