@@ -9,13 +9,13 @@ The Mojo Initiative emerged to help distributed teams build web applications wit
 ### Building From Source
 
 <pre>
-  $ git clone git@github.com:AgileBusinessCloud/Mojo.git &amp;&amp; cd Mojo
+  $ git clone git@github.com:jbueza/Mojo.git &amp;&amp; cd Mojo
   $ ant
 </pre>
 
 ## Getting Setup
 
-1. git clone http://github.com/AgileBusinessCloud/Mojo.git && cd Mojo
+1. git clone http://github.com/jbueza/Mojo.git && cd Mojo
 2. use apache ant to build a compiled source: <code>ant</code>
 3. navigate to the <code>/example</code> to view the example code
 
