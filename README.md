@@ -97,11 +97,12 @@ For more information, view the [Quick Screencast of Mojo Framework](http://vimeo
 
 ## Brands Using Mojo
 
-![Bacardi True Originals](https://f.cloud.github.com/assets/25766/2274301/805f200c-9f1a-11e3-8088-4f371bab492e.png)
-[Bacardi True Originals - Social Network for Bartenders](http://www.trueoriginals.com)
+[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)
 
-![Microsoft KinectShare](https://f.cloud.github.com/assets/25766/2274302/806faf30-9f1a-11e3-9049-c517999163eb.png)
-[Microsoft KinectShare - Share Kinect Adventures with Gamers](https://kinectshare.com/)
+
+[![Bacardi True Originals](https://f.cloud.github.com/assets/25766/2274301/805f200c-9f1a-11e3-8088-4f371bab492e.png)](http://www.trueoriginals.com)
+
+[![Microsoft KinectShare](https://f.cloud.github.com/assets/25766/2274302/806faf30-9f1a-11e3-9049-c517999163eb.png)](https://kinectshare.com/)
 
 
 ## Apache 2.0 License
