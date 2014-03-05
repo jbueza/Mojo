@@ -101,6 +101,8 @@ For more information, view the [Quick Screencast of Mojo Framework](http://vimeo
 
 [![Microsoft KinectShare](https://f.cloud.github.com/assets/25766/2274302/806faf30-9f1a-11e3-9049-c517999163eb.png)](https://kinectshare.com/)
 
+[![RESAAS](https://f.cloud.github.com/assets/25766/2330352/44a2bc42-a431-11e3-8fe1-449ce6bfd23a.png)](http://www.resaas.com/)
+
 
 ## Apache 2.0 License
 
